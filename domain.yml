@@ -2,32 +2,31 @@ version: "3.0"
 
 intents:
   - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
+  - rescue
+  - donate
+  - query
+  - affirmation
+  - negation
+  
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: 
+  utter_direct:
+  - text:
+  utter_ask_name: 
+  - text: 
+  utter_ask_: 
+  
+entities:
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+slots:
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+forms: 
+  rescue_form:
 
-  utter_happy:
-  - text: "Great, carry on!"
+  donate_form: 
 
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+actions: 
 
 session_config:
   session_expiration_time: 60
