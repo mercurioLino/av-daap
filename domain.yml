@@ -29,6 +29,46 @@ responses:
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
+entities:
+  - number
+
+slots:
+  # -------------------  endereço ----------------------------------
+  address_details:
+      type: bool
+      influence_conversation: true
+      mappings:
+      - type: custom
+  address_number: # numero
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: person
+  address_street: # rua
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: person
+  address_district: # bairro
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: person
+  address_landmark: # ponto de ferencia
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: person
+  
+  # -------------------- animal ------------------------------------
+
+
+
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
