@@ -1,8 +1,9 @@
 
-docker duckling
+docker run -p 8000:8000 rasa/duckling
 
-rasa run --credentials credentials.yml --enable-api --cors "*"
+pip install spacy
+python3 -m spacy download pt_core_news_md
+
+rasa shell
 
 rasa run actions
-
-ngrok http 5005

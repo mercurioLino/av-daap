@@ -1,0 +1,28 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-bairro",
+      "2": "I-bairro",
+      "3": "L-bairro",
+      "4": "U-bairro",
+      "5": "B-rua",
+      "6": "I-rua",
+      "7": "L-rua",
+      "8": "U-rua",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-bairro": 1,
+      "I-bairro": 2,
+      "L-bairro": 3,
+      "U-bairro": 4,
+      "B-rua": 5,
+      "I-rua": 6,
+      "L-rua": 7,
+      "U-rua": 8,
+      "O": 0
+    },
+    "num_tags": 9
+  }
+]

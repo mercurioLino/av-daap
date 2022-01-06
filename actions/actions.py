@@ -28,7 +28,7 @@ será ativado, caso contrário, a requisição a API será realizada sem nenhum 
 '''
 class ActionSetActivictyDetailsPreference(Action):
     def name(self):
-        return "action_set_activicy_details_preference"
+        return "action_set_address_details_preference"
 
     def run(self, dispatcher, tracker, domain):
         # Define o valor do slot 'define_activicty_detail' como true ou false dependendo da
@@ -40,9 +40,8 @@ class ActionSetActivictyDetailsPreference(Action):
 
         if intent == "affirm" or intent == "define_address_detail":
             print('affirm')
-            return [SlotSet("address_details", True)]
+            return [SlotSet("address_landmark", None)]
         elif intent == "deny":
             print('deny')
-            return [SlotSet("address_details", False)]
+            return [SlotSet("address_number", -1), SlotSet("address_street", 'Desconhecido'), SlotSet("address_district", 'Desconhecido'), SlotSet("address_number", 'Desconhecido')]
         return []
-

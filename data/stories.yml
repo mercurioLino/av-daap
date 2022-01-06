@@ -28,3 +28,30 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+
+
+# cenário em que o usuário não conheçe os detalhes do endereço
+- story: don't wanna specifc address details
+  steps:
+  - intent: address
+  - action: utter_address_details
+  - intent: deny
+  - action: action_set_address_details_preference
+  - slot_was_set:
+    - address_details: False
+  # - action: action_activicty_api
+  - action: address_form
+  - active_loop: address_form
+
+- story: wanna specifc address details
+  steps:
+  - intent: address
+  - action: utter_address_details
+  - intent: affirm
+  - action: action_set_address_details_preference
+  - slot_was_set:
+    - address_details: True
+  # - action: action_activicty_api
+  - action: address_form
+  - active_loop: address_form

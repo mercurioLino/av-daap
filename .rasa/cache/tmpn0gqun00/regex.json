@@ -1,0 +1,10 @@
+[
+  {
+    "name": "bairro",
+    "pattern": "(\\bJardim\\ Aeroporto\\b|\\bJardim\\ Aeroporto\\ I\\b|\\bJardim\\ Aeroporto\\ II\\b|\\bJardim\\ Esplanada\\ Ltda\\b|\\bJardim\\ M\\ S\\ Fátima\\b|\\bJardim\\ Miguita\\b|\\bJardim\\ Morada\\ Sol\\b|\\bJardim\\ N\\ S\\ Fátima\\b|\\bJardim\\ Nogara\\b|\\bJardim\\ Pauliceia\\b|\\bJardim\\ S\\ João\\ Saudade\\b|\\bJardim\\ S\\ L\\ Fátima\\b|\\bJardim\\ S\\ Lourenço\\b|\\bCondomínio\\ Habitacional\\ Colina\\ Verde\\b|\\bColina\\ Verde\\b|\\bConjunto\\ Habitacional\\ Area\\ Franco\\b|\\bAmandaba\\b|\\bBela\\ Vista\\b|\\bBairro\\ Santa\\ Lina\\b|\\bC\\ H\\ Agostinho\\ Franco\\b|\\bC\\ H\\ Morada\\ Sol\\b|\\bCdhu\\ Morada\\ Sol\\b|\\bCeac\\b|\\bCenro\\b|\\bCentro\\b|\\bChácara\\ Colina\\ Verde\\b|\\bChácara\\ Morada\\ Sol\\b|\\bCipex\\b|\\bConjunto\\ H\\ Morada\\ Sol\\b)"
+  },
+  {
+    "name": "rua",
+    "pattern": "(\\bRua\\ 23\\ de\\ Maio\\b|\\bRua\\ 3\\ Gentil\\ Moreira\\b|\\bRua\\ 9\\ de\\ Julho\\b|\\bTravessa\\ A\\b|\\bRua\\ ARMANDO\\ SALES\\ DE\\ OLIVEIRA\\b|\\bRua\\ Abílio\\ Ferreira\\ Rocha\\b|\\bRua\\ Acacio\\ F\\ Marta\\b|\\bVia\\ Acesso\\ Neis\\ Mustapha\\b|\\bRua\\ Acre\\b|\\bRua\\ Adejar\\ Vieira\\ Daria\\b|\\bRua\\ Adejar\\ Vieira\\ Faria\\ Prof\\b|\\bRua\\ Adejar\\ Vieira\\ Faria\\b|\\bRua\\ Adelino\\ Minari\\b|\\bRua\\ Alagoas\\b|\\bRua\\ Alcídes\\ Faleiros\\b|\\bRua\\ Alexandre\\ Galvani\\b|\\bRua\\ Almirante\\ Tamandare\\b|\\bRua\\ Alvaro\\ Guiato\\b|\\bRua\\ Amazonas\\b|\\bAv\\ Santo\\b|\\bAvenida\\ Santos\\b)"
+  }
+]

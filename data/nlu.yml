@@ -89,3 +89,75 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: address
+  examples: |
+    - address
+    - define adress
+    - adress
+
+- intent: inform
+  examples: |
+    - Eu moro no bairro [Jardim Aeroporto](bairro)
+    - O bairro [Jardim Nogara](bairro)
+    - [Cipex](bairro)
+    - [Bela Vista](bairro)
+    - Minha rua é [Rua 23 de Maio](rua)
+    - A [Rua Alagoas](rua)
+    - [Av Santos](rua)
+
+- lookup: bairro
+  examples: |
+    - Jardim Aeroporto
+    - Jardim Aeroporto I
+    - Jardim Aeroporto II
+    - Jardim Esplanada Ltda
+    - Jardim M S Fátima
+    - Jardim Miguita
+    - Jardim Morada Sol
+    - Jardim N S Fátima
+    - Jardim Nogara
+    - Jardim Pauliceia
+    - Jardim S João Saudade
+    - Jardim S L Fátima
+    - Jardim S Lourenço
+    - Condomínio Habitacional Colina Verde
+    - Colina Verde
+    - Conjunto Habitacional Area Franco
+    - Amandaba
+    - Bela Vista
+    - Bairro Santa Lina
+    - C H Agostinho Franco
+    - C H Morada Sol
+    - Cdhu Morada Sol
+    - Ceac
+    - Cenro
+    - Centro
+    - Chácara Colina Verde
+    - Chácara Morada Sol
+    - Cipex
+    - Conjunto H Morada Sol
+
+- lookup: rua
+  examples: |
+    - Rua 23 de Maio
+    - Rua 3 Gentil Moreira
+    - Rua 9 de Julho
+    - Travessa A
+    - Rua ARMANDO SALES DE OLIVEIRA
+    - Rua Abílio Ferreira Rocha
+    - Rua Acacio F Marta
+    - Via Acesso Neis Mustapha
+    - Rua Acre
+    - Rua Adejar Vieira Daria
+    - Rua Adejar Vieira Faria Prof
+    - Rua Adejar Vieira Faria
+    - Rua Adelino Minari
+    - Rua Alagoas
+    - Rua Alcídes Faleiros
+    - Rua Alexandre Galvani
+    - Rua Almirante Tamandare
+    - Rua Alvaro Guiato
+    - Rua Amazonas
+    - Av Santo
+    - Avenida Santos
