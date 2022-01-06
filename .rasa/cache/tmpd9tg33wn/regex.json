@@ -1,6 +1,0 @@
-[
-  {
-    "name": "bairro",
-    "pattern": "(\\bJardim\\ Aerooorto\\b|\\bJardim\\ Aeroporto\\ I\\b|\\bJardim\\ Aeroporto\\ II\\b|\\bJardim\\ Esplanada\\ Ltda\\b|\\bJardim\\ M\\ S\\ Fátima\\b|\\bJardim\\ Miguita\\b|\\bJardim\\ Morada\\ Sol\\b|\\bJardim\\ N\\ S\\ Fátima\\b|\\bJardim\\ Nogara\\b|\\bJardim\\ Pauliceia\\b|\\bJardim\\ S\\ João\\ Saudade\\b|\\bJardim\\ S\\ L\\ Fátima\\b|\\bJardim\\ S\\ Lourenço\\b|\\bCondomínio\\ Habitacional\\ Colina\\ Verde\\b|\\bColina\\ Verde\\b|\\bConjunto\\ Habitacional\\ Area\\ Franco\\b|\\bAmandaba\\b|\\bBela\\ Vista\\b|\\bBairro\\ Santa\\ Lina\\b|\\bC\\ H\\ Agostinho\\ Franco\\b|\\bC\\ H\\ Morada\\ Sol\\b|\\bCdhu\\ Morada\\ Sol\\b|\\bCeac\\b|\\bCenro\\b|\\bCentro\\b|\\bChácara\\ Colina\\ Verde\\b|\\bChácara\\ Morada\\ Sol\\b|\\bCipex\\b|\\bConjunto\\ H\\ Morada\\ Sol\\b)"
-  }
-]
