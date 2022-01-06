@@ -2,12 +2,24 @@ version: "3.0"
 
 intents:
   - greet
+<<<<<<< HEAD
   - rescue
   - donate
   - query
   - affirmation
   - negation
   
+=======
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - address
+  - inform
+
+>>>>>>> facebook-integration
 responses:
   utter_greet:
   - text: 
@@ -26,7 +38,100 @@ forms:
 
   donate_form: 
 
-actions: 
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa. {url}"
+
+  utter_address_details:
+  - text: |-
+      Você conhece os detalhes do endereço?
+
+  utter_submit:
+  - text: "{address_details},
+           {address_number},
+           {address_street},
+           {address_district},
+           {address_landmark}"
+
+  # ------------------- perguntas para obter as respostas dos slots ----------
+  utter_ask_address_number:
+  - text: |-
+        Qual o número?
+
+  utter_ask_address_street:
+  - text: |-
+        Qual a rua?
+
+  utter_ask_address_district:
+  - text: |-
+      Qual o bairro?
+
+  utter_ask_address_landmark:
+  - text: |-
+      Qual a referência?
+
+
+entities:
+  - number
+  - bairro
+  - rua
+  - url
+
+# Definição dos formulários
+forms:
+  address_form:
+    required_slots:
+    - address_number
+    - address_street
+    - address_district
+    - address_landmark
+
+
+slots:
+  # -------------------  endereço ----------------------------------
+  address_details:
+      type: bool
+      influence_conversation: true
+      mappings:
+      - type: custom
+  address_number: # numero
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: number
+  address_street: # rua
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: rua
+  address_district: # bairro
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: bairro
+  address_landmark: # ponto de ferencia
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: address_form
+        requested_slot: address_landmark
+  
+  # -------------------- animal ------------------------------------
+  url: # url que representa a imagem do animal, o nome do slot deve ser url
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: url
+
+actions:
+  - action_set_address_details_preference
+
+
 
 session_config:
   session_expiration_time: 60

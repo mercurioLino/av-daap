@@ -6,3 +6,25 @@ rules:
   steps:
   - intent: goodbye
   - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+
+# ativa o formulário
+# - rule: activate address form
+#   steps:
+#     - intent: request_number   # intent that triggers form activation
+#     - action: address_form      # run the form
+#     - active_loop: number_form # this form is active
+
+# realiza o submit do formulario de endereço
+- rule: submit address form
+  condition:
+  - active_loop: address_form   # this form must be active
+  steps:
+    - action: address_form      # run the form
+    - active_loop: null            # the form is no longer active because it has been filled
+    - action: utter_submit         # action to take after the form is complete
