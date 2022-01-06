@@ -1,10 +1,5 @@
 recipe: default.v1
 
-<<<<<<< HEAD
-# Configuration for Rasa NLU.
-# https://rasa.com/docs/rasa/nlu/components/
-=======
->>>>>>> facebook-integration
 language: pt
 
 pipeline:
