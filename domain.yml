@@ -1,76 +1,58 @@
-version: "3.0"
-
+version: '3.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
 intents:
-  - greet
-  - rescue
-  - donate
-  - query
-  - affirmation
-  - negation
-  
-responses:
-  utter_greet:
-  - text: 
-  utter_direct:
-  - text:
-  utter_ask_name: 
-  - text: 
-  utter_ask_: 
+- rescue
+- inform_phone
+- inform_animal_type
+- inform_name
+- greet
+- give_to_adoption
+- donate
+- inform_adress
+- inform_email
+- address
+- affirmation
+- negation
+- teste_slots
 
 entities:
-#Endereço
-  - number
-  - bairro
-  - rua
-#Imagem
-  - url
-#Dados do animal
-  # - animal
-  # - animal_color
-  # - animal_situation
-  # - animal_age
-  - urgency #(True or false?)
+- animal_type
+- bairro
+- medical_attention
+- name
+- number
+- phone
+- rua
+- urgency
+- url
 
-# Forms
-forms: 
-  rescue_form:
-
-  donate_form: 
-
-  address_form:
-    required_slots:
-    - address_number
-    - address_street
-    - address_district
-    - address_landmark
-
-# Slots
 slots:
-#Slots para o endereço
   address_details:
-      type: bool
-      influence_conversation: true
-      mappings:
-      - type: custom
-  address_number: # numero
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: custom
+  address_number:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: number
-  address_street: # rua
+  address_street:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: rua
-  address_district: # bairro
+  address_district:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: bairro
-  address_landmark: # ponto de ferencia
+  address_landmark:
     type: text
     influence_conversation: true
     mappings:
@@ -78,97 +60,117 @@ slots:
       conditions:
       - active_loop: address_form
         requested_slot: address_landmark
-
-#Slots para o Rescue
-  animal_type: # bairro
+  animal_type:
     type: text
     influence_conversation: true
     mappings:
     - type: custom
-  animal_color: # bairro
+  animal_attributes:
     type: text
     influence_conversation: true
     mappings:
-    - type: custom
-  animal_age: # bairro
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: custom
+    - type: from_text
+    conditions:
+      - active_loop: rescue_form
+        requested_slot: animal_attributes
   animal_urgency:
     type: bool
     influence_conversation: true
     mappings:
     - type: from_entity
+      entity: urgency
       conditions:
       - active_loop: rescue_form
         requested_slot: animal_urgency
-
-
-#----------------------- animal ----------------------------------
-  url: # url que representa a imagem do animal, o nome do slot deve ser url
+  animal_medical_attention:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: medical_attention
+      conditions:
+      - active_loop: rescue_form
+        requested_slot: animal_medical_attention
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: name
+  phone:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: phone
+  url:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: url
-# ----------------------------- ----------------------------------
-
-
-
-# Perguntas para os Slots
-
-#Endereço
+responses:
   utter_address_details:
-  - text: |-
-      Você conhece os detalhes do endereço?
-
+  - text: Você conhece os detalhes do endereço?
+  utter_submit_contact:
+  - text: '{name} {phone} {animal_type}'
   utter_submit:
-  - text: "{address_details},
-           {address_number},
-           {address_street},
-           {address_district},
-           {address_landmark}"
-
+  - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
+  utter_greet:
+  - text: |-
+      Olá, eu sou o chatbot do DAAP! Minha função é facilitar o fluxo de informações entre nossa comunidade.
+      Escolha qual opção melhor se adequa à sua necessidade:
+      1. Pedido de Resgate de Animal
+      2. Doação de Animal
+      3. Fazer uma doação à DAAP
+      4. Dúvidas
   utter_ask_address_number:
-  - text: |-
-        Qual o número?
-
+  - text: Qual o número?
   utter_ask_address_street:
-  - text: |-
-        Qual a rua?
-
+  - text: Qual a rua?
   utter_ask_address_district:
-  - text: |-
-      Qual o bairro?
-
+  - text: Qual o bairro?
   utter_ask_address_landmark:
-  - text: |-
-      Qual a referência?
-
-#Rescue
+  - text: Qual a referência?
   utter_ask_animal_type:
-  - text: |-
-      Qual é o animal? (Exemplo: Cachorro, gato...)
-
-  utter_ask_animal_color:
-  - text: |-
-      Qual é a cor do animal?
-
-  utter_ask_animal_age:
-  - text: |-
-      Qual é a idade do animal, aproximadamente?
-
+  - text: 'Qual é o animal? (Exemplo: Cachorro, gato...)'
+  utter_ask_animal_attributes:
+  - text: Quais são as características do animal?
+  utter_ask_medical_attention:
+  - text: O animal necessita de algum tipo de cuidado médico?
   utter_ask_animal_urgency:
-  - text: |-
-      Este caso é um caso de urgência?
-
-
+  - text: Este caso é um caso de urgência?
+  utter_ask_name:
+  - text: Qual é o nome do responsável pelo animal? (Caso não saiba, informe o nome de um responsável para contato)
+  utter_ask_phone:
+  - text: 'Qual o telefone do responsável? (Informe apenas o número, sem símbolos. Ex.: 18997779977)'
+  utter_provide_contact_info:
+  - text: Primeiramente, preciso dos dados do responsável pelo animal.
+  utter_provide_animal_info:
+  - text: Ok, agora preciso dos dados do animal.
+  utter_provide_animal_location:
+  - text: Ok, agora preciso do endereço aonde o animal está localizado.
 actions:
-  - action_set_address_details_preference
-
-
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+- action_session_start
+- action_set_address_details_preference
+- utter_ask_animal_attributes
+- utter_greet
+- utter_provide_animal_info
+- utter_provide_contact_info
+forms:
+  rescue_form:
+    required_slots:
+    - animal_type
+    - animal_attributes
+    - animal_medical_attention
+    - animal_urgency
+  contact_form:
+    required_slots:
+    - name
+    - phone
+  address_form:
+    required_slots:
+    - address_number
+    - address_street
+    - address_district
+    - address_landmark

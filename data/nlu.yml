@@ -1,5 +1,4 @@
 version: "3.0"
-
 nlu:
 - intent: greet
   examples: |
@@ -10,12 +9,11 @@ nlu:
     - Bom dia
     - Boa tarde
     - Boa noite
-    - Ola 
-    - Oba 
-    - Eai 
-    - eae 
+    - Ola
+    - Oba
+    - Eai
+    - eae
     - salve
-
 - intent: affirmation
   examples: |
     - sim
@@ -26,7 +24,6 @@ nlu:
     - positivo
     - afirmativo
     - s
-
 - intent: negation
   examples: |
     - não
@@ -37,7 +34,19 @@ nlu:
     - errado
     - negativo
     - n
-
+- intent: give_to_adoption
+  examples: |
+    - tenho um animal para adoção
+    - como posso doar um animal para adoção?
+    - tenho um animal que não posso cuidar
+    - gostaria de dar um animal para adoção
+    - quero doar um animal que não posso cuidar para adoção
+    - tenho um animal para adoção na [rua acre](rua)
+    - quero doar um animal
+    - adoção
+    - 2 Doação de Animal
+    - 2
+    - doação de animal
 - intent: rescue
   examples: |
     - resgate de animal
@@ -46,7 +55,13 @@ nlu:
     - encontrei um animal abandonado
     - quero informar um animal em situação de risco
     - animal abandonado aqui no [Jardim Nogara](bairro)
-
+    - socorro
+    - socorro de animal
+    - preciso de um resgate
+    - 1 Pedido de Resgate de Animal
+    - 1
+    - pedido de resgate de animal
+    - quero informar um animal para resgate
 - intent: donate
   examples: |
     - quero fazer uma doação
@@ -57,16 +72,55 @@ nlu:
     - tenho ração para dar
     - doação de ração
     - doar
-
-- intent: query
+    - 3 Fazer uma doação à DAAP
+    - 3
+    - fazer uma doação a daap
+- intent: inform_name
   examples: |
-  
+    - meu nome é [Luis](name)
+    - eu me chamo [Carlos](name)
+    - [Adelino](name)
+    - Nome: [Fabiana](name)
+    - [Nathan](name)
+    - [paulo](name)
+    - [Vínicius](name)
+    - [Daniel](name)
+    - [Fernando](name)
+    - [Gustavo](name)
+    - O nome é [Fernando](name)
+- intent: inform_email
+  examples: |
+    - meu e-mail é: [fulano@gmail.com](email)
+    - meu email é [ciclano@hotmail.com](email)
+    - o email e [gertrudes@yahoo.com.br](email)
+    - [fakeus3r@terra.com.br](email)
+    - email [teste@testemail.com.br](email)
+- intent: inform_phone
+  examples: |
+    - meu número é: [18999998888](phone)
+    - meu telefone é [1837014863](phone)
+    - o numero e [1837016666](phone)
+    - meu numero de celular é [18987126893](phone)
+    - meu contato [18987633214](phone)
+    - [1837016896](phone)
+    - [18999661234](phone)
+    - o numero e [1837016666](phone)
+- intent: inform_animal_type
+  examples: |
+    - [cachorro](animal_type)
+    - [gato](animal_type)
+    - [cavalo](animal_type)
+    - [coelho](animal_type)
+    - o animal é uma [avestruz](animal_type)
+    - é um [rato](animal_type)
+    - o animal é um [papagaio](animal_type)
+    - o animal é um [rato](animal_type)
+    - o animal é um [rato](animal_type) que parece o mickey mouse moreira mano
 - intent: address
   examples: |
     - address
     - define adress
     - adress
-
 - intent: inform_adress
   examples: |
     - Eu moro no bairro [Jardim Aeroporto](bairro)
@@ -76,10 +130,16 @@ nlu:
     - Minha rua é [Rua 23 de Maio](rua)
     - A [Rua Alagoas](rua)
     - [Av Santos](rua)
-
-
-
-# Lookup Tables
+- intent: teste_slots
+  examples: |
+    - teste de slots
+    - slots de
+    - teste de
+    - testar slots
+    - slot de teste
+    - teste de slot
+    - definir slot
+    - testando
 - lookup: bairro
   examples: |
     - Jardim Aeroporto
@@ -111,7 +171,6 @@ nlu:
     - Chácara Morada Sol
     - Cipex
     - Conjunto H Morada Sol
-
 - lookup: rua
   examples: |
     - Rua 23 de Maio

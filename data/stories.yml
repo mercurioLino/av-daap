@@ -2,12 +2,13 @@ version: "3.0"
 
 stories:
 
+
 # cenário em que o usuário não conheçe os detalhes do endereço
 - story: don't wanna specifc address details
   steps:
   - intent: address
   - action: utter_address_details
-  - intent: deny
+  - intent: negation
   - action: action_set_address_details_preference
   - slot_was_set:
     - address_details: False
@@ -19,10 +20,46 @@ stories:
   steps:
   - intent: address
   - action: utter_address_details
-  - intent: affirm
+  - intent: affirmation
   - action: action_set_address_details_preference
   - slot_was_set:
     - address_details: True
   # - action: action_activicty_api
   - action: address_form
   - active_loop: address_form
+
+
+- story: interactive_story_1
+  steps:
+  - intent: rescue
+  - slot_was_set:
+    - animal_attributes: quero informar um animal para resgate
+  - action: utter_provide_contact_info
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - animal_attributes: O nome é Fernando
+  - slot_was_set:
+    - name: Fernando
+  - slot_was_set:
+    - requested_slot: phone
+  - intent: inform_phone
+    entities:
+    - phone: '1837016666'
+  - action: utter_provide_animal_info
+  - action: rescue_form
+  - active_loop: rescue_form
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_attributes: o animal é um rato
+  - slot_was_set:
+    - requested_slot: animal_type
+  - action: utter_ask_animal_attributes
+  - intent: inform_animal_type
+    entities:
+    - animal_type: rato
+  - slot_was_set:
+    - animal_attributes: o animal é um rato que parece o mickey mouse moreira mano

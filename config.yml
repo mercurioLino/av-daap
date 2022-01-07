@@ -4,7 +4,7 @@ language: pt
 
 pipeline:
   - name: "SpacyNLP"
-    model: "pt_core_news_md"
+    model: "pt_core_news_lg"
   - name: WhitespaceTokenizer
   # - name: RegexFeaturizer
   - name: RegexEntityExtractor
