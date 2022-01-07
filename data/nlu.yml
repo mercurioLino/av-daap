@@ -16,36 +16,58 @@ nlu:
     - eae 
     - salve
 
-- intent: rescue
-  examples: |
-    - 
-  
-- intent: donate
-  examples: |
-    - 
-
-- intent: query
-  examples: |
-    - 
-
 - intent: affirmation
   examples: |
-    - 
+    - sim
+    - isso
+    - correto
+    - exatamente
+    - exato
+    - positivo
+    - afirmativo
+    - s
 
 - intent: negation
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - não
+    - não é isso
+    - incorreto
+    - não está correto
+    - não está certo
+    - errado
+    - negativo
+    - n
 
+- intent: rescue
+  examples: |
+    - resgate de animal
+    - animal abandonado na [rua Alagoas](rua)
+    - quero informar um animal abandonado
+    - encontrei um animal abandonado
+    - quero informar um animal em situação de risco
+    - animal abandonado aqui no [Jardim Nogara](bairro)
+
+- intent: donate
+  examples: |
+    - quero fazer uma doação
+    - quero doar
+    - como faço doação
+    - como doar
+    - gostaria de fazer uma doação
+    - tenho ração para dar
+    - doação de ração
+    - doar
+
+- intent: query
+  examples: |
+  
 - intent: address
   examples: |
     - address
     - define adress
     - adress
 
-- intent: inform
+- intent: inform_adress
   examples: |
     - Eu moro no bairro [Jardim Aeroporto](bairro)
     - O bairro [Jardim Nogara](bairro)
@@ -55,6 +77,9 @@ nlu:
     - A [Rua Alagoas](rua)
     - [Av Santos](rua)
 
+
+
+# Lookup Tables
 - lookup: bairro
   examples: |
     - Jardim Aeroporto
