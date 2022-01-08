@@ -70,7 +70,8 @@ slots:
     type: text
     influence_conversation: true
     mappings:
-    - type: custom
+    - type: from_entity
+      entity: animal_type
   animal_attributes:
     type: text
     influence_conversation: true
@@ -88,7 +89,7 @@ slots:
       conditions:
       - active_loop: rescue_form
         requested_slot: animal_urgency
-  animal_medical_attention:
+  medical_attention:
     type: bool
     influence_conversation: true
     mappings:
@@ -96,7 +97,7 @@ slots:
       entity: medical_attention
       conditions:
       - active_loop: rescue_form
-        requested_slot: animal_medical_attention
+        requested_slot: medical_attention
 
   #Slots do Contact
   name:
@@ -132,7 +133,7 @@ responses:
   - text: Você conhece os detalhes do endereço?
 
   utter_submit_contact:
-  - text: '{name} {phone} {animal_type}'
+  - text: '{name} {phone} {animal_attributes}'
 
   utter_submit:
   - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
@@ -192,7 +193,6 @@ responses:
 actions:
 - action_session_start
 - action_set_address_details_preference
-- utter_ask_animal_attributes
 - utter_greet
 - utter_provide_animal_info
 - utter_provide_contact_info
@@ -203,7 +203,7 @@ forms:
     required_slots:
     - animal_type
     - animal_attributes
-    - animal_medical_attention
+    - medical_attention
     - animal_urgency
 
   contact_form:

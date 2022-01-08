@@ -57,14 +57,17 @@ stories:
     - requested_slot: animal_type
   - slot_was_set:
     - animal_type: cachorro
+  - action: utter_ask_animal_attributes
   - slot_was_set:
     - requested_slot: animal_attributes
   - slot_was_set:
     - animal_attributes: o cachorro era cinza com manchinha branca
+  - action: utter_ask_medical_attention
   - slot_was_set:
-    - requested_slot: animal_medical_attention
+    - requested_slot: medical_attention
   - slot_was_set:
-    - animal_medical_attention: nao
+    - medical_attention: nao
+  - action: utter_ask_animal_urgency
   - slot_was_set:
     - requested_slot: animal_urgency
   - slot_was_set:
