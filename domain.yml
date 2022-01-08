@@ -60,6 +60,8 @@ slots:
       conditions:
       - active_loop: address_form
         requested_slot: address_landmark
+         
+  #Slots do Rescue e Donate Animal
   animal_type:
     type: text
     influence_conversation: true
@@ -70,7 +72,7 @@ slots:
     influence_conversation: true
     mappings:
     - type: from_text
-    conditions:
+      conditions:
       - active_loop: rescue_form
         requested_slot: animal_attributes
   animal_urgency:
@@ -91,6 +93,8 @@ slots:
       conditions:
       - active_loop: rescue_form
         requested_slot: animal_medical_attention
+
+  #Slots do Contact
   name:
     type: text
     influence_conversation: true
@@ -109,13 +113,18 @@ slots:
     mappings:
     - type: from_entity
       entity: url
+
+#Utters (Respostas)
 responses:
   utter_address_details:
   - text: Você conhece os detalhes do endereço?
+
   utter_submit_contact:
   - text: '{name} {phone} {animal_type}'
+
   utter_submit:
   - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
+
   utter_greet:
   - text: |-
       Olá, eu sou o chatbot do DAAP! Minha função é facilitar o fluxo de informações entre nossa comunidade.
@@ -124,32 +133,47 @@ responses:
       2. Doação de Animal
       3. Fazer uma doação à DAAP
       4. Dúvidas
+
   utter_ask_address_number:
   - text: Qual o número?
+
   utter_ask_address_street:
   - text: Qual a rua?
+
   utter_ask_address_district:
   - text: Qual o bairro?
+
   utter_ask_address_landmark:
   - text: Qual a referência?
+
   utter_ask_animal_type:
   - text: 'Qual é o animal? (Exemplo: Cachorro, gato...)'
+
   utter_ask_animal_attributes:
   - text: Quais são as características do animal?
+
   utter_ask_medical_attention:
   - text: O animal necessita de algum tipo de cuidado médico?
+
   utter_ask_animal_urgency:
   - text: Este caso é um caso de urgência?
+
   utter_ask_name:
   - text: Qual é o nome do responsável pelo animal? (Caso não saiba, informe o nome de um responsável para contato)
+
   utter_ask_phone:
   - text: 'Qual o telefone do responsável? (Informe apenas o número, sem símbolos. Ex.: 18997779977)'
+
   utter_provide_contact_info:
   - text: Primeiramente, preciso dos dados do responsável pelo animal.
+
   utter_provide_animal_info:
   - text: Ok, agora preciso dos dados do animal.
+
   utter_provide_animal_location:
   - text: Ok, agora preciso do endereço aonde o animal está localizado.
+
+
 actions:
 - action_session_start
 - action_set_address_details_preference
@@ -157,6 +181,8 @@ actions:
 - utter_greet
 - utter_provide_animal_info
 - utter_provide_contact_info
+
+
 forms:
   rescue_form:
     required_slots:
@@ -164,10 +190,12 @@ forms:
     - animal_attributes
     - animal_medical_attention
     - animal_urgency
+
   contact_form:
     required_slots:
     - name
     - phone
+
   address_form:
     required_slots:
     - address_number

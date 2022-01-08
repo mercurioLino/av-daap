@@ -4,7 +4,7 @@ docker run -p 8000:8000 rasa/duckling
 ### Instale o Spacy
 pip install spacy
 
-python3 -m spacy download pt_core_news_md
+python3 -m spacy download pt_core_news_lg
 
 
 ### Rodando as actions e o bot
