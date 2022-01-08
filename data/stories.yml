@@ -29,37 +29,47 @@ stories:
   - active_loop: address_form
 
 
+
 - story: interactive_story_1
   steps:
   - intent: rescue
-  - slot_was_set:
-    - animal_attributes: quero informar um animal para resgate
   - action: utter_provide_contact_info
   - action: contact_form
   - active_loop: contact_form
   - slot_was_set:
     - requested_slot: name
   - slot_was_set:
-    - animal_attributes: O nome é Fernando
-  - slot_was_set:
     - name: Fernando
   - slot_was_set:
     - requested_slot: phone
-  - intent: inform_phone
-    entities:
-    - phone: '1837016666'
+  - slot_was_set:
+    - phone: 18 3701-4863
+  - slot_was_set:
+    - requested_slot: email
+    - email: fakeus3r@hotmail.com
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
   - action: utter_provide_animal_info
   - action: rescue_form
   - active_loop: rescue_form
   - slot_was_set:
     - requested_slot: animal_type
   - slot_was_set:
-    - animal_attributes: o animal é um rato
+    - animal_type: cachorro
   - slot_was_set:
-    - requested_slot: animal_type
-  - action: utter_ask_animal_attributes
-  - intent: inform_animal_type
-    entities:
-    - animal_type: rato
+    - requested_slot: animal_attributes
   - slot_was_set:
-    - animal_attributes: o animal é um rato que parece o mickey mouse moreira mano
+    - animal_attributes: o cachorro era cinza com manchinha branca
+  - slot_was_set:
+    - requested_slot: animal_medical_attention
+  - slot_was_set:
+    - animal_medical_attention: nao
+  - slot_was_set:
+    - requested_slot: animal_urgency
+  - slot_was_set:
+    - animal_urgency: nao
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_provide_animal_location

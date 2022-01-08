@@ -23,12 +23,10 @@ rules:
     - active_loop: null            # the form is no longer active because it has been filled
     - action: utter_submit         # action to take after the form is complete
 
-# realiza o submit do formulario de endereço
-- rule: submit contact form
-  condition:
-  - active_loop: contact_form   # this form must be active
-  steps:
-    - action: contact_form      # run the form
-    - active_loop: null            # the form is no longer active because it has been filled
-    - action: utter_submit_contact         # action to take after the form is complete
-
+# # realiza o submit do formulario de endereço
+# - rule: submit contact form
+#   condition:
+#   - active_loop: contact_form   # this form must be active
+#   steps:
+#     - action: contact_form      # run the form
+#     - active_loop: null            # the form is no longer active because it has been filled

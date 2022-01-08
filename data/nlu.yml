@@ -1,5 +1,13 @@
 version: "3.0"
 nlu:
+- regex: email
+  examples: |
+    - ^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$
+
+- regex: phone
+  examples: |
+    - ^\([1-9]{2}\) [9]{0,1}[6-9]{1}[0-9]{3}\-[0-9]{4}$
+
 - intent: greet
   examples: |
     - Oi
@@ -14,6 +22,7 @@ nlu:
     - Eai
     - eae
     - salve
+
 - intent: affirmation
   examples: |
     - sim
@@ -24,6 +33,7 @@ nlu:
     - positivo
     - afirmativo
     - s
+
 - intent: negation
   examples: |
     - não
@@ -34,6 +44,7 @@ nlu:
     - errado
     - negativo
     - n
+
 - intent: give_to_adoption
   examples: |
     - tenho um animal para adoção
@@ -47,6 +58,7 @@ nlu:
     - 2 Doação de Animal
     - 2
     - doação de animal
+
 - intent: rescue
   examples: |
     - resgate de animal
@@ -62,6 +74,7 @@ nlu:
     - 1
     - pedido de resgate de animal
     - quero informar um animal para resgate
+
 - intent: donate
   examples: |
     - quero fazer uma doação
@@ -75,6 +88,7 @@ nlu:
     - 3 Fazer uma doação à DAAP
     - 3
     - fazer uma doação a daap
+
 - intent: inform_name
   examples: |
     - meu nome é [Luis](name)
@@ -88,6 +102,7 @@ nlu:
     - [Fernando](name)
     - [Gustavo](name)
     - O nome é [Fernando](name)
+
 - intent: inform_email
   examples: |
     - meu e-mail é: [fulano@gmail.com](email)
@@ -95,16 +110,18 @@ nlu:
     - o email e [gertrudes@yahoo.com.br](email)
     - [fakeus3r@terra.com.br](email)
     - email [teste@testemail.com.br](email)
+
 - intent: inform_phone
   examples: |
-    - meu número é: [18999998888](phone)
-    - meu telefone é [1837014863](phone)
-    - o numero e [1837016666](phone)
-    - meu numero de celular é [18987126893](phone)
-    - meu contato [18987633214](phone)
-    - [1837016896](phone)
-    - [18999661234](phone)
-    - o numero e [1837016666](phone)
+    - meu número é: [18 99999-8888](phone)
+    - meu telefone é [18 3701-4863](phone)
+    - o numero e [18 3701-6666](phone)
+    - meu numero de celular é [18 98712-6893](phone)
+    - meu contato [18 98763-3214](phone)
+    - [18 3701-6896](phone)
+    - [18 99966-1234](phone)
+    - o numero e [18 3701-6666](phone)
+
 - intent: inform_animal_type
   examples: |
     - [cachorro](animal_type)
@@ -115,12 +132,22 @@ nlu:
     - é um [rato](animal_type)
     - o animal é um [papagaio](animal_type)
     - o animal é um [rato](animal_type)
-    - o animal é um [rato](animal_type) que parece o mickey mouse moreira mano
+
+    
+- intent: inform_animal_attributes
+  examples: |
+    - o animal é um rato que parece o mickey mouse moreira mano
+    - pequeno, cor marrom e pintas
+    - o cachorro ta com feridas na orelha
+    - filhote de gato fica proximo a rua tal coisa tal
+    - aparenta ser de idade, não tem feridas, muito magro
+
 - intent: address
   examples: |
     - address
     - define adress
     - adress
+
 - intent: inform_adress
   examples: |
     - Eu moro no bairro [Jardim Aeroporto](bairro)
@@ -130,16 +157,7 @@ nlu:
     - Minha rua é [Rua 23 de Maio](rua)
     - A [Rua Alagoas](rua)
     - [Av Santos](rua)
-- intent: teste_slots
-  examples: |
-    - teste de slots
-    - slots de
-    - teste de
-    - testar slots
-    - slot de teste
-    - teste de slot
-    - definir slot
-    - testando
+
 - lookup: bairro
   examples: |
     - Jardim Aeroporto

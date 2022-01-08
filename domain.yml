@@ -6,6 +6,7 @@ intents:
 - rescue
 - inform_phone
 - inform_animal_type
+- inform_animal_attributes
 - inform_name
 - greet
 - give_to_adoption
@@ -15,17 +16,17 @@ intents:
 - address
 - affirmation
 - negation
-- teste_slots
 
 entities:
 - animal_type
-- bairro
 - medical_attention
-- name
-- number
-- phone
-- rua
 - urgency
+- name
+- phone
+- email
+- number
+- rua
+- bairro
 - url
 
 slots:
@@ -40,6 +41,9 @@ slots:
     mappings:
     - type: from_entity
       entity: number
+      conditions:     #Adicionado por Biazom -> Para evitar conflito com numero de telefone
+      - active_loop: adress_form
+
   address_street:
     type: text
     influence_conversation: true
@@ -107,6 +111,14 @@ slots:
     mappings:
     - type: from_entity
       entity: phone
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: email
+
+
   url:
     type: text
     influence_conversation: true
@@ -162,7 +174,10 @@ responses:
   - text: Qual é o nome do responsável pelo animal? (Caso não saiba, informe o nome de um responsável para contato)
 
   utter_ask_phone:
-  - text: 'Qual o telefone do responsável? (Informe apenas o número, sem símbolos. Ex.: 18997779977)'
+  - text: 'Qual o telefone do responsável? (Ex.: 18 99777-9977)'
+
+  utter_ask_email:
+  - text: 'Informe um e-mail para contato:'
 
   utter_provide_contact_info:
   - text: Primeiramente, preciso dos dados do responsável pelo animal.
@@ -195,6 +210,7 @@ forms:
     required_slots:
     - name
     - phone
+    - email
 
   address_form:
     required_slots:
