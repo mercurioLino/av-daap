@@ -81,7 +81,10 @@ slots:
       - active_loop: rescue_form
         requested_slot: animal_attributes
   animal_urgency:
-    type: bool
+    type: categorical
+    values:
+    - 'yes'
+    - 'no'
     influence_conversation: true
     mappings:
     - type: from_entity
@@ -90,7 +93,10 @@ slots:
       - active_loop: rescue_form
         requested_slot: animal_urgency
   medical_attention:
-    type: bool
+    type: categorical
+    values:
+    - 'yes'
+    - 'no'
     influence_conversation: true
     mappings:
     - type: from_entity
