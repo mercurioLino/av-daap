@@ -26,6 +26,8 @@ nlu:
 - intent: affirmation
   examples: |
     - sim
+    - sim tem necessidade
+    - simsim
     - isso
     - correto
     - exatamente
@@ -37,6 +39,8 @@ nlu:
 - intent: negation
   examples: |
     - não
+    - nao
+    - nao necessita
     - não é isso
     - incorreto
     - não está correto
@@ -88,6 +92,19 @@ nlu:
     - 3 Fazer uma doação à DAAP
     - 3
     - fazer uma doação a daap
+
+- intent: inform_age
+  examples: |
+    - eu tenho [14](age) anos
+    - minha idade é [15](age) anos
+    - tenho [18](age) anos de idade
+    - Idade: [21](age)
+    - [27](age) anos
+    - [33](age) anos
+    - [45](age) anos
+    - [88](age)
+    - [35](age)
+    - [26](age)
 
 - intent: inform_name
   examples: |
@@ -141,6 +158,10 @@ nlu:
     - o cachorro ta com feridas na orelha
     - filhote de gato fica proximo a rua tal coisa tal
     - aparenta ser de idade, não tem feridas, muito magro
+    - o animal tinha bolinha branca
+    - o animal era muito bonitinho
+    - era um cachorro muito engracado nao tinha teto nao tinha nada
+    - era um animal de quatro patas
 
 - intent: address
   examples: |

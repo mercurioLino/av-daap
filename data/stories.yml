@@ -37,6 +37,10 @@ stories:
   - action: contact_form
   - active_loop: contact_form
   - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: 26
+  - slot_was_set:
     - requested_slot: name
   - slot_was_set:
     - name: Fernando
@@ -50,6 +54,8 @@ stories:
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
+  - action: utter_submit_completo
+  #Até aqui ta
   - action: utter_provide_animal_info
   - action: rescue_form
   - active_loop: rescue_form
@@ -60,19 +66,27 @@ stories:
   - action: utter_ask_animal_attributes
   - slot_was_set:
     - requested_slot: animal_attributes
+  - intent: inform_animal_attributes
   - slot_was_set:
     - animal_attributes: o cachorro era cinza com manchinha branca
+  - action: utter_ask_animal_health
+  - intent: negation
+  - slot_was_set:
+    - animal_health: False
   - action: utter_ask_medical_attention
+  - intent: negation
   - slot_was_set:
-    - requested_slot: medical_attention
+    - medical_attention: False
+  - action: utter_ask_private_property
+  - intent: affirmation
   - slot_was_set:
-    - medical_attention: nao
+    - private_property: True
   - action: utter_ask_animal_urgency
+  - intent: negation
   - slot_was_set:
-    - requested_slot: animal_urgency
-  - slot_was_set:
-    - animal_urgency: nao
+    - animal_urgency: False
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
+  - action: utter_submit_completo
   - action: utter_provide_animal_location

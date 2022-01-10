@@ -21,6 +21,7 @@ intents:
 entities:
 - animal_type
 - medical_attention
+- private_property
 - maus_tratos
 - urgency
 - age
@@ -92,50 +93,50 @@ slots:
       - active_loop: rescue_form
         requested_slot: animal_health
   animal_urgency:
-    type: bool
+    type: categorical
     influence_conversation: true
     mappings:
-    - type: custom
-      # entity: urgency
-      # values:
-      # - sim
-      # - nao
+    - type: from_entity
+      entity: urgency
+      values:
+      - sim
+      - nao
       conditions:
       - active_loop: rescue_form
         requested_slot: animal_urgency
   medical_attention:
-    type: bool
-    # values:
-    # - sim
-    # - nao
+    type: categorical
+    values:
+    - sim
+    - nao
     influence_conversation: true
     mappings:
-    - type: custom
-      # entity: medical_attention
+    - type: from_entity
+      entity: medical_attention
       conditions:
       - active_loop: rescue_form
         requested_slot: medical_attention
   private_property:
-    type: bool
-    # values:
-    # - sim
-    # - nao
+    type: categorical
+    values:
+    - sim
+    - nao
     influence_conversation: true
     mappings:
-    - type: custom
-      # entity: private_property
+    - type: from_entity
+      entity: private_property
       conditions:
       - active_loop: rescue_form
         requested_slot: private_property
   maus_tratos:
-    type: bool
-    # values:
-    # - sim
-    # - nao
+    type: categorical
+    values:
+    - sim
+    - nao
     influence_conversation: true
     mappings:
-    - type: custom
-      # entity: maus_tratos
+    - type: from_entity
+      entity: maus_tratos
       conditions:
       - active_loop: rescue_form
         requested_slot: maus_tratos

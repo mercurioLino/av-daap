@@ -1,0 +1,43 @@
+
+version: "3.0"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: rescue
+  - action: utter_provide_contact_info
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '33'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Nathan
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 14 99744-4447
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: lbiazom@gmail.com
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_info
+  - action: rescue_form
+  - active_loop: rescue_form
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: cachorro
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - intent: inform_animal_attributes
+  - action: utter_ask_medical_attention
+  - intent: negation
+  - action: utter_ask_animal_urgency
+  - intent: negation

@@ -1,0 +1,26 @@
+version: "3.0"
+nlu:
+- intent: rescue
+  examples: |
+    - resgate de um animal
+- intent: inform_age
+  examples: |
+    - [33](age)
+- intent: inform_name
+  examples: |
+    - [Nathan](name)
+- intent: inform_phone
+  examples: |
+    - [14 99744-4447](phone)
+- intent: inform_email
+  examples: |
+    - [lbiazom@gmail.com](email)
+- intent: inform_animal_type
+  examples: |
+    - o animal e um [cachorro](animal_type)
+- intent: inform_animal_attributes
+  examples: |
+    - o animal e um animal de bolinha
+- intent: negation
+  examples: |
+    - nao
