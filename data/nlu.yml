@@ -83,15 +83,14 @@ nlu:
   examples: |
     - quero fazer uma doação
     - quero doar
-    - como faço doação
+    - como faço doacao
     - como doar
     - gostaria de fazer uma doação
-    - tenho ração para dar
-    - doação de ração
     - doar
     - 3 Fazer uma doação à DAAP
     - 3
     - fazer uma doação a daap
+    - doacao
 
 - intent: inform_age
   examples: |
@@ -105,7 +104,7 @@ nlu:
     - [88](age)
     - [35](age)
     - [26](age)
-
+  
 - intent: inform_name
   examples: |
     - meu nome é [Luis](name)
@@ -119,15 +118,7 @@ nlu:
     - [Fernando](name)
     - [Gustavo](name)
     - O nome é [Fernando](name)
-
-- intent: inform_email
-  examples: |
-    - meu e-mail é: [fulano@gmail.com](email)
-    - meu email é [ciclano@hotmail.com](email)
-    - o email e [gertrudes@yahoo.com.br](email)
-    - [fakeus3r@terra.com.br](email)
-    - email [teste@testemail.com.br](email)
-
+    
 - intent: inform_phone
   examples: |
     - meu número é: [18 99999-8888](phone)
@@ -138,6 +129,14 @@ nlu:
     - [18 3701-6896](phone)
     - [18 99966-1234](phone)
     - o numero e [18 3701-6666](phone)
+
+- intent: inform_email
+  examples: |
+    - meu e-mail é: [fulano@gmail.com](email)
+    - meu email é [ciclano@hotmail.com](email)
+    - o email e [gertrudes@yahoo.com.br](email)
+    - [fakeus3r@terra.com.br](email)
+    - email [teste@testemail.com.br](email)
 
 - intent: inform_animal_type
   examples: |
@@ -163,21 +162,21 @@ nlu:
     - era um cachorro muito engracado nao tinha teto nao tinha nada
     - era um animal de quatro patas
 
-- intent: address
-  examples: |
-    - address
-    - define adress
-    - adress
+# - intent: address
+#   examples: |
+#     - address
+#     - define adress
+#     - adress
 
-- intent: inform_adress
-  examples: |
-    - Eu moro no bairro [Jardim Aeroporto](bairro)
-    - O bairro [Jardim Nogara](bairro)
-    - [Cipex](bairro)
-    - [Bela Vista](bairro)
-    - Minha rua é [Rua 23 de Maio](rua)
-    - A [Rua Alagoas](rua)
-    - [Av Santos](rua)
+# - intent: inform_adress
+#   examples: |
+#     - Eu moro no bairro [Jardim Aeroporto](bairro)
+#     - O bairro [Jardim Nogara](bairro)
+#     - [Cipex](bairro)
+#     - [Bela Vista](bairro)
+#     - Minha rua é [Rua 23 de Maio](rua)
+#     - A [Rua Alagoas](rua)
+#     - [Av Santos](rua)
 
 - lookup: bairro
   examples: |

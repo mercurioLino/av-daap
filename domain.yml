@@ -3,34 +3,42 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- rescue
-- inform_phone
-- inform_animal_type
-- inform_animal_attributes
-- inform_name
-- inform_age
 - greet
-- give_to_adoption
-- donate
-- inform_adress
-- inform_email
-- address
 - affirmation
 - negation
+- give_to_adoption
+- rescue
+- donate
+- donate_money
+- donate_dog_food
+- inform_age
+- inform_name
+- inform_phone
+- inform_email
+- inform_animal_type
+- inform_animal_attributes
+- inform_adress
+- address
 
 entities:
-- animal_type
-- medical_attention
-- maus_tratos
-- urgency
+#Contact
 - age
 - name
 - phone
 - email
+#Animal
+- animal_type
+- medical_attention
+- maus_tratos
+- urgency
+#Adress
 - number
 - rua
 - bairro
+
+#Outros
 - url
+- donation_type
 
 slots:
   address_details:
@@ -96,46 +104,30 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
-      # entity: urgency
-      # values:
-      # - sim
-      # - nao
       conditions:
       - active_loop: rescue_form
         requested_slot: animal_urgency
   medical_attention:
     type: bool
-    # values:
-    # - sim
-    # - nao
     influence_conversation: true
     mappings:
     - type: custom
-      # entity: medical_attention
       conditions:
       - active_loop: rescue_form
         requested_slot: medical_attention
   private_property:
     type: bool
-    # values:
-    # - sim
-    # - nao
     influence_conversation: true
     mappings:
     - type: custom
-      # entity: private_property
       conditions:
       - active_loop: rescue_form
         requested_slot: private_property
   maus_tratos:
     type: bool
-    # values:
-    # - sim
-    # - nao
     influence_conversation: true
     mappings:
     - type: custom
-      # entity: maus_tratos
       conditions:
       - active_loop: rescue_form
         requested_slot: maus_tratos
@@ -169,28 +161,25 @@ slots:
     - type: from_entity
       entity: email
 
-
+  #Outros Slots
   url:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: url
+  donation_type:
+    type: categorical
+    values:
+      - racao
+      - dinheiro
+    influence_conversation: true
+    mappings:
+    - type: custom
+
 
 #Utters (Respostas)
 responses:
-  utter_address_details:
-  - text: Você conhece os detalhes do endereço?
-
-  utter_submit_completo:
-  - text: |-
-      {name} {phone} {age} {email}
-      {animal_urgency} {animal_health} {animal_type}
-      {private_property} {maus_tratos}
-
-  utter_submit:
-  - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
-
   utter_greet:
   - text: |-
       Olá, eu sou o chatbot do DAAP! Minha função é facilitar o fluxo de informações entre nossa comunidade.
@@ -199,6 +188,15 @@ responses:
       2. Doação de Animal
       3. Fazer uma doação à DAAP
       4. Dúvidas
+
+
+
+  # Utters de Endereço
+  utter_provide_animal_location:    # ---> Adicionado por Biazom
+  - text: Ok, agora preciso do endereço aonde o animal está localizado.
+
+  utter_address_details:
+  - text: Você conhece os detalhes do endereço?
 
   utter_ask_address_number:
   - text: Qual o número?
@@ -212,6 +210,14 @@ responses:
   utter_ask_address_landmark:
   - text: Qual a referência?
 
+  utter_submit:
+  - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
+
+
+  # Utters do form de Rescue Form
+  utter_provide_animal_info:
+  - text: Ok, agora preciso dos dados do animal.
+
   utter_ask_animal_type:
   - text: 'Qual é o animal? (Exemplo: Cachorro, gato...)'
 
@@ -221,17 +227,22 @@ responses:
   utter_ask_animal_health:
   - text: 'Aparentemente, qual a saúde do animal? (Descreva como achar melhor)'
 
+  utter_ask_maus_tratos:
+  - text: O animal está sofrendo maus tratos?
+
   utter_ask_medical_attention:
   - text: O animal necessita de algum tipo de cuidado médico?
 
   utter_ask_private_property:
   - text: 'O animal se encontra em uma propriedade privada? (Exemplo: Na casa ou lote de alguém, na qual não há acesso)'
 
-  utter_ask_maus_tratos:
-  - text: O animal está sofrendo maus tratos?
-
   utter_ask_animal_urgency:
   - text: Este caso é um caso de urgência?
+
+
+  # Utters para o Contact Form
+  utter_provide_contact_info:
+  - text: Primeiramente, preciso dos dados do responsável pelo animal.
 
   utter_ask_age:
   - text: Qual é sua idade?
@@ -245,14 +256,28 @@ responses:
   utter_ask_email:
   - text: 'Informe um e-mail para contato:'
 
-  utter_provide_contact_info:
-  - text: Primeiramente, preciso dos dados do responsável pelo animal.
 
-  utter_provide_animal_info:
-  - text: Ok, agora preciso dos dados do animal.
+  #Utters do Donate
+  utter_donate:
+  - text: |- 
+      Obrigado pelo interesse em ajudar a nossa comunidade!
+      Atualmente, a DAAP recebe doações em dinheiro, bem como doações em ração.
+      Qual dessas opções se adequa ao seu caso?
 
-  utter_provide_animal_location:
-  - text: Ok, agora preciso do endereço aonde o animal está localizado.
+  utter_donate_money:
+  - text: |-
+      Aqui fica as informações para doar dinheiro
+
+  utter_donate_dog_food:
+  - text: |-
+      Aqui fica as informações de doação de ração
+
+  utter_submit_completo:
+  - text: |-
+      {name} {phone} {age} {email}
+      {animal_urgency} {animal_health} {animal_type}
+      {private_property} {maus_tratos}
+
 
 
 actions:
@@ -287,3 +312,7 @@ forms:
     - address_street
     - address_district
     - address_landmark
+
+  donation_type_form:
+    required_slots:
+    - donation_type

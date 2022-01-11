@@ -30,7 +30,7 @@ stories:
 
 
 
-- story: interactive_story_1
+- story: Fluxo do Rescue
   steps:
   - intent: rescue
   - action: utter_provide_contact_info
@@ -90,3 +90,95 @@ stories:
   - active_loop: null
   - action: utter_submit_completo
   - action: utter_provide_animal_location
+
+# - story: Fluxo do Donate Animal (Give to Adoption)
+#   steps:
+#   - intent: give_to_adoption
+#   - action: utter_provide_contact_info
+#   - action: contact_form
+#   - active_loop: contact_form
+#   - slot_was_set:
+#     - requested_slot: age
+#   - slot_was_set:
+#     - age: 26
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - name: Fernando
+#   - slot_was_set:
+#     - requested_slot: phone
+#   - slot_was_set:
+#     - phone: 18 3701-4863
+#   - slot_was_set:
+#     - requested_slot: email
+#     - email: fakeus3r@hotmail.com
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_submit_completo
+#   #Até aqui ta
+#   - action: utter_provide_animal_info
+#   - action: rescue_form
+#   - active_loop: rescue_form
+#   - slot_was_set:
+#     - requested_slot: animal_type
+#   - slot_was_set:
+#     - animal_type: cachorro
+#   - action: utter_ask_animal_attributes
+#   - slot_was_set:
+#     - requested_slot: animal_attributes
+#   - intent: inform_animal_attributes
+#   - slot_was_set:
+#     - animal_attributes: o cachorro era cinza com manchinha branca
+#   - action: utter_ask_animal_health
+#   - intent: negation
+#   - slot_was_set:
+#     - animal_health: False
+#   - action: utter_ask_medical_attention
+#   - intent: negation
+#   - slot_was_set:
+#     - medical_attention: False
+#   - action: utter_ask_private_property
+#   - intent: affirmation
+#   - slot_was_set:
+#     - private_property: True
+#   - action: utter_ask_animal_urgency
+#   - intent: negation
+#   - slot_was_set:
+#     - animal_urgency: False
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+
+
+- story: Fluxo do Donate Racao
+  steps:
+  - intent: donate
+  - action: utter_donate
+  - action: donation_type_form
+  - active_loop: donation_type_form
+  - slot_was_set:
+    - requested_slot: donation_type
+  - intent: donate_dog_food
+  - slot_was_set:
+    - donation_type: racao
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_donate_dog_food
+
+- story: Fluxo do Donate Money
+  steps:
+  - intent: donate
+  - action: utter_donate
+  - action: donation_type_form
+  - active_loop: donation_type_form
+  - slot_was_set:
+    - requested_slot: donation_type
+  - intent: donate_money
+  - slot_was_set:
+    - donation_type: dinheiro
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_donate_money
