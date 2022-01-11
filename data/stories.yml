@@ -83,6 +83,7 @@ stories:
     - private_property: True
   - action: utter_ask_animal_urgency
   - intent: negation
+  - action: action_set_animal_urgency
   - slot_was_set:
     - animal_urgency: False
   - slot_was_set:

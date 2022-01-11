@@ -283,10 +283,13 @@ responses:
 actions:
 - action_session_start
 - action_set_address_details_preference
+- action_set_animal_urgency
+- action_set_medical_attention
+- action_set_private_property
+- action_set_maus_tratos
 - utter_greet
 - utter_provide_animal_info
 - utter_provide_contact_info
-
 
 
 forms:
