@@ -28,9 +28,7 @@ stories:
   - action: address_form
   - active_loop: address_form
 
-
-
-- story: Fluxo do Rescue
+- story: Rescue
   steps:
   - intent: rescue
   - action: utter_provide_contact_info
@@ -39,23 +37,23 @@ stories:
   - slot_was_set:
     - requested_slot: age
   - slot_was_set:
-    - age: 26
+    - age: '26'
   - slot_was_set:
     - requested_slot: name
   - slot_was_set:
-    - name: Fernando
+    - name: vinicius
   - slot_was_set:
     - requested_slot: phone
   - slot_was_set:
-    - phone: 18 3701-4863
+    - phone: 14 99744-4447
   - slot_was_set:
     - requested_slot: email
-    - email: fakeus3r@hotmail.com
+  - slot_was_set:
+    - email: lbiazom@gmail.com
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit_completo
-  #Até aqui ta
   - action: utter_provide_animal_info
   - action: rescue_form
   - active_loop: rescue_form
@@ -63,123 +61,155 @@ stories:
     - requested_slot: animal_type
   - slot_was_set:
     - animal_type: cachorro
-  - action: utter_ask_animal_attributes
   - slot_was_set:
     - requested_slot: animal_attributes
-  - intent: inform_animal_attributes
   - slot_was_set:
-    - animal_attributes: o cachorro era cinza com manchinha branca
-  - action: utter_ask_animal_health
+    - animal_attributes: o animal é preto com orelha branca
+  - slot_was_set:
+    - requested_slot: animal_health
+  - slot_was_set:
+    - animal_health: o animal esta com machucado na orelha
+  - slot_was_set:
+    - requested_slot: medical_attention
   - intent: negation
+  - action: action_set_medical_attention
   - slot_was_set:
-    - animal_health: False
-  - action: utter_ask_medical_attention
-  - intent: negation
-  - slot_was_set:
-    - medical_attention: False
+    - medical_attention: false
   - action: utter_ask_private_property
-  - intent: affirmation
-  - slot_was_set:
-    - private_property: True
-  - action: utter_ask_animal_urgency
   - intent: negation
+  - action: action_set_private_property
+  - slot_was_set:
+    - private_property: false
+  - action: utter_ask_maus_tratos
+  - intent: negation
+  - action: action_set_maus_tratos
+  - slot_was_set:
+    - maus_tratos: false
+  - action: utter_ask_animal_urgency
+  - intent: affirmation
   - action: action_set_animal_urgency
   - slot_was_set:
-    - animal_urgency: False
+    - animal_urgency: true
+  - action: utter_submit_completo
+  # Até aqui está ok
+
+- story: Give to Adoption
+  steps:
+  - intent: give_to_adoption
+  - action: utter_give_to_adoption
+  - action: termos_form
+  - active_loop: termos_form
+  - slot_was_set:
+    - requested_slot: termos
+  - intent: affirmation
+  - action: action_set_termos
+  - slot_was_set:
+    - termos: true
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '26'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: vinicius
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 14 99744-4447
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: lbiazom@gmail.com
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit_completo
-  - action: utter_provide_animal_location
+  - action: utter_provide_animal_info
+  - action: give_to_adoption_form
+  - active_loop: give_to_adoption_form
+  - slot_was_set:
+    - requested_slot: animal_quantity
+  - slot_was_set:
+    - animal_quantity: '4'
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: cachorro
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - slot_was_set:
+    - animal_attributes: o animal é preto com orelha branca
+  - slot_was_set:
+    - requested_slot: is_vacinado
+  - intent: affirmation
+  - action: action_set_is_vacinado
+  - slot_was_set:
+    - is_vacinado: true
+  - action: utter_ask_is_castrado
+  - intent: affirmation
+  - action: action_set_is_castrado
+  - slot_was_set:
+    - is_castrado: true
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  # Até aqui está ok
 
-# - story: Fluxo do Donate Animal (Give to Adoption)
-#   steps:
-#   - intent: give_to_adoption
-#   - action: utter_provide_contact_info
-#   - action: contact_form
-#   - active_loop: contact_form
-#   - slot_was_set:
-#     - requested_slot: age
-#   - slot_was_set:
-#     - age: 26
-#   - slot_was_set:
-#     - requested_slot: name
-#   - slot_was_set:
-#     - name: Fernando
-#   - slot_was_set:
-#     - requested_slot: phone
-#   - slot_was_set:
-#     - phone: 18 3701-4863
-#   - slot_was_set:
-#     - requested_slot: email
-#     - email: fakeus3r@hotmail.com
-#   - slot_was_set:
-#     - requested_slot: null
-#   - active_loop: null
-#   - action: utter_submit_completo
-#   #Até aqui ta
-#   - action: utter_provide_animal_info
-#   - action: rescue_form
-#   - active_loop: rescue_form
-#   - slot_was_set:
-#     - requested_slot: animal_type
-#   - slot_was_set:
-#     - animal_type: cachorro
-#   - action: utter_ask_animal_attributes
-#   - slot_was_set:
-#     - requested_slot: animal_attributes
-#   - intent: inform_animal_attributes
-#   - slot_was_set:
-#     - animal_attributes: o cachorro era cinza com manchinha branca
-#   - action: utter_ask_animal_health
-#   - intent: negation
-#   - slot_was_set:
-#     - animal_health: False
-#   - action: utter_ask_medical_attention
-#   - intent: negation
-#   - slot_was_set:
-#     - medical_attention: False
-#   - action: utter_ask_private_property
-#   - intent: affirmation
-#   - slot_was_set:
-#     - private_property: True
-#   - action: utter_ask_animal_urgency
-#   - intent: negation
-#   - slot_was_set:
-#     - animal_urgency: False
-#   - slot_was_set:
-#     - requested_slot: null
-#   - active_loop: null
-
+- story: Termo Negado - Give to Adoption
+  steps:
+  - intent: give_to_adoption
+  - action: utter_give_to_adoption
+  - action: termos_form
+  - active_loop: termos_form
+  - slot_was_set:
+    - requested_slot: termos
+  - intent: negation
+  - action: action_set_termos
+  - slot_was_set:
+    - termos: false
+  - action: utter_termo_negado
+  - action: utter_offer_more_help
 
 - story: Fluxo do Donate Racao
   steps:
   - intent: donate
   - action: utter_donate
-  - action: donation_type_form
-  - active_loop: donation_type_form
-  - slot_was_set:
-    - requested_slot: donation_type
   - intent: donate_dog_food
-  - slot_was_set:
-    - donation_type: racao
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
   - action: utter_donate_dog_food
 
 - story: Fluxo do Donate Money
   steps:
   - intent: donate
   - action: utter_donate
-  - action: donation_type_form
-  - active_loop: donation_type_form
-  - slot_was_set:
-    - requested_slot: donation_type
   - intent: donate_money
-  - slot_was_set:
-    - donation_type: dinheiro
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
   - action: utter_donate_money
+
+- story: Te ajudo em algo mais
+  steps:
+  - action: utter_offer_more_help
+  - slot_was_set:
+    - requested_slot: more_help
+  - intent: affirmation
+  - action: action_set_more_help
+  - slot_was_set:
+    - more_help: true
+  - action: utter_options
+
+- story: Não Te ajudo em algo mais
+  steps:
+  - action: utter_offer_more_help
+  - slot_was_set:
+    - requested_slot: more_help
+  - intent: negation
+  - action: action_set_more_help
+  - slot_was_set:
+    - more_help: false
+  - action: utter_goodbye
+

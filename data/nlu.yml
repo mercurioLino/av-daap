@@ -11,17 +11,41 @@ nlu:
 - intent: greet
   examples: |
     - Oi
-    - Olá
+    - Ola
     - Opa
     - Oii
     - Bom dia
     - Boa tarde
     - Boa noite
-    - Ola
+    - atendimento
     - Oba
     - Eai
     - eae
-    - salve
+    - gostaria de atendimento
+
+- intent: goodbye
+  examples: |
+    - tchau
+    - ate mais
+    - Obrigado
+    - xau
+    - xauxau
+    - ate logo
+    - aguardo retorno
+    - tchau ate logo
+    - adeus
+
+- intent: cancel
+  examples: |
+    - cancelar
+    - voltar ao menu
+    - menu inicial
+    - ir para o menu
+    - ir para o inicio
+    - cancela
+    - inicio
+    - cancelar conversa
+    - reiniciar
 
 - intent: affirmation
   examples: |
@@ -51,7 +75,7 @@ nlu:
 
 - intent: give_to_adoption
   examples: |
-    - tenho um animal para adoção
+    - tenho um animal para doação
     - como posso doar um animal para adoção?
     - tenho um animal que não posso cuidar
     - gostaria de dar um animal para adoção
@@ -59,8 +83,7 @@ nlu:
     - tenho um animal para adoção na [rua acre](rua)
     - quero doar um animal
     - adoção
-    - 2 Doação de Animal
-    - 2
+    - Doação de Animal
     - doação de animal
 
 - intent: rescue
@@ -74,8 +97,7 @@ nlu:
     - socorro
     - socorro de animal
     - preciso de um resgate
-    - 1 Pedido de Resgate de Animal
-    - 1
+    - Pedido de Resgate de Animal
     - pedido de resgate de animal
     - quero informar um animal para resgate
 
@@ -87,10 +109,31 @@ nlu:
     - como doar
     - gostaria de fazer uma doação
     - doar
-    - 3 Fazer uma doação à DAAP
-    - 3
+    - Fazer uma doação à DAAP
     - fazer uma doação a daap
     - doacao
+
+- intent: donate_money
+  examples: |
+    - quero doar [10 reais](donation_type)
+    - doar [60 reais](donation_type)
+    - doacao de [dinheiro](donation_type)
+    - [10 reais](donation_type)
+    - [dinheiro](donation_type)
+    - quero fazer uma doacao em [dinheiro](donation_type)
+    - doar [dinheiro](donation_type)
+    - em [dinheiro](donation_type)
+
+- intent: donate_dog_food
+  examples: |
+    - quero doar [racao](donation_type)
+    - doar [racao](donation_type)
+    - doacao de [racao](donation_type)
+    - [racao](donation_type)
+    - [comida de cachorro](donation_type)
+    - quero fazer uma doacao em [racao](donation_type)
+    - doar comida [racao](donation_type)
+    - em [racao](donation_type)
 
 - intent: inform_age
   examples: |
@@ -154,13 +197,26 @@ nlu:
   examples: |
     - o animal é um rato que parece o mickey mouse moreira mano
     - pequeno, cor marrom e pintas
-    - o cachorro ta com feridas na orelha
     - filhote de gato fica proximo a rua tal coisa tal
-    - aparenta ser de idade, não tem feridas, muito magro
-    - o animal tinha bolinha branca
-    - o animal era muito bonitinho
-    - era um cachorro muito engracado nao tinha teto nao tinha nada
-    - era um animal de quatro patas
+    - o animal tem pintinhas brancas
+    - o animalzinho é preto e branco
+    - é um gatinho amarelo rajado
+    - o cachorro é caramelo vira lata
+    - o cachorro é preto, com pelos lisos e está com coleira
+    - o cachorro aparenta ser domestico e esta com coleira
+    - parece que tem dono, tem coleira
+
+- intent: inform_animal_health
+  examples: |
+    - o animal está com machucado na pata
+    - o cachorro ta mancando
+    - o gato esta com feridas no corpo
+    - o animal está machucado
+    - aparentemente esta normal, sem detalhes
+    - parece que ta tudo ok
+    - sem detalhes
+    - o animal está com feridas e machucado e esta mancando
+    - o animal ta com feridas na orelha
 
 # - intent: address
 #   examples: |

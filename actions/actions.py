@@ -8,7 +8,7 @@ from email import encoders
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet, SessionStarted, ActionExecuted
+from rasa_sdk.events import SlotSet, SessionStarted, ActionExecuted, AllSlotsReset, Restarted
 
 class ActionSessionStart(Action):
     def name(self) -> Text:
@@ -107,6 +107,86 @@ class ActionSetTratos(Action):
             print('negation')
             return [SlotSet("maus_tratos", False)]
         return []
+
+class ActionSetTermos(Action):
+    def name(self):
+        return "action_set_termos"
+
+    def run(self, dispatcher, tracker, domain):
+
+        intent = tracker.latest_message["intent"].get("name")
+
+        if intent == "affirmation":
+            print('affirmation')
+            return [SlotSet("termos", True)]
+        elif intent == "negation":
+            print('negation')
+            return [SlotSet("termos", False)]
+        return []
+
+class ActionSetIsCastrado(Action):
+    def name(self):
+        return "action_set_is_castrado"
+
+    def run(self, dispatcher, tracker, domain):
+
+        intent = tracker.latest_message["intent"].get("name")
+
+        if intent == "affirmation":
+            print('affirmation')
+            return [SlotSet("termos", True)]
+        elif intent == "negation":
+            print('negation')
+            return [SlotSet("termos", False)]
+        return []
+
+class ActionSetIsVacinado(Action):
+    def name(self):
+        return "action_set_is_vacinado"
+
+    def run(self, dispatcher, tracker, domain):
+
+        intent = tracker.latest_message["intent"].get("name")
+
+        if intent == "affirmation":
+            print('affirmation')
+            return [SlotSet("termos", True)]
+        elif intent == "negation":
+            print('negation')
+            return [SlotSet("termos", False)]
+        return []
+
+class ActionSetMoreHelp(Action):
+    def name(self):
+        return "action_set_more_help"
+
+    def run(self, dispatcher, tracker, domain):
+
+        intent = tracker.latest_message["intent"].get("name")
+
+        if intent == "affirmation":
+            print('affirmation')
+            return [SlotSet("more_help", True)]
+        elif intent == "negation":
+            print('negation')
+            return [SlotSet("more_help", False)]
+        return []
+
+class ResetSlot(Action):   #Acrescentado por Biazom para uso no "Cancelamento/Retorno ao Menu Inicial"
+  
+    def name(self):
+        return "action_reset_slots"
+
+    def run(self, dispatcher, tracker, domain):
+        return [AllSlotsReset()]
+
+class ActionRestarted(Action):   #Acrescentado por Biazom para uso no "Cancelamento/Retorno ao Menu Inicial"
+
+    def name(self):
+        return "action_chat_restart"
+
+    def run(self, dispatcher, tracker, domain):
+        return [Restarted()]
 
 '''
 Action que define o valor dos slots de endereço.

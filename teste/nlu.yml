@@ -6,9 +6,11 @@ nlu:
 - intent: inform_age
   examples: |
     - [33](age)
+    - [26](age)
 - intent: inform_name
   examples: |
     - [Nathan](name)
+    - [vinicius](name)
 - intent: inform_phone
   examples: |
     - [14 99744-4447](phone)
@@ -18,9 +20,21 @@ nlu:
 - intent: inform_animal_type
   examples: |
     - o animal e um [cachorro](animal_type)
+    - [cachorro](animal_type)
 - intent: inform_animal_attributes
   examples: |
     - o animal e um animal de bolinha
+    - o animal é preto com orelha branca
 - intent: negation
   examples: |
     - nao
+    - não
+- intent: inform_animal_health
+  examples: |
+    - o animal esta com machucado na orelha
+- intent: affirmation
+  examples: |
+    - sim
+- intent: give_to_adoption
+  examples: |
+    - doacao de animal

@@ -41,3 +41,82 @@ stories:
   - intent: negation
   - action: utter_ask_animal_urgency
   - intent: negation
+
+- story: interactive_story_1
+  steps:
+  - intent: rescue
+  - action: utter_provide_contact_info
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '26'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: vinicius
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 14 99744-4447
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: lbiazom@gmail.com
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_info
+  - action: rescue_form
+  - active_loop: rescue_form
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: cachorro
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - slot_was_set:
+    - animal_attributes: o animal é preto com orelha branca
+  - slot_was_set:
+    - requested_slot: animal_health
+  - slot_was_set:
+    - animal_health: o animal esta com machucado na orelha
+  - slot_was_set:
+    - requested_slot: medical_attention
+  - intent: negation
+  - action: action_set_medical_attention
+  - slot_was_set:
+    - medical_attention: false
+  - action: utter_ask_private_property
+  - intent: negation
+  - action: action_set_private_property
+  - slot_was_set:
+    - private_property: false
+  - action: utter_ask_maus_tratos
+  - intent: negation
+  - action: action_set_maus_tratos
+  - slot_was_set:
+    - maus_tratos: false
+  - action: utter_ask_animal_urgency
+  - intent: affirmation
+  - action: action_set_animal_urgency
+  - slot_was_set:
+    - animal_urgency: true
+  - action: utter_submit_completo
+
+- story: interactive_story_1
+  steps:
+  - intent: give_to_adoption
+  - action: utter_give_to_adoption
+  - action: termos_form
+  - active_loop: termos_form
+  - slot_was_set:
+    - requested_slot: termos
+  - intent: negation
+  - action: action_set_termos
+  - slot_was_set:
+    - termos: false
+  - action: utter_termo_negado
+  - action: utter_offer_more_help

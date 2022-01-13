@@ -4,6 +4,8 @@ session_config:
   carry_over_slots_to_new_session: true
 intents:
 - greet
+- goodbye
+- cancel
 - affirmation
 - negation
 - give_to_adoption
@@ -17,6 +19,7 @@ intents:
 - inform_email
 - inform_animal_type
 - inform_animal_attributes
+- inform_animal_health
 - inform_adress
 - address
 
@@ -76,7 +79,7 @@ slots:
       - active_loop: address_form
         requested_slot: address_landmark
          
-  #Slots do Rescue e Donate Animal
+  #Slots do Rescue
   animal_type:
     type: text
     influence_conversation: true
@@ -132,6 +135,31 @@ slots:
       - active_loop: rescue_form
         requested_slot: maus_tratos
 
+  #Slots para Give to Adoption
+  animal_quantity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: give_to_adoption_form
+        requested_slot: animal_quantity
+  is_vacinado:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: custom
+      conditions:
+      - active_loop: give_to_adoption_form
+  is_castrado:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: custom
+      conditions:
+      - active_loop: give_to_adoption_form
+
+
   #Slots do Contact
   age:
     type: text
@@ -168,14 +196,17 @@ slots:
     mappings:
     - type: from_entity
       entity: url
-  donation_type:
-    type: categorical
-    values:
-      - racao
-      - dinheiro
+  termos:
+    type: bool
     influence_conversation: true
     mappings:
     - type: custom
+  more_help:
+    type: bool
+    influence_conversation: true
+    mappings:
+    - type: custom
+
 
 
 #Utters (Respostas)
@@ -183,12 +214,30 @@ responses:
   utter_greet:
   - text: |-
       Olá, eu sou o chatbot do DAAP! Minha função é facilitar o fluxo de informações entre nossa comunidade.
-      Escolha qual opção melhor se adequa à sua necessidade:
-      1. Pedido de Resgate de Animal
-      2. Doação de Animal
-      3. Fazer uma doação à DAAP
-      4. Dúvidas
-
+      Escreva qual opção melhor se adequa à sua necessidade:
+      - Pedido de Resgate de Animal
+      - Doação de Animal
+      - Fazer uma doação à DAAP
+      - Dúvidas
+  
+  utter_options:
+  - text: |
+      Escreva qual opção melhor se adequa à sua necessidade:
+      - Pedido de Resgate de Animal
+      - Doação de Animal
+      - Fazer uma doação à DAAP
+      - Dúvidas
+  
+  utter_cancel:
+  - text: Ok, vou cancelar esta ação e voltar ao menu inicial!
+    
+  utter_goodbye:
+  - text: |-
+      Até mais, tchau!
+      -Sessão encerrada-
+  
+  utter_offer_more_help:
+  - text: Te ajudo em algo mais?
 
 
   # Utters de Endereço
@@ -213,6 +262,25 @@ responses:
   utter_submit:
   - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
 
+  #Utters do Give to Adoption
+  utter_give_to_adoption:
+  - text: |-
+      Certo! Pra fazer isso, precisarei de alguns dados, tudo bem?
+      Após informar os dados, um modelo de postagem será publicado em nossa comunidade aqui no Facebook, para aqueles interessados.
+      Nossa comunidade não age de maneira direta no auxílio quanto à doação de animais, pois nossa prioridade é o resgate de animais abandonados.
+      Sendo assim, você deseja prosseguir?
+
+  utter_termo_negado:
+  - text: Tudo bem, vou encerrar este tópico então.
+
+  utter_ask_animal_quantity:
+  - text: Quantos animais você pretende dar para adoção?
+  
+  utter_ask_is_vacinado:
+  - text: O animal é vacinado?
+
+  utter_ask_is_castrado:
+  - text: O animal é castrado?
 
   # Utters do form de Rescue Form
   utter_provide_animal_info:
@@ -238,7 +306,7 @@ responses:
 
   utter_ask_animal_urgency:
   - text: Este caso é um caso de urgência?
-
+  
 
   # Utters para o Contact Form
   utter_provide_contact_info:
@@ -275,18 +343,24 @@ responses:
   utter_submit_completo:
   - text: |-
       {name} {phone} {age} {email}
-      {animal_urgency} {animal_health} {animal_type}
-      {private_property} {maus_tratos}
+      {animal_type} {animal_attributes} {animal_health} 
+      {medical_attention} {private_property} {maus_tratos} {animal_urgency}
 
 
 
 actions:
 - action_session_start
+- action_set_more_help
+- action_reset_slots
+- action_chat_restart
 - action_set_address_details_preference
 - action_set_animal_urgency
 - action_set_medical_attention
 - action_set_private_property
 - action_set_maus_tratos
+- action_set_termos
+- action_set_is_vacinado
+- action_set_is_castrado
 - utter_greet
 - utter_provide_animal_info
 - utter_provide_contact_info
@@ -297,10 +371,23 @@ forms:
     required_slots:
     - animal_type
     - animal_attributes
+    - animal_health
     - medical_attention
-    - maus_tratos
     - private_property
+    - maus_tratos
     - animal_urgency
+
+  give_to_adoption_form:
+    required_slots:
+    - animal_quantity
+    - animal_type
+    - animal_attributes
+    - is_vacinado
+    - is_castrado
+
+  termos_form:
+    required_slots:
+    - termos
 
   contact_form:
     required_slots:
@@ -316,6 +403,4 @@ forms:
     - address_district
     - address_landmark
 
-  donation_type_form:
-    required_slots:
-    - donation_type
+
