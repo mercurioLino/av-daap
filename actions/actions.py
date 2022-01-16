@@ -204,7 +204,7 @@ class ActionSetActivictyDetailsPreference(Action):
             return [SlotSet("address_landmark", None)]
         elif intent == "deny":
             print('deny')
-            return [SlotSet("address_number", -1), SlotSet("address_street", 'Desconhecido'), SlotSet("address_district", 'Desconhecido'), SlotSet("address_number", 'Desconhecido')]
+            return [SlotSet("address_numero", -1), SlotSet("address_street", 'Desconhecido'), SlotSet("address_district", 'Desconhecido'), SlotSet("address_numero", 'Desconhecido')]
         return []
 
 # --------------- Action que envia email -----------------------------

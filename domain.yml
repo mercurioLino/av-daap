@@ -20,8 +20,11 @@ intents:
 - inform_animal_type
 - inform_animal_attributes
 - inform_animal_health
-- inform_adress
-- address
+#- inform_adress
+- inform_street
+- inform_number
+- inform_bairro
+- inform_landmark
 
 entities:
 #Contact
@@ -55,9 +58,6 @@ slots:
     mappings:
     - type: from_entity
       entity: number
-      conditions:     #Adicionado por Biazom -> Para evitar conflito com numero de telefone
-      - active_loop: adress_form
-
   address_street:
     type: text
     influence_conversation: true
@@ -398,8 +398,8 @@ forms:
 
   address_form:
     required_slots:
-    - address_number
     - address_street
+    - address_number
     - address_district
     - address_landmark
 

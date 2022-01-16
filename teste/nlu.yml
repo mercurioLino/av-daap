@@ -3,28 +3,37 @@ nlu:
 - intent: rescue
   examples: |
     - resgate de um animal
+    - resgate de animal
+    - o animal esta bem de [saude](bairro)
 - intent: inform_age
   examples: |
     - [33](age)
     - [26](age)
+    - [26](age) anos
 - intent: inform_name
   examples: |
     - [Nathan](name)
     - [vinicius](name)
+    - [Vinicius](name)
 - intent: inform_phone
   examples: |
+    - [14 99744-4447](phone)
     - [14 99744-4447](phone)
 - intent: inform_email
   examples: |
     - [lbiazom@gmail.com](email)
+    - [fakeus3r@live.com](email)
 - intent: inform_animal_type
   examples: |
     - o animal e um [cachorro](animal_type)
     - [cachorro](animal_type)
+    - [gato](animal_type)
+    - gato de botas laranja
 - intent: inform_animal_attributes
   examples: |
     - o animal e um animal de bolinha
     - o animal é preto com orelha branca
+    - gato de botas com pelo laranja
 - intent: negation
   examples: |
     - nao
@@ -32,9 +41,22 @@ nlu:
 - intent: inform_animal_health
   examples: |
     - o animal esta com machucado na orelha
+    - esta bem de [saude](bairro)
 - intent: affirmation
   examples: |
     - sim
 - intent: give_to_adoption
   examples: |
     - doacao de animal
+- intent: inform_street
+  examples: |
+    - [rua acre](rua)[rua acre](rua)
+- intent: inform_number
+  examples: |
+    - numero [905](number)
+- intent: inform_bairro
+  examples: |
+    - [jd aeroporto](bairro)[jd aeroporto ii](bairro)
+- intent: inform_landmark
+  examples: |
+    - esquina do posto ipiranga

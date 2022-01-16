@@ -3,23 +3,27 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- inform_bairro
 - negation
-- give_to_adoption
-- greet
-- affirmation
+- inform_animal_type
+- inform_phone
+- inform_animal_attributes
+- inform_street
 - rescue
+- inform_landmark
+- inform_name
+- inform_animal_health
+- inform_number
+- inform_age
+- affirmation
+- inform_email
+- greet
+- goodbye
+- cancel
+- give_to_adoption
 - donate
 - donate_money
 - donate_dog_food
-- inform_age
-- inform_name
-- inform_phone
-- inform_email
-- inform_animal_type
-- inform_animal_attributes
-- inform_animal_health
-- inform_adress
-- address
 entities:
 - age
 - animal_type
@@ -46,8 +50,6 @@ slots:
     mappings:
     - type: from_entity
       entity: number
-      conditions:
-      - active_loop: adress_form
   address_street:
     type: text
     influence_conversation: true
@@ -182,17 +184,11 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
-  donation_type:
-    type: categorical
+  more_help:
+    type: bool
     influence_conversation: true
     mappings:
     - type: custom
-      conditions:
-      - active_loop: termos_form
-        requested_slot: termos
-    values:
-    - racao
-    - dinheiro
 responses:
   utter_greet:
   - text: |-
@@ -202,6 +198,19 @@ responses:
       - Doação de Animal
       - Fazer uma doação à DAAP
       - Dúvidas
+  utter_options:
+  - text: |
+      Escreva qual opção melhor se adequa à sua necessidade:
+      - Pedido de Resgate de Animal
+      - Doação de Animal
+      - Fazer uma doação à DAAP
+      - Dúvidas
+  utter_cancel:
+  - text: Ok, vou cancelar esta ação e voltar ao menu inicial!
+  utter_goodbye:
+  - text: |-
+      Até mais, tchau!
+      -Sessão encerrada-
   utter_offer_more_help:
   - text: Te ajudo em algo mais?
   utter_provide_animal_location:
@@ -225,7 +234,7 @@ responses:
       Nossa comunidade não age de maneira direta no auxílio quanto à doação de animais, pois nossa prioridade é o resgate de animais abandonados.
       Sendo assim, você deseja prosseguir?
   utter_termo_negado:
-  - text: Sendo assim, vou encerrar este tópico.
+  - text: Tudo bem, vou encerrar este tópico então.
   utter_ask_animal_quantity:
   - text: Quantos animais você pretende dar para adoção?
   utter_ask_is_vacinado:
@@ -273,6 +282,8 @@ responses:
       {animal_type} {animal_attributes} {animal_health} 
       {medical_attention} {private_property} {maus_tratos} {animal_urgency}
 actions:
+- action_chat_restart
+- action_reset_slots
 - action_session_start
 - action_set_address_details_preference
 - action_set_animal_urgency
@@ -280,14 +291,19 @@ actions:
 - action_set_is_vacinado
 - action_set_maus_tratos
 - action_set_medical_attention
+- action_set_more_help
 - action_set_private_property
 - action_set_termos
-- utter_give_to_adoption
+- utter_address_details
+- utter_ask_animal_urgency
+- utter_ask_maus_tratos
+- utter_ask_private_property
 - utter_greet
-- utter_offer_more_help
 - utter_provide_animal_info
+- utter_provide_animal_location
 - utter_provide_contact_info
-- utter_termo_negado
+- utter_submit
+- utter_submit_completo
 forms:
   rescue_form:
     required_slots:
@@ -316,10 +332,7 @@ forms:
     - email
   address_form:
     required_slots:
-    - address_number
     - address_street
+    - address_number
     - address_district
     - address_landmark
-  donation_type_form:
-    required_slots:
-    - donation_type

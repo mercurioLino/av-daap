@@ -1,34 +1,7 @@
 version: "3.0"
 
 stories:
-
-
-# cenário em que o usuário não conheçe os detalhes do endereço
-- story: don't wanna specifc address details
-  steps:
-  - intent: address
-  - action: utter_address_details
-  - intent: negation
-  - action: action_set_address_details_preference
-  - slot_was_set:
-    - address_details: False
-  # - action: action_activicty_api
-  - action: address_form
-  - active_loop: address_form
-
-- story: wanna specifc address details
-  steps:
-  - intent: address
-  - action: utter_address_details
-  - intent: affirmation
-  - action: action_set_address_details_preference
-  - slot_was_set:
-    - address_details: True
-  # - action: action_activicty_api
-  - action: address_form
-  - active_loop: address_form
-
-- story: Rescue
+- story: Rescue especifica o endereco
   steps:
   - intent: rescue
   - action: utter_provide_contact_info
@@ -41,7 +14,7 @@ stories:
   - slot_was_set:
     - requested_slot: name
   - slot_was_set:
-    - name: vinicius
+    - name: Vinicius
   - slot_was_set:
     - requested_slot: phone
   - slot_was_set:
@@ -49,7 +22,7 @@ stories:
   - slot_was_set:
     - requested_slot: email
   - slot_was_set:
-    - email: lbiazom@gmail.com
+    - email: fakeus3r@live.com
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
@@ -60,40 +33,191 @@ stories:
   - slot_was_set:
     - requested_slot: animal_type
   - slot_was_set:
-    - animal_type: cachorro
+    - animal_type: gato
   - slot_was_set:
     - requested_slot: animal_attributes
   - slot_was_set:
-    - animal_attributes: o animal é preto com orelha branca
+    - animal_attributes: gato de botas laranja
   - slot_was_set:
     - requested_slot: animal_health
   - slot_was_set:
-    - animal_health: o animal esta com machucado na orelha
+    - animal_health: o animal esta bem de saude
   - slot_was_set:
     - requested_slot: medical_attention
-  - intent: negation
+  - or:
+    - intent: negation
+    - intent: affirmation
   - action: action_set_medical_attention
-  - slot_was_set:
-    - medical_attention: false
+  - or:
+    - slot_was_set:
+      - medical_attention: false
+    - slot_was_set:
+      - medical_attention: true
   - action: utter_ask_private_property
-  - intent: negation
+  - or:
+    - intent: negation
+    - intent: affirmation
   - action: action_set_private_property
-  - slot_was_set:
-    - private_property: false
+  - or:
+    - slot_was_set:
+      - private_property: false
+    - slot_was_set:
+      - private_property: true
   - action: utter_ask_maus_tratos
-  - intent: negation
+  - or:
+    - intent: negation
+    - intent: affirmation
   - action: action_set_maus_tratos
-  - slot_was_set:
-    - maus_tratos: false
+  - or:
+    - slot_was_set:
+      - maus_tratos: false
+    - slot_was_set:
+      - maus_tratos: true
   - action: utter_ask_animal_urgency
-  - intent: affirmation
+  - or:
+    - intent: affirmation
+    - intent: negation
   - action: action_set_animal_urgency
-  - slot_was_set:
-    - animal_urgency: true
+  - or:
+    - slot_was_set:
+      - animal_urgency: true
+    - slot_was_set:
+      - animal_urgency: false
   - action: utter_submit_completo
-  # Até aqui está ok
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_provide_animal_location
+  - action: utter_address_details
+  - intent: affirmation
+  - action: action_set_address_details_preference
+  - action: address_form
+  - active_loop: address_form
+  - slot_was_set:
+    - requested_slot: address_street
+  - slot_was_set:
+    - address_street: rua acre
+  - slot_was_set:
+    - requested_slot: address_number
+  - slot_was_set:
+    - address_number: 905
+  - slot_was_set:
+    - requested_slot: address_district
+  - slot_was_set:
+    - address_district: jd aeroporto ii
+  - slot_was_set:
+    - requested_slot: address_landmark
+  - slot_was_set:
+    - address_landmark: esquina do posto ipiranga
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
 
-- story: Give to Adoption
+- story: Rescue NAO especifica o endereco
+  steps:
+  - intent: rescue
+  - action: utter_provide_contact_info
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '26'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Vinicius
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 14 99744-4447
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: fakeus3r@live.com
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_info
+  - action: rescue_form
+  - active_loop: rescue_form
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: gato
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - slot_was_set:
+    - animal_attributes: gato de botas laranja
+  - slot_was_set:
+    - requested_slot: animal_health
+  - slot_was_set:
+    - animal_health: o animal esta bem de saude
+  - slot_was_set:
+    - requested_slot: medical_attention
+  - or:
+    - intent: negation
+    - intent: affirmation
+  - action: action_set_medical_attention
+  - or:
+    - slot_was_set:
+      - medical_attention: false
+    - slot_was_set:
+      - medical_attention: true
+  - action: utter_ask_private_property
+  - or:
+    - intent: negation
+    - intent: affirmation
+  - action: action_set_private_property
+  - or:
+    - slot_was_set:
+      - private_property: false
+    - slot_was_set:
+      - private_property: true
+  - action: utter_ask_maus_tratos
+  - or:
+    - intent: negation
+    - intent: affirmation
+  - action: action_set_maus_tratos
+  - or:
+    - slot_was_set:
+      - maus_tratos: false
+    - slot_was_set:
+      - maus_tratos: true
+  - action: utter_ask_animal_urgency
+  - or:
+    - intent: affirmation
+    - intent: negation
+  - action: action_set_animal_urgency
+  - or:
+    - slot_was_set:
+      - animal_urgency: true
+    - slot_was_set:
+      - animal_urgency: false
+  - action: utter_submit_completo
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_provide_animal_location
+  - action: utter_address_details
+  - intent: negation
+  - action: action_set_address_details_preference
+  - action: address_form
+  - active_loop: address_form
+  - slot_was_set:
+    - requested_slot: address_landmark
+  - slot_was_set:
+    - address_landmark: esquina do posto ipiranga
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+
+- story: Give to Adoption especifica o endereco
   steps:
   - intent: give_to_adoption
   - action: utter_give_to_adoption
@@ -147,20 +271,149 @@ stories:
     - animal_attributes: o animal é preto com orelha branca
   - slot_was_set:
     - requested_slot: is_vacinado
-  - intent: affirmation
+  - or:
+    - intent: affirmation
+    - intent: negation
   - action: action_set_is_vacinado
-  - slot_was_set:
-    - is_vacinado: true
+  - or:
+    - slot_was_set:
+      - is_vacinado: true
+    - slot_was_set:
+      - is_vacinado: false
   - action: utter_ask_is_castrado
-  - intent: affirmation
+  - or:
+    - intent: affirmation
+    - intent: negation
   - action: action_set_is_castrado
-  - slot_was_set:
-    - is_castrado: true
+  - or:
+    - slot_was_set:
+      - is_castrado: true
+    - slot_was_set:
+      - is_castrado: false
+  - action: action_deactivate_loop
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit_completo
-  # Até aqui está ok
+  - action: utter_provide_animal_location
+  - action: utter_address_details
+  - intent: affirmation
+  - action: action_set_address_details_preference
+  - action: address_form
+  - active_loop: address_form
+  - slot_was_set:
+    - requested_slot: address_street
+  - slot_was_set:
+    - address_street: rua acre
+  - slot_was_set:
+    - requested_slot: address_number
+  - slot_was_set:
+    - address_number: 905
+  - slot_was_set:
+    - requested_slot: address_district
+  - slot_was_set:
+    - address_district: jd aeroporto ii
+  - slot_was_set:
+    - requested_slot: address_landmark
+  - slot_was_set:
+    - address_landmark: esquina do posto ipiranga
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+
+- story: Give to Adoption NAO especifica o endereco
+  steps:
+  - intent: give_to_adoption
+  - action: utter_give_to_adoption
+  - action: termos_form
+  - active_loop: termos_form
+  - slot_was_set:
+    - requested_slot: termos
+  - intent: affirmation
+  - action: action_set_termos
+  - slot_was_set:
+    - termos: true
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '26'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: vinicius
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 14 99744-4447
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: lbiazom@gmail.com
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_info
+  - action: give_to_adoption_form
+  - active_loop: give_to_adoption_form
+  - slot_was_set:
+    - requested_slot: animal_quantity
+  - slot_was_set:
+    - animal_quantity: '4'
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: cachorro
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - slot_was_set:
+    - animal_attributes: o animal é preto com orelha branca
+  - slot_was_set:
+    - requested_slot: is_vacinado
+  - or:
+    - intent: affirmation
+    - intent: negation
+  - action: action_set_is_vacinado
+  - or:
+    - slot_was_set:
+      - is_vacinado: true
+    - slot_was_set:
+      - is_vacinado: false
+  - action: utter_ask_is_castrado
+  - or:
+    - intent: affirmation
+    - intent: negation
+  - action: action_set_is_castrado
+  - or:
+    - slot_was_set:
+      - is_castrado: true
+    - slot_was_set:
+      - is_castrado: false
+  - action: action_deactivate_loop
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_location
+  - action: utter_address_details
+  - intent: negation
+  - action: action_set_address_details_preference
+  - action: address_form
+  - active_loop: address_form
+  - slot_was_set:
+    - requested_slot: address_landmark
+  - slot_was_set:
+    - address_landmark: esquina do posto ipiranga
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
 
 - story: Termo Negado - Give to Adoption
   steps:

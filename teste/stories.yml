@@ -120,3 +120,97 @@ stories:
     - termos: false
   - action: utter_termo_negado
   - action: utter_offer_more_help
+
+- story: interactive_story_1
+  steps:
+  - intent: rescue
+  - action: utter_provide_contact_info
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '26'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Vinicius
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 14 99744-4447
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: fakeus3r@live.com
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_info
+  - action: rescue_form
+  - active_loop: rescue_form
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: gato
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - slot_was_set:
+    - animal_attributes: gato de botas laranja
+  - slot_was_set:
+    - requested_slot: animal_health
+  - slot_was_set:
+    - animal_health: o animal esta bem de saude
+  - slot_was_set:
+    - requested_slot: medical_attention
+  - intent: negation
+  - action: action_set_medical_attention
+  - slot_was_set:
+    - medical_attention: false
+  - action: utter_ask_private_property
+  - intent: negation
+  - action: action_set_private_property
+  - slot_was_set:
+    - private_property: false
+  - action: utter_ask_maus_tratos
+  - intent: negation
+  - action: action_set_maus_tratos
+  - slot_was_set:
+    - maus_tratos: false
+  - action: utter_ask_animal_urgency
+  - intent: affirmation
+  - action: action_set_animal_urgency
+  - slot_was_set:
+    - animal_urgency: true
+  - action: utter_submit_completo
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_provide_animal_location
+  - action: utter_address_details
+  - intent: affirmation
+  - action: action_set_address_details_preference
+  - action: address_form
+  - active_loop: address_form
+  - slot_was_set:
+    - requested_slot: address_street
+  - slot_was_set:
+    - address_street: rua acre
+  - slot_was_set:
+    - requested_slot: address_number
+  - slot_was_set:
+    - address_number: 905
+  - slot_was_set:
+    - requested_slot: address_district
+  - slot_was_set:
+    - address_district: jd aeroporto ii
+  - slot_was_set:
+    - requested_slot: address_landmark
+  - slot_was_set:
+    - address_landmark: esquina do posto ipiranga
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit

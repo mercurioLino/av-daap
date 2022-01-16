@@ -8,6 +8,10 @@ nlu:
   examples: |
     - ^\([1-9]{2}\) [9]{0,1}[6-9]{1}[0-9]{3}\-[0-9]{4}$
 
+- regex: age
+  examples: |
+    - /^100|[1-9]?\d$/
+
 - intent: greet
   examples: |
     - Oi
@@ -27,7 +31,6 @@ nlu:
   examples: |
     - tchau
     - ate mais
-    - Obrigado
     - xau
     - xauxau
     - ate logo
@@ -148,19 +151,20 @@ nlu:
     - [35](age)
     - [26](age)
   
-- intent: inform_name
+- intent: inform_name  # Provavelmente será retirado, pois irá pegar com o próprio negocio do Facebook
   examples: |
     - meu nome é [Luis](name)
     - eu me chamo [Carlos](name)
-    - [Adelino](name)
+    - [adelino](name)
     - Nome: [Fabiana](name)
     - [Nathan](name)
     - [paulo](name)
     - [Vínicius](name)
     - [Daniel](name)
     - [Fernando](name)
-    - [Gustavo](name)
+    - [gustavo](name)
     - O nome é [Fernando](name)
+    - [leonardo](name)
     
 - intent: inform_phone
   examples: |
@@ -218,12 +222,6 @@ nlu:
     - o animal está com feridas e machucado e esta mancando
     - o animal ta com feridas na orelha
 
-# - intent: address
-#   examples: |
-#     - address
-#     - define adress
-#     - adress
-
 # - intent: inform_adress
 #   examples: |
 #     - Eu moro no bairro [Jardim Aeroporto](bairro)
@@ -233,6 +231,51 @@ nlu:
 #     - Minha rua é [Rua 23 de Maio](rua)
 #     - A [Rua Alagoas](rua)
 #     - [Av Santos](rua)
+#     - [rua alexadre galvani](rua) numero [33](numero)
+#     - o endereço é [rua acacio f marta](rua) n. [905](numero) - [Jd Aeroporto](bairro)
+
+- intent: inform_street
+  examples: |
+    - Minha rua e [Rua 23 de Maio](rua)
+    - A [Rua Alagoas](rua)
+    - [Av Santos](rua)
+    - [rua alexadre galvani](rua) numero [33](number)
+    - o endereço é [rua acacio f marta](rua)
+    - o animal esta na rua [Via Acesso Neis Mustapha](rua)
+    - está localizado na [rua 3 gentil moreira](rua)
+    - e a [rua adelino minari](rua)
+
+- intent: inform_number
+  examples: |
+    - numero [905](number)
+    - n. [33](number)
+    - o numero e [1055-A](number)
+    - terreno numero [333](number)
+    - [rua alexandre galvani](rua) n [88](number)
+    - [456](number)
+    - number do imovel [66](number)
+    - apt. n. [3333](number)
+
+- intent: inform_bairro
+  examples: |
+    - bairro [jardim aeroporto](bairro)
+    - o bairro e [jd aeroporto ii](bairro)
+    - fica no bairro [jd miguita](bairro)
+    - ta no bairro [jardim m s fatima](bairro)
+    - se encontra em [amandaba](bairro)
+    - [nao sei o bairro](bairro)
+    - [jardim esplanada](bairro)
+    - no [jardim s joao saudade](bairro)
+
+- intent: inform_landmark
+  examples: |
+    - ao lado da madeireira
+    - frente com a escola jose da costa
+    - esquina com o posto tal e tal
+    - casa com portao cinza 
+    - em frente ao galpao da vo savelina
+    - sobrado vermelho
+    - casa antiga com a frente cheia de mato
 
 - lookup: bairro
   examples: |
@@ -248,10 +291,25 @@ nlu:
     - Jardim Pauliceia
     - Jardim S João Saudade
     - Jardim S L Fátima
-    - Jardim S Lourenço
+    - Jardim S
+    - Jd Aeroporto
+    - Jd Aeroporto I
+    - Jd Aeroporto II
+    - Jd Esplanada Ltda
+    - Jd M S Fátima
+    - Jd Miguita
+    - Jd Morada Sol
+    - Jd N S Fátima
+    - Jd Nogara
+    - Jd Pauliceia
+    - Jd S João Saudade
+    - Jd S L Fátima
+    - Jd S Lourenço
     - Condomínio Habitacional Colina Verde
     - Colina Verde
     - Conjunto Habitacional Area Franco
+    - cohab area Franco
+    - coab
     - Amandaba
     - Bela Vista
     - Bairro Santa Lina
