@@ -215,13 +215,26 @@ class ActionDefaultAskAffirmation(Action):
         return "action_default_ask_affirmation"
         
     def run(self, dispatcher, tracker, domain):
-        predicted_intent_info = tracker.latest_message["intent_ranking"][1]
+        predicted_intent = tracker.latest_message["intent_ranking"][1]
 
-        message = "Quis dizer '{}'?".format(predicted_intent_info)
+        intent_mappings = {
+            "rescue": "Resgate",
+            "affirmation": "que sim",
+            "negation": "que não",
+            "inform_animal_type": "Tipo do Animal",
+            "inform_animal_attributes": "as Características do Animal",
+            "donate": "Doação a DAAP"
+        }
+
+        message = "Sua intenção era informar " + intent_mappings[predicted_intent['name']] + "?"
+            
+            
 
         buttons = [
-            {"title": "Yes", "payload": "/{}".format('greet')},
-            {"title": "No", "payload": "/out_of_scope"},
+            {
+            "title": "Yes", "payload": "/{}".format(predicted_intent['name']),
+            "title": "No", "payload": "/out_of_scope"
+            }         
         ]
 
         dispatcher.utter_message(message, buttons=buttons)

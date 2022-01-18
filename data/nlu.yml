@@ -49,6 +49,8 @@ nlu:
     - inicio
     - cancelar conversa
     - reiniciar
+    - cancele
+    - canselar
 
 - intent: affirmation
   examples: |
