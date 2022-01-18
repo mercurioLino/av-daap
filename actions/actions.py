@@ -207,6 +207,28 @@ class ActionSetActivictyDetailsPreference(Action):
             return [SlotSet("address_numero", -1), SlotSet("address_street", 'Desconhecido'), SlotSet("address_district", 'Desconhecido'), SlotSet("address_numero", 'Desconhecido')]
         return []
 
+
+# -------------------------- Fallback -------------------------------
+class ActionDefaultAskAffirmation(Action):
+    
+    def name(self):
+        return "action_default_ask_affirmation"
+        
+    def run(self, dispatcher, tracker, domain):
+        predicted_intent_info = tracker.latest_message["intent_ranking"][1]
+
+        message = "Quis dizer '{}'?".format(predicted_intent_info)
+
+        buttons = [
+            {"title": "Yes", "payload": "/{}".format('greet')},
+            {"title": "No", "payload": "/out_of_scope"},
+        ]
+
+        dispatcher.utter_message(message, buttons=buttons)
+
+        return []
+
+
 # --------------- Action que envia email -----------------------------
 class ActionEmailSender(Action):
     def name(self):
