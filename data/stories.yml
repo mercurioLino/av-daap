@@ -114,6 +114,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit
+  - action: action_all_slots_data
 
 - story: Rescue NAO especifica o endereco
   steps:
@@ -206,16 +207,9 @@ stories:
   - action: utter_address_details
   - intent: negation
   - action: action_set_address_details_preference
-  - action: address_form
-  - active_loop: address_form
   - slot_was_set:
-    - requested_slot: address_landmark
-  - slot_was_set:
-    - address_landmark: esquina do posto ipiranga
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_submit
+    - address_details: false
+  - action: action_all_slots_data
 
 - story: Give to Adoption especifica o endereco
   steps:
@@ -321,6 +315,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit
+  - action: action_all_slots_data
 
 - story: Give to Adoption NAO especifica o endereco
   steps:
@@ -414,6 +409,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit
+  - action: action_all_slots_data
 
 - story: Termo Negado - Give to Adoption
   steps:
@@ -465,4 +461,98 @@ stories:
   - slot_was_set:
     - more_help: false
   - action: utter_goodbye
+
+
+
+
+
+
+
+# story de doação de animal
+- story: interactive_story_1
+  steps:
+  - intent: give_to_adoption
+  - action: utter_give_to_adoption
+  - action: termos_form
+  - active_loop: termos_form
+  - slot_was_set:
+    - requested_slot: termos
+  - intent: affirmation
+  - action: action_set_termos
+  - slot_was_set:
+    - termos: true
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '19'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Vinicius
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 18 99777-9977
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: vinicius@gmail.com
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_info
+  - action: give_to_adoption_form
+  - active_loop: give_to_adoption_form
+  - slot_was_set:
+    - requested_slot: animal_quantity
+  - slot_was_set:
+    - animal_quantity: '10'
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: gato
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - intent: inform_animal_attributes
+  - action: utter_ask_is_vacinado
+  - intent: affirmation
+  - action: action_set_is_vacinado
+  - slot_was_set:
+    - termos: true
+  - action: utter_ask_is_castrado
+  - intent: affirmation
+  - action: action_set_is_castrado
+  - slot_was_set:
+    - termos: true
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_location
+  - action: utter_address_details
+  - intent: affirmation
+  - action: action_set_address_details_preference
+  - action: address_form
+  - active_loop: address_form
+  - slot_was_set:
+    - requested_slot: address_street
+  - slot_was_set:
+    - address_street: rua acre
+  - slot_was_set:
+    - requested_slot: address_number
+  - slot_was_set:
+    - address_number: 800
+  - slot_was_set:
+    - requested_slot: address_district
+  - slot_was_set:
+    - address_district: Jardim Nogara
+  - slot_was_set:
+    - requested_slot: address_landmark
+  - intent: inform_landmark
+  - action: utter_submit
+  - action: action_all_slots_data
 

@@ -348,3 +348,11 @@ nlu:
     - Rua Amazonas
     - Av Santo
     - Avenida Santos
+
+
+- intent: inform_landmark
+  examples: |
+    - proximo a
+    - na mesma
+    - proximo ao endereço
+    - do lado de

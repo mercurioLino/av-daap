@@ -1,62 +1,37 @@
 version: "3.0"
 nlu:
-- intent: rescue
+- intent: give_to_adoption
   examples: |
-    - resgate de um animal
-    - resgate de animal
-    - o animal esta bem de [saude](bairro)
-- intent: inform_age
-  examples: |
-    - [33](age)
-    - [26](age)
-    - [26](age) anos
-- intent: inform_name
-  examples: |
-    - [Nathan](name)
-    - [vinicius](name)
-    - [Vinicius](name)
-- intent: inform_phone
-  examples: |
-    - [14 99744-4447](phone)
-    - [14 99744-4447](phone)
-- intent: inform_email
-  examples: |
-    - [lbiazom@gmail.com](email)
-    - [fakeus3r@live.com](email)
-- intent: inform_animal_type
-  examples: |
-    - o animal e um [cachorro](animal_type)
-    - [cachorro](animal_type)
-    - [gato](animal_type)
-    - gato de botas laranja
-- intent: inform_animal_attributes
-  examples: |
-    - o animal e um animal de bolinha
-    - o animal é preto com orelha branca
-    - gato de botas com pelo laranja
-- intent: negation
-  examples: |
-    - nao
-    - não
-- intent: inform_animal_health
-  examples: |
-    - o animal esta com machucado na orelha
-    - esta bem de [saude](bairro)
+    - Doação animal
 - intent: affirmation
   examples: |
     - sim
-- intent: give_to_adoption
+- intent: inform_age
   examples: |
-    - doacao de animal
+    - [19](age)
+    - [10](age)
+    - [800](age)
+- intent: nlu_fallback
+  examples: |
+    - [Vinicius](name)
+- intent: inform_phone
+  examples: |
+    - [18 99777-9977](phone)
+- intent: inform_email
+  examples: |
+    - [vinicius@gmail.com](email)
+- intent: inform_animal_type
+  examples: |
+    - [gato](animal_type)
+- intent: inform_animal_attributes
+  examples: |
+    - pelo laranja
 - intent: inform_street
   examples: |
     - [rua acre](rua)[rua acre](rua)
-- intent: inform_number
-  examples: |
-    - numero [905](number)
 - intent: inform_bairro
   examples: |
-    - [jd aeroporto](bairro)[jd aeroporto ii](bairro)
+    - [O](bairro) bairro [Jardim Nogara](bairro)[Jardim Nogara](bairro)
 - intent: inform_landmark
   examples: |
-    - esquina do posto ipiranga
+    - proximo a rua

@@ -327,7 +327,7 @@ responses:
 
   #Utters do Donate
   utter_donate:
-  - text: |- 
+  - text: |-
       Obrigado pelo interesse em ajudar a nossa comunidade!
       Atualmente, a DAAP recebe doações em dinheiro, bem como doações em ração.
       Qual dessas opções se adequa ao seu caso?
@@ -346,11 +346,11 @@ responses:
       {animal_type} {animal_attributes} {animal_health} 
       {medical_attention} {private_property} {maus_tratos} {animal_urgency}
 
-  utter_ask_rephrase:
-  - text: Desculpe. Não entendi. Pode repetir?
+  # utter_ask_rephrase:
+  # - text: 'Desculpe. Não entendi. Pode repetir?'
 
-  utter_default:
-  - text: Desculpe, não posso te ajudar.
+  # utter_default:
+  # - text: 'Desculpe, não posso te ajudar.'
 
 
 
@@ -370,7 +370,8 @@ actions:
 - utter_greet
 - utter_provide_animal_info
 - utter_provide_contact_info
-- action_default_ask_affirmation
+- action_all_slots_data
+# - action_default_ask_affirmation
 
 
 

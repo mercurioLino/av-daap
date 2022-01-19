@@ -4,6 +4,7 @@ rules:
 
 - rule: Action Session Start
   steps: 
+  - intent: greet
   - action: action_session_start
 
 - rule: Back to square one
@@ -29,6 +30,8 @@ rules:
     - action: address_form      # run the form
     - active_loop: null            # the form is no longer active because it has been filled
     - action: utter_submit         # action to take after the form is complete
+    - action: action_all_slots_data
+    
 
 # # realiza o submit do formulario de endereço
 # - rule: submit contact form
@@ -38,8 +41,8 @@ rules:
 #     - action: contact_form      # run the form
 #     - active_loop: null            # the form is no longer active because it has been filled
 
-- rule: Implementation of the Two-Stage-Fallback
-  steps:
-  - intent: nlu_fallback
-  - action: action_two_stage_fallback
-  - active_loop: action_two_stage_fallback
+# - rule: Implementation of the Two-Stage-Fallback
+#   steps:
+#   - intent: nlu_fallback
+#   - action: action_two_stage_fallback
+#   - active_loop: action_two_stage_fallback
