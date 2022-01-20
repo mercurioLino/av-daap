@@ -295,40 +295,104 @@ class ActionSetActivictyDetailsPreference(Action):
 
 
 
-
+from .email import send_rescue_email, send_donate_email
 class ActionGetAllSlotsData(Action):
     def name(self):
         return "action_all_slots_data"
 
     def run(self, dispatcher, tracker, domain):
-        # pega todos os slots
+
+        # Slots que são preenchidos nos dois casos
+        # Slots do Contact
+        age = tracker.get_slot('age')
+        name = tracker.get_slot('name')
+        phone = tracker.get_slot('phone')
+        email = tracker.get_slot('email')
         # endereço
-        # address_details = tracker.get_slot('address_details')
-        # address_number = tracker.get_slot('address_number')
-        # address_street = tracker.get_slot('address_street')
-        # address_district = tracker.get_slot('address_district')
-        # address_landmark = tracker.get_slot('address_landmark')
+        address_details = tracker.get_slot('address_details')
+        address_number = tracker.get_slot('address_number')
+        address_street = tracker.get_slot('address_street')
+        address_district = tracker.get_slot('address_district')
+        address_landmark = tracker.get_slot('address_landmark')
 
-        # # rescue        
-        # animal_type = tracker.get_slot('animal_type')
-        # animal_attributes = tracker.get_slot('animal_attributes')
-        # animal_health = tracker.get_slot('animal_health')
-        # animal_urgency = tracker.get_slot('animal_urgency')
-        # medical_attention = tracker.get_slot('medical_attention')
-        # private_property = tracker.get_slot('private_property')
-        # maus_tratos = tracker.get_slot('maus_tratos')
+        rescue_option = tracker.get_slot('rescue_option')
 
-        # #Slots para Give to Adoption
-        # animal_quantity = tracker.get_slot('animal_quantity')
-        # is_vacinado = tracker.get_slot('is_vacinado')
-        # is_castrado = tracker.get_slot('is_castrado')
+        
+        # se o user escolheu o resgate
+        if rescue_option and rescue_option == 'resgate':
+            pass
+            message = 'Solicitação de resgate'
 
-        # #Slots do Contact
-        # age = tracker.get_slot('age')
-        # name = tracker.get_slot('name')
-        # phone = tracker.get_slot('phone')
-        # email = tracker.get_slot('email')
+            # rescue        
+            animal_type = tracker.get_slot('animal_type')
+            animal_attributes = tracker.get_slot('animal_attributes')
+            animal_health = tracker.get_slot('animal_health')
+            animal_urgency = tracker.get_slot('animal_urgency')
+            medical_attention = tracker.get_slot('medical_attention')
+            private_property = tracker.get_slot('private_property')
+            maus_tratos = tracker.get_slot('maus_tratos')
 
+            dados = f"""
+                Dados do usuário
+                Idade: {age}
+                Nome: {name}
+                Telefone: {phone}
+                Email: {email}
+
+                Dados do animal
+                Tipo do Animal: {animal_type}
+                Atributos: {animal_attributes}
+                Saúde: {animal_health}
+                Urgencia: {animal_urgency}
+                Necessita de médico: {medical_attention}
+                Está em propriedade privada: {private_property}
+                Está em maus tratos: {maus_tratos}
+
+                # Endereço
+                Bairro: {address_district}
+                Rua: {address_street}
+                Número: {address_number}
+                Referência: {address_landmark}
+            """
+            print(dados)
+            send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
+                    animal_urgency, medical_attention, private_property, maus_tratos,
+                    address_district, address_street, address_number, address_landmark)
+
+        # se o user escolheu doação de animal
+        else:
+            #Slots para Give to Adoption
+            animal_type = tracker.get_slot('animal_type')
+            animal_attributes = tracker.get_slot('animal_attributes')
+            animal_quantity = tracker.get_slot('animal_quantity')
+            is_vacinado = tracker.get_slot('is_vacinado')
+            is_castrado = tracker.get_slot('is_castrado')
+
+            dados_doacao = f"""
+                Dados do usuário
+                Idade: {age}
+                Nome: {name}
+                Telefone: {phone}
+                Email: {email}
+
+                Dados do animal a ser adotado
+                Tipo do Animal: {animal_type}
+                Atributos: {animal_attributes}
+                Quantidade: {animal_quantity}
+                Vacinado: {is_vacinado}
+                Castrado: {is_castrado}
+
+                # Endereço
+                Bairro: {address_district}
+                Rua: {address_street}
+                Número: {address_number}
+                Referência: {address_landmark}
+            """
+            print(dados_doacao)
+            send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
+                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark)
+        
+        
         # #Outros Slots
         # url = tracker.get_slot('url')
         # termos = tracker.get_slot('termos')

@@ -47,6 +47,13 @@ entities:
 - donation_type
 
 slots:
+  rescue_option:
+    type: any
+    mappings:
+    - type: from_intent
+      value: resgate
+      intent: rescue
+
   address_details:
     type: bool
     influence_conversation: true
