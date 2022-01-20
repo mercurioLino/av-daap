@@ -1,4 +1,3 @@
-from distutils.log import warn
 import requests
 import json
 import shutil
@@ -11,12 +10,14 @@ import os
 import processing
 import utils
 import transform
+import pickle
 from skimage.io import imread
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import cross_val_predict
 from sklearn.preprocessing import StandardScaler, Normalizer
 from sklearn.model_selection import train_test_split
 from skimage.transform import resize
+from joblib import dump, load
 
 #Função principal para execução do pipeline de classificação
 def pipeline_classification(url_image):
@@ -31,7 +32,7 @@ def pipeline_classification(url_image):
     #Modelo 1 para classificação entre cachorro, gato, humano, vegetação
     predict_1 = animal_classifier()
 
-    if predict_1 != 'Dog' or 'Cat':
+    if predict_1 != 'Dog' and predict_1 != 'Cat':
         warning['strike_1'] = True
 
     predict_2 = offensive_classifier(describe)
@@ -66,6 +67,27 @@ def delete_image(path):
     os.remove(path)
 
 def animal_classifier():
+    sgd_clf = load_model()
+    data = load_img()
+    data_prepared = transform_data(data)
+
+    #Prediz a classe para a imagem
+    y_pred = sgd_clf.predict(data_prepared)
+
+    return y_pred
+
+def offensive_classifier(describe):  
+    r = requests.get('https://api.sightengine.com/1.0/check.json', params=describe)
+    output = json.loads(r.text)
+
+    probs = {'gore': '', 'offensive': '', 'safe_prob': ''}
+    probs['gore'] = output['gore']['prob']
+    probs['offensive'] = output['offensive']['prob']
+    probs['safe_prob'] = output['nudity']['safe']
+
+    return probs
+
+def create_model():
     #Carrega o data_set de treinamento 
     data = joblib.load("data_set_processing\\images_150x150px.pkl")
 
@@ -91,6 +113,35 @@ def animal_classifier():
     sgd_clf.fit(X_train_prepared, y_train)
     SGDClassifier(random_state=42)
 
+    file_name = 'model_ready.pkl'
+    
+    with open(file_name, 'wb') as open_file:
+        pickle.dump(sgd_clf, open_file)
+
+def load_model():
+    file_name = 'model_ready.pkl'
+
+    with open(file_name, 'rb') as open_file:
+        load_classifier = pickle.load(open_file)
+
+    return load_classifier
+
+def transform_data(data):
+    ##Cria uma instancia para cada etapa de transformação das imagens
+    grayify = transform.RGB2GrayTransformer()
+    hogify = transform.HogTransformer(pixels_per_cell=(14, 14), cells_per_block=(2,2), orientations=9, block_norm='L2-Hys')
+    scalify = StandardScaler()
+
+    ##Processamento da imagem de classificação
+    X_test_gray = grayify.fit_transform(data['data'])
+    #Identifica formatos nas imagens utilizando retas
+    X_test_hog = hogify.fit_transform(X_test_gray)
+    #Padroniza o conjunto de dados
+    X_test_prepared = scalify.fit_transform(X_test_hog)
+
+    return X_test_prepared
+
+def load_img():
     #Cria um dict que vai armazenar a imagem
     data = dict()
     data['data'] = []
@@ -102,27 +153,7 @@ def animal_classifier():
 
     data['data'].append(im)
 
-    ##Processamento da imagem de classificação
-    X_test_gray = grayify.transform(data['data'])
-    #Identifica formatos nas imagens utilizando retas
-    X_test_hog = hogify.transform(X_test_gray)
-    #Padroniza o conjunto de dados
-    X_test_prepared = scalify.transform(X_test_hog)
-    #Prediz a classe para a imagem
-    y_pred = sgd_clf.predict(X_test_prepared)
+    return data
 
-    return y_pred
-
-def offensive_classifier(describe):  
-    r = requests.get('https://api.sightengine.com/1.0/check.json', params=describe)
-    output = json.loads(r.text)
-
-    probs = {'gore': '', 'offensive': '', 'safe_prob': ''}
-    probs['gore'] = output['gore']['prob']
-    probs['offensive'] = output['offensive']['prob']
-    probs['safe_prob'] = output['nudity']['safe']
-
-    return probs
-
-# url = 'https://uploads.metropoles.com/wp-content/uploads/2021/06/09110407/cachorro-fofo-usando-oculos_23-2148917262-1-600x380.jpg'
+# url = 'https://clinicaunix.com.br/wp-content/uploads/2019/12/5-pontos-saude-do-homem.jpg'
 # pipeline_classification(url_image=url)
