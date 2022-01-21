@@ -242,7 +242,7 @@ responses:
 
   # Utters de Endereço
   utter_provide_animal_location:    # ---> Adicionado por Biazom
-  - text: Ok, agora preciso do endereço aonde o animal está localizado.
+  - text: Ok, agora preciso do endereço onde o animal está localizado.
 
   utter_address_details:
   - text: Você conhece os detalhes do endereço?
@@ -265,7 +265,7 @@ responses:
   #Utters do Give to Adoption
   utter_give_to_adoption:
   - text: |-
-      Certo! Pra fazer isso, precisarei de alguns dados, tudo bem?
+      Certo! Pra fazer isso, precisarei de alguns dados!
       Após informar os dados, um modelo de postagem será publicado em nossa comunidade aqui no Facebook, para aqueles interessados.
       Nossa comunidade não age de maneira direta no auxílio quanto à doação de animais, pois nossa prioridade é o resgate de animais abandonados.
       Sendo assim, você deseja prosseguir?
@@ -310,16 +310,16 @@ responses:
 
   # Utters para o Contact Form
   utter_provide_contact_info:
-  - text: Primeiramente, preciso dos dados do responsável pelo animal.
+  - text: Primeiramente, preciso de alguns dados para contato (caso necessário).
 
   utter_ask_age:
   - text: Qual é sua idade?
 
-  utter_ask_name:
-  - text: Qual é o nome do responsável pelo animal? (Caso não saiba, informe o nome de um responsável para contato)
+  # utter_ask_name:
+  # - text: Qual é o seu nome?
 
   utter_ask_phone:
-  - text: 'Qual o telefone do responsável? (Ex.: 18 99777-9977)'
+  - text: 'Qual seu telefone? (Ex.: 18 99777-9977)'
 
   utter_ask_email:
   - text: 'Informe um e-mail para contato:'
@@ -340,6 +340,13 @@ responses:
   - text: |-
       Aqui fica as informações de doação de ração
 
+  utter_ajuda:
+  - text: |-
+      Dúvidas frequentes:
+      "A DAAP possui canil ou gatil?" 
+      - Atualmente, a DAAP *não* possui canil ou gatil, sendo assim, somos impossibilitados de acolher os animais.
+      Para outras dúvidas, entre em contato direto com a representante: (telefone)
+
   utter_submit_completo:
   - text: |-
       {name} {phone} {age} {email}
@@ -347,7 +354,7 @@ responses:
       {medical_attention} {private_property} {maus_tratos} {animal_urgency}
 
   utter_ask_rephrase:
-  - text: Desculpe. Não entendi. Pode repetir?
+  - text: Desculpe, não entendi. Pode repetir?
 
   utter_default:
   - text: Desculpe, não posso te ajudar.

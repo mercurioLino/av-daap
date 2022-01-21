@@ -1,0 +1,138 @@
+version: "3.0"
+nlu:
+- lookup: bairros
+  examples: |
+    - Jd Paulicéia
+    - Jardim Pauliceia
+    - Centro
+    - Ceac
+    - Jd Sampaio
+    - jardim sampaio
+    - Jardim Santa Paula
+    - Jd Stª Paula
+    - Jd Sta Paula
+    - Jardim Santa Paula
+    - Jd S L Fátima
+    - Jardim S L Fatima
+    - Sonho Meu
+    - Cj Hab Mirandopoli
+    - Cenro
+    - Vale do Sol
+    - Jd S Lourenço
+    - jardim s lourenco
+    - Jd Sampaio II
+    - jardim sampaio
+    - Pauliceia
+    - Jd Esplanada Ltda
+    - jardim esplanada
+    - Jardim Santa Rosa
+    - Jd Stª Rosa
+    - Jd Sta Rosa
+    - Jd Santa Rosa
+    - jardim santa rosa
+    - Jd N S Fátima
+    - Jd S Lourenco De
+    - Res Ana Maria
+    - Nova Alianca
+    - Jd Aeroporto II
+    - jardim aeroporto
+    - Amandaba
+    - Jd Aeroporto I
+    - jardim aeroporto
+    - Jd Miguita
+    - jardim miguita
+    - J N S de Fatima
+    - Jardim Aeroporto
+    - Sta Lina
+    - santa lina
+    - Cond Hab Colina Verde
+    - Colina Verde
+    - Morada Sol
+    - Jardim Nossa Senhora de Fátima
+    - Jd NS Fatima
+    - jardim nossa senhora fatima
+    - Cipex
+    - Jd Sampaio I
+    - 2 Alianca
+    - Agostinho Franco
+    - Bela Vista
+    - Jd Nogara
+    - jardim nogara
+    - Jd. N. Sra de Fatima
+    - Vl Brasilia
+    - Distrito Primeira Aliança
+    - Ch Morada Sol
+    - Cj Hab A Franco
+    - Tr Centro
+    - Jd M S Fátima
+    - jardim m s fatima
+    - Catumbi
+    - Primeira Alianca
+    - STA Lina
+    - Res Sunada
+    - C H Agostinho Franco
+    - NS de Fatima
+    - Jd Nossa Sra de Fatima
+    - Jd NS S F
+    - Jardim São Lourenço de Fátima
+    - Tr Jardim São Lourenço de
+    - Jardim N S de Fátima
+    - Miguita
+    - Ponte Seca
+    - sao Lourenco II
+    - Morada do Sol
+    - Zn Rural
+    - 2 A Alianca
+    - Jd STA Rosa
+    - jardim santa rosa
+    - S L Fatima
+    - Km 42
+    - Jdsl de Fatima
+    - S Lourenco
+    - Ribeirao Claro
+    - Monte Serrat
+    - Jd Aerooorto
+    - jardim aeroporto
+    - Bro Sta Lina
+    - Este
+    - Jardim Miguita
+    - Km Cinqüenta
+    - Jd. N. S. de Fatima
+    - Jd. N. Sra. de Fatima
+    - Esplanada
+    - Fu Centro
+    - Prq Res Sunada
+    - C H Morada Sol
+    - Ch Colina Verde
+    - Jd Aeroporto
+    - 3 Pontes
+    - Vl Brasília
+    - Jd S João Saudade
+    - Cj H Morada Sol
+    - Jd Samapio II
+    - Cdhu Morada Sol
+    - Jardim Sampaio I
+    - Contro
+    - TR
+    - Crg do Boi
+    - Jd S Lourenco de Fatima
+    - Jd S L Fa
+    - Segunda Aliança
+    - Três Alianças
+    - Primeira Aliança
+    - Vl Nova
+    - Nova Vida
+    - Stª Paula
+    - sta Paula
+    - Santa Paula
+    - Jardim Aeroporto I
+    - Jd Morada Sol
+    - jardim morada sol
+    - Jardim Sampaio |
+    - Q 89 Centro
+    - Cidade
+    - Mirandópolis
+    - Distrito Industrial
+    - Tres Pontes
+    - Jd NS de Fatima
+    - PENITENCIÁRIA II
