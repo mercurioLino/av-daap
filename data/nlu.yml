@@ -356,3 +356,22 @@ nlu:
     - na mesma
     - proximo ao endereço
     - do lado de
+
+
+- intent: link
+  examples: |
+    - https://scontent.ftjl2-1.fna.fbcdn.net/v/t1.15752-9/265826098_686731919406490_3987747100963659596_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dSuDe2ojY0sAX_uInLy&_nc_ht=scontent.ftjl2-1.fna&oh=03_AVKrrmt-IL6PwsvfUSS-3u1vbtCJGBkwRUdwChzPI0uhCw&oe=620E98C2
+    - http://youtube.com
+    - https://youtube.com
+    - https://www.w3schools.com/python/trypython.asp?filename=demo_ref_string_split
+    - http://
+    - https://
+    - www
+    - .com
+
+- intent: foto
+  examples: |
+    - tenho foto
+    - tenho uma foto
+    - possuo imagens
+    - tenho imagens

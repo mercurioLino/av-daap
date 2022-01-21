@@ -9,8 +9,7 @@ def send_mail(type_selected, html_email):
         #Start do server
         host = "smtp.gmail.com"
         port = "587"
-        login = ""
-        senha = ""
+        
 
         server = smtplib.SMTP(host, port)
         
@@ -25,7 +24,7 @@ def send_mail(type_selected, html_email):
         print(corpo)
         email_msg = MIMEMultipart()
         email_msg['From'] = login
-        email_msg['To'] = ''
+        email_msg['To'] = 'vinicius.marchi98@gmail.com'
         email_msg['Subject'] = type_selected
         email_msg.attach(MIMEText(corpo, 'html'))
 
@@ -49,6 +48,8 @@ def send_mail(type_selected, html_email):
 def mapping_responses(original):
     if original is None:
         return 'Não Informado'
+    elif original == -1:
+        return 'Desconhecido'
     elif original == False:
         return 'Não'
     elif original == True:
@@ -58,8 +59,16 @@ def mapping_responses(original):
 
 def send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
                     animal_urgency, medical_attention, private_property, maus_tratos,
-                    address_district, address_street, address_number, address_landmark):
+                    address_district, address_street, address_number, address_landmark, url):
         
+
+        # se existir link de imagens no slot url criamos o html para representa-las
+        images_html = ''
+        if url:
+            for item in url:
+                images_html += f'''
+                    <img src="{item}" alt="Italian Trulli">'''
+
         htlm_email = f'''
         <!DOCTYPE html>
         <html>
@@ -163,6 +172,9 @@ def send_rescue_email(age, name, phone, email, animal_type, animal_attributes, a
             <td>{mapping_responses(address_landmark)}</td>
         </tr>
         </table>
+        
+        {images_html}
+
         </body>
         </html>
         '''
@@ -170,7 +182,16 @@ def send_rescue_email(age, name, phone, email, animal_type, animal_attributes, a
         send_mail('Resgate de animal', htlm_email)
 
 def send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
-                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark):
+                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, url):
+        
+        
+        # se existir link de imagens no slot url criamos o html para representa-las
+        images_html = ''
+        if url:
+            for item in url:
+                images_html += f'''
+                    <img src="{item}" alt="Italian Trulli">'''
+
         
         htlm_email = f'''
         <!DOCTYPE html>
@@ -267,6 +288,9 @@ def send_donate_email(age, name, phone, email, animal_type, animal_attributes, a
             <td>{mapping_responses(address_landmark)}</td>
         </tr>
         </table>
+
+        {images_html}
+
         </body>
         </html>
         '''

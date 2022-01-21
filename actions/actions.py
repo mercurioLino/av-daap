@@ -34,7 +34,7 @@ class ActionSessionStart(Action):
         #     pass
 
         # an action_listen should be added at the end as a user message follows
-        dispatcher.utter_message(response="utter_greet")
+        # dispatcher.utter_message(response="utter_greet")
         events.append(ActionExecuted("action_listen"))
 
         return events
@@ -141,10 +141,10 @@ class ActionSetIsCastrado(Action):
 
         if intent == "affirmation":
             print('affirmation')
-            return [SlotSet("termos", True)]
+            return [SlotSet("is_castrado", True)]
         elif intent == "negation":
             print('negation')
-            return [SlotSet("termos", False)]
+            return [SlotSet("is_castrado", False)]
         return []
 
 class ActionSetIsVacinado(Action):
@@ -157,10 +157,10 @@ class ActionSetIsVacinado(Action):
 
         if intent == "affirmation":
             print('affirmation')
-            return [SlotSet("termos", True)]
+            return [SlotSet("is_vacinado", True)]
         elif intent == "negation":
             print('negation')
-            return [SlotSet("termos", False)]
+            return [SlotSet("is_vacinado", False)]
         return []
 
 class ActionSetMoreHelp(Action):
@@ -206,12 +206,12 @@ class ActionSetActivictyDetailsPreference(Action):
 
         intent = tracker.latest_message["intent"].get("name")
 
-        if intent == "affirm" or intent == "define_address_detail":
+        if intent == "affirmation" or intent == "define_address_detail":
             print('affirm')
             return [SlotSet("address_landmark", None)]
-        elif intent == "deny":
+        elif intent == "negation":
             print('deny')
-            return [SlotSet("address_numero", -1), SlotSet("address_street", 'Desconhecido'), SlotSet("address_district", 'Desconhecido'), SlotSet("address_numero", 'Desconhecido')]
+            return [SlotSet("address_number", -1), SlotSet("address_street", 'Desconhecido'), SlotSet("address_district", 'Desconhecido')]
         return []
 
 
@@ -315,6 +315,9 @@ class ActionGetAllSlotsData(Action):
         address_district = tracker.get_slot('address_district')
         address_landmark = tracker.get_slot('address_landmark')
 
+        foto = tracker.get_slot('url')
+
+
         rescue_option = tracker.get_slot('rescue_option')
 
         
@@ -353,11 +356,12 @@ class ActionGetAllSlotsData(Action):
                 Rua: {address_street}
                 Número: {address_number}
                 Referência: {address_landmark}
+                Fotos: {foto}
             """
             print(dados)
             send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
                     animal_urgency, medical_attention, private_property, maus_tratos,
-                    address_district, address_street, address_number, address_landmark)
+                    address_district, address_street, address_number, address_landmark, foto)
 
         # se o user escolheu doação de animal
         else:
@@ -387,10 +391,11 @@ class ActionGetAllSlotsData(Action):
                 Rua: {address_street}
                 Número: {address_number}
                 Referência: {address_landmark}
+                Fotos: {foto}
             """
             print(dados_doacao)
             send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
-                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark)
+                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, foto)
         
         
         # #Outros Slots

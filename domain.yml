@@ -25,6 +25,8 @@ intents:
 - inform_number
 - inform_bairro
 - inform_landmark
+- link
+- foto
 
 entities:
 #Contact
@@ -170,7 +172,7 @@ slots:
   #Slots do Contact
   age:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: age
@@ -179,26 +181,26 @@ slots:
         requested_slot: age
   name:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: name
   phone:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: phone
   email:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: email
 
   #Outros Slots
   url:
-    type: text
+    type: list
     influence_conversation: true
     mappings:
     - type: from_entity
@@ -351,7 +353,24 @@ responses:
   - text: |-
       {name} {phone} {age} {email}
       {animal_type} {animal_attributes} {animal_health} 
-      {medical_attention} {private_property} {maus_tratos} {animal_urgency}
+      {medical_attention} {private_property} {maus_tratos} {animal_urgency} {url}
+
+  utter_ask_url:
+  - text: "Envie sua imagem"
+
+  utter_foto:
+  - text: "Você tem fotos do animal?"
+    buttons:
+    - title: "Sim"
+      payload: "/foto"
+    - title: "Não"
+      payload: "/negation"
+
+  utter_please_rephrase:
+  - text: Desculpe. Eu não entendi sua reposta. Pode repetir?
+
+  utter_unexpected_answer:
+  - text: Sua resposta não é bem oque eu esperava, vamos tentar denovo?
 
   # utter_ask_rephrase:
   # - text: 'Desculpe. Não entendi. Pode repetir?'
@@ -392,6 +411,7 @@ forms:
     - private_property
     - maus_tratos
     - animal_urgency
+    - url
 
   give_to_adoption_form:
     required_slots:
@@ -400,6 +420,7 @@ forms:
     - animal_attributes
     - is_vacinado
     - is_castrado
+    - url
 
   termos_form:
     required_slots:
