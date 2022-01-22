@@ -324,8 +324,8 @@ responses:
   utter_ask_age:
   - text: Qual é sua idade?
 
-  # utter_ask_name:
-  # - text: Qual é o seu nome?
+  utter_ask_name:
+  - text: Qual é o seu nome?
 
   utter_ask_phone:
   - text: 'Qual seu telefone? (Ex.: 18 99777-9977)'

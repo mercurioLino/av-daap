@@ -27,6 +27,12 @@ diagrama da arquitetura
 lookup table
 
 
+adicionar senha no banco de dados
+
+adicionar opção para postar ou não imagem
+
+quando não conseguir usar o banco não deve enviar o link pra colocar o post no email
+
 
 
 [informações parciais de endereço, quando não souber os detalhes, ele deve perguntar apenas as referências do endereço]

@@ -296,6 +296,7 @@ class ActionSetActivictyDetailsPreference(Action):
 
 
 from .email import send_rescue_email, send_donate_email
+from .database import insert
 class ActionGetAllSlotsData(Action):
     def name(self):
         return "action_all_slots_data"
@@ -362,7 +363,9 @@ class ActionGetAllSlotsData(Action):
             send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
                     animal_urgency, medical_attention, private_property, maus_tratos,
                     address_district, address_street, address_number, address_landmark, foto)
-
+            insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_health=animal_health,
+                    animal_urgency=animal_urgency, medical_attention=medical_attention, private_property=private_property, maus_tratos=maus_tratos,
+                    address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
         # se o user escolheu doação de animal
         else:
             #Slots para Give to Adoption
@@ -396,7 +399,8 @@ class ActionGetAllSlotsData(Action):
             print(dados_doacao)
             send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
                     is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, foto)
-        
+            insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
+                    is_vacinado=is_vacinado, is_castrado=is_castrado, address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
         
         # #Outros Slots
         # url = tracker.get_slot('url')
