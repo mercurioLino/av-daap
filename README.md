@@ -12,3 +12,34 @@ rasa run actions
 
 rasa shell
 
+
+
+TODO
+
+fallback
+
+tratar momentos em que o form não pega os dados corretamente
+
+
+
+diagrama da arquitetura
+
+lookup table
+
+
+
+
+[informações parciais de endereço, quando não souber os detalhes, ele deve perguntar apenas as referências do endereço]
+
+
+[o fluxo da doação ta errado, ele pede a imagem antes]
+
+[alterar telefone porque pode ser tanto celular quando telefone e regex pega apenas telefone
+
+Mudar o que ja ta lá    
+- ^\([1-9]{2}\) [9]{0,1}[0-9]{1}[0-9]{3}\-[0-9]{4}$
+
+Pro telefone fixo normal
+ - ^\([1-9]{2}\) [0-9]{1}[0-9]{3}\-[0-9]{4}$]
+
+[duas mensagens no inicio]

@@ -1,338 +1,338 @@
-version: '3.0'
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
-intents:
-- inform_bairro
-- negation
-- inform_animal_type
-- inform_phone
-- inform_animal_attributes
-- inform_street
-- rescue
-- inform_landmark
-- inform_name
-- inform_animal_health
-- inform_number
-- inform_age
-- affirmation
-- inform_email
-- greet
-- goodbye
-- cancel
-- give_to_adoption
-- donate
-- donate_money
-- donate_dog_food
-entities:
-- age
-- animal_type
-- bairro
-- donation_type
-- email
-- maus_tratos
-- medical_attention
-- name
-- number
-- phone
-- rua
-- urgency
-- url
-slots:
-  address_details:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-  address_number:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: number
-  address_street:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: rua
-  address_district:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: bairro
-  address_landmark:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_text
-      conditions:
-      - active_loop: address_form
-        requested_slot: address_landmark
-  animal_type:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: animal_type
-  animal_attributes:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_text
-      conditions:
-      - active_loop: rescue_form
-        requested_slot: animal_attributes
-  animal_health:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_text
-      conditions:
-      - active_loop: rescue_form
-        requested_slot: animal_health
-  animal_urgency:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-      conditions:
-      - active_loop: rescue_form
-        requested_slot: animal_urgency
-  medical_attention:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-      conditions:
-      - active_loop: rescue_form
-        requested_slot: medical_attention
-  private_property:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-      conditions:
-      - active_loop: rescue_form
-        requested_slot: private_property
-  maus_tratos:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-      conditions:
-      - active_loop: rescue_form
-        requested_slot: maus_tratos
-  animal_quantity:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_text
-      conditions:
-      - active_loop: give_to_adoption_form
-        requested_slot: animal_quantity
-  is_vacinado:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-      conditions:
-      - active_loop: give_to_adoption_form
-  is_castrado:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-      conditions:
-      - active_loop: give_to_adoption_form
-  age:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: age
-      conditions:
-      - active_loop: contact_form
-        requested_slot: age
-  name:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: name
-  phone:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: phone
-  email:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: email
-  url:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: url
-  termos:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-  more_help:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
-responses:
-  utter_greet:
-  - text: |-
-      Olá, eu sou o chatbot do DAAP! Minha função é facilitar o fluxo de informações entre nossa comunidade.
-      Escreva qual opção melhor se adequa à sua necessidade:
-      - Pedido de Resgate de Animal
-      - Doação de Animal
-      - Fazer uma doação à DAAP
-      - Dúvidas
-  utter_options:
-  - text: |
-      Escreva qual opção melhor se adequa à sua necessidade:
-      - Pedido de Resgate de Animal
-      - Doação de Animal
-      - Fazer uma doação à DAAP
-      - Dúvidas
-  utter_cancel:
-  - text: Ok, vou cancelar esta ação e voltar ao menu inicial!
-  utter_goodbye:
-  - text: |-
-      Até mais, tchau!
-      -Sessão encerrada-
-  utter_offer_more_help:
-  - text: Te ajudo em algo mais?
-  utter_provide_animal_location:
-  - text: Ok, agora preciso do endereço aonde o animal está localizado.
-  utter_address_details:
-  - text: Você conhece os detalhes do endereço?
-  utter_ask_address_number:
-  - text: Qual o número?
-  utter_ask_address_street:
-  - text: Qual a rua?
-  utter_ask_address_district:
-  - text: Qual o bairro?
-  utter_ask_address_landmark:
-  - text: Qual a referência?
-  utter_submit:
-  - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
-  utter_give_to_adoption:
-  - text: |-
-      Certo! Pra fazer isso, precisarei de alguns dados, tudo bem?
-      Após informar os dados, um modelo de postagem será publicado em nossa comunidade aqui no Facebook, para aqueles interessados.
-      Nossa comunidade não age de maneira direta no auxílio quanto à doação de animais, pois nossa prioridade é o resgate de animais abandonados.
-      Sendo assim, você deseja prosseguir?
-  utter_termo_negado:
-  - text: Tudo bem, vou encerrar este tópico então.
-  utter_ask_animal_quantity:
-  - text: Quantos animais você pretende dar para adoção?
-  utter_ask_is_vacinado:
-  - text: O animal é vacinado?
-  utter_ask_is_castrado:
-  - text: O animal é castrado?
-  utter_provide_animal_info:
-  - text: Ok, agora preciso dos dados do animal.
-  utter_ask_animal_type:
-  - text: 'Qual é o animal? (Exemplo: Cachorro, gato...)'
-  utter_ask_animal_attributes:
-  - text: Quais são as características do animal?
-  utter_ask_animal_health:
-  - text: Aparentemente, qual a saúde do animal? (Descreva como achar melhor)
-  utter_ask_maus_tratos:
-  - text: O animal está sofrendo maus tratos?
-  utter_ask_medical_attention:
-  - text: O animal necessita de algum tipo de cuidado médico?
-  utter_ask_private_property:
-  - text: 'O animal se encontra em uma propriedade privada? (Exemplo: Na casa ou lote de alguém, na qual não há acesso)'
-  utter_ask_animal_urgency:
-  - text: Este caso é um caso de urgência?
-  utter_provide_contact_info:
-  - text: Primeiramente, preciso dos dados do responsável pelo animal.
-  utter_ask_age:
-  - text: Qual é sua idade?
-  utter_ask_name:
-  - text: Qual é o nome do responsável pelo animal? (Caso não saiba, informe o nome de um responsável para contato)
-  utter_ask_phone:
-  - text: 'Qual o telefone do responsável? (Ex.: 18 99777-9977)'
-  utter_ask_email:
-  - text: 'Informe um e-mail para contato:'
-  utter_donate:
-  - text: |-
-      Obrigado pelo interesse em ajudar a nossa comunidade!
-      Atualmente, a DAAP recebe doações em dinheiro, bem como doações em ração.
-      Qual dessas opções se adequa ao seu caso?
-  utter_donate_money:
-  - text: Aqui fica as informações para doar dinheiro
-  utter_donate_dog_food:
-  - text: Aqui fica as informações de doação de ração
-  utter_submit_completo:
-  - text: |-
-      {name} {phone} {age} {email}
-      {animal_type} {animal_attributes} {animal_health} 
-      {medical_attention} {private_property} {maus_tratos} {animal_urgency}
-actions:
-- action_chat_restart
-- action_reset_slots
-- action_session_start
-- action_set_address_details_preference
-- action_set_animal_urgency
-- action_set_is_castrado
-- action_set_is_vacinado
-- action_set_maus_tratos
-- action_set_medical_attention
-- action_set_more_help
-- action_set_private_property
-- action_set_termos
-- utter_address_details
-- utter_ask_animal_urgency
-- utter_ask_maus_tratos
-- utter_ask_private_property
-- utter_greet
-- utter_provide_animal_info
-- utter_provide_animal_location
-- utter_provide_contact_info
-- utter_submit
-- utter_submit_completo
-forms:
-  rescue_form:
-    required_slots:
-    - animal_type
-    - animal_attributes
-    - animal_health
-    - medical_attention
-    - private_property
-    - maus_tratos
-    - animal_urgency
-  give_to_adoption_form:
-    required_slots:
-    - animal_quantity
-    - animal_type
-    - animal_attributes
-    - is_vacinado
-    - is_castrado
-  termos_form:
-    required_slots:
-    - termos
-  contact_form:
-    required_slots:
-    - age
-    - name
-    - phone
-    - email
-  address_form:
-    required_slots:
-    - address_street
-    - address_number
-    - address_district
-    - address_landmark
+# version: '3.0'
+# session_config:
+#   session_expiration_time: 60
+#   carry_over_slots_to_new_session: true
+# intents:
+# - inform_bairro
+# - negation
+# - inform_animal_type
+# - inform_phone
+# - inform_animal_attributes
+# - inform_street
+# - rescue
+# - inform_landmark
+# - inform_name
+# - inform_animal_health
+# - inform_number
+# - inform_age
+# - affirmation
+# - inform_email
+# - greet
+# - goodbye
+# - cancel
+# - give_to_adoption
+# - donate
+# - donate_money
+# - donate_dog_food
+# entities:
+# - age
+# - animal_type
+# - bairro
+# - donation_type
+# - email
+# - maus_tratos
+# - medical_attention
+# - name
+# - number
+# - phone
+# - rua
+# - urgency
+# - url
+# slots:
+#   address_details:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#   address_number:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: number
+#   address_street:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: rua
+#   address_district:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: bairro
+#   address_landmark:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_text
+#       conditions:
+#       - active_loop: address_form
+#         requested_slot: address_landmark
+#   animal_type:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: animal_type
+#   animal_attributes:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_text
+#       conditions:
+#       - active_loop: rescue_form
+#         requested_slot: animal_attributes
+#   animal_health:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_text
+#       conditions:
+#       - active_loop: rescue_form
+#         requested_slot: animal_health
+#   animal_urgency:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#       conditions:
+#       - active_loop: rescue_form
+#         requested_slot: animal_urgency
+#   medical_attention:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#       conditions:
+#       - active_loop: rescue_form
+#         requested_slot: medical_attention
+#   private_property:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#       conditions:
+#       - active_loop: rescue_form
+#         requested_slot: private_property
+#   maus_tratos:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#       conditions:
+#       - active_loop: rescue_form
+#         requested_slot: maus_tratos
+#   animal_quantity:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_text
+#       conditions:
+#       - active_loop: give_to_adoption_form
+#         requested_slot: animal_quantity
+#   is_vacinado:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#       conditions:
+#       - active_loop: give_to_adoption_form
+#   is_castrado:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#       conditions:
+#       - active_loop: give_to_adoption_form
+#   age:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: age
+#       conditions:
+#       - active_loop: contact_form
+#         requested_slot: age
+#   name:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: name
+#   phone:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: phone
+#   email:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: email
+#   url:
+#     type: text
+#     influence_conversation: true
+#     mappings:
+#     - type: from_entity
+#       entity: url
+#   termos:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+#   more_help:
+#     type: bool
+#     influence_conversation: true
+#     mappings:
+#     - type: custom
+# responses:
+#   utter_greet:
+#   - text: |-
+#       Olá, eu sou o chatbot do DAAP! Minha função é facilitar o fluxo de informações entre nossa comunidade.
+#       Escreva qual opção melhor se adequa à sua necessidade:
+#       - Pedido de Resgate de Animal
+#       - Doação de Animal
+#       - Fazer uma doação à DAAP
+#       - Dúvidas
+#   utter_options:
+#   - text: |
+#       Escreva qual opção melhor se adequa à sua necessidade:
+#       - Pedido de Resgate de Animal
+#       - Doação de Animal
+#       - Fazer uma doação à DAAP
+#       - Dúvidas
+#   utter_cancel:
+#   - text: Ok, vou cancelar esta ação e voltar ao menu inicial!
+#   utter_goodbye:
+#   - text: |-
+#       Até mais, tchau!
+#       -Sessão encerrada-
+#   utter_offer_more_help:
+#   - text: Te ajudo em algo mais?
+#   utter_provide_animal_location:
+#   - text: Ok, agora preciso do endereço aonde o animal está localizado.
+#   utter_address_details:
+#   - text: Você conhece os detalhes do endereço?
+#   utter_ask_address_number:
+#   - text: Qual o número?
+#   utter_ask_address_street:
+#   - text: Qual a rua?
+#   utter_ask_address_district:
+#   - text: Qual o bairro?
+#   utter_ask_address_landmark:
+#   - text: Qual a referência?
+#   utter_submit:
+#   - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
+#   utter_give_to_adoption:
+#   - text: |-
+#       Certo! Pra fazer isso, precisarei de alguns dados, tudo bem?
+#       Após informar os dados, um modelo de postagem será publicado em nossa comunidade aqui no Facebook, para aqueles interessados.
+#       Nossa comunidade não age de maneira direta no auxílio quanto à doação de animais, pois nossa prioridade é o resgate de animais abandonados.
+#       Sendo assim, você deseja prosseguir?
+#   utter_termo_negado:
+#   - text: Tudo bem, vou encerrar este tópico então.
+#   utter_ask_animal_quantity:
+#   - text: Quantos animais você pretende dar para adoção?
+#   utter_ask_is_vacinado:
+#   - text: O animal é vacinado?
+#   utter_ask_is_castrado:
+#   - text: O animal é castrado?
+#   utter_provide_animal_info:
+#   - text: Ok, agora preciso dos dados do animal.
+#   utter_ask_animal_type:
+#   - text: 'Qual é o animal? (Exemplo: Cachorro, gato...)'
+#   utter_ask_animal_attributes:
+#   - text: Quais são as características do animal?
+#   utter_ask_animal_health:
+#   - text: Aparentemente, qual a saúde do animal? (Descreva como achar melhor)
+#   utter_ask_maus_tratos:
+#   - text: O animal está sofrendo maus tratos?
+#   utter_ask_medical_attention:
+#   - text: O animal necessita de algum tipo de cuidado médico?
+#   utter_ask_private_property:
+#   - text: 'O animal se encontra em uma propriedade privada? (Exemplo: Na casa ou lote de alguém, na qual não há acesso)'
+#   utter_ask_animal_urgency:
+#   - text: Este caso é um caso de urgência?
+#   utter_provide_contact_info:
+#   - text: Primeiramente, preciso dos dados do responsável pelo animal.
+#   utter_ask_age:
+#   - text: Qual é sua idade?
+#   utter_ask_name:
+#   - text: Qual é o nome do responsável pelo animal? (Caso não saiba, informe o nome de um responsável para contato)
+#   utter_ask_phone:
+#   - text: 'Qual o telefone do responsável? (Ex.: 18 99777-9977)'
+#   utter_ask_email:
+#   - text: 'Informe um e-mail para contato:'
+#   utter_donate:
+#   - text: |-
+#       Obrigado pelo interesse em ajudar a nossa comunidade!
+#       Atualmente, a DAAP recebe doações em dinheiro, bem como doações em ração.
+#       Qual dessas opções se adequa ao seu caso?
+#   utter_donate_money:
+#   - text: Aqui fica as informações para doar dinheiro
+#   utter_donate_dog_food:
+#   - text: Aqui fica as informações de doação de ração
+#   utter_submit_completo:
+#   - text: |-
+#       {name} {phone} {age} {email}
+#       {animal_type} {animal_attributes} {animal_health} 
+#       {medical_attention} {private_property} {maus_tratos} {animal_urgency}
+# actions:
+# - action_chat_restart
+# - action_reset_slots
+# - action_session_start
+# - action_set_address_details_preference
+# - action_set_animal_urgency
+# - action_set_is_castrado
+# - action_set_is_vacinado
+# - action_set_maus_tratos
+# - action_set_medical_attention
+# - action_set_more_help
+# - action_set_private_property
+# - action_set_termos
+# - utter_address_details
+# - utter_ask_animal_urgency
+# - utter_ask_maus_tratos
+# - utter_ask_private_property
+# - utter_greet
+# - utter_provide_animal_info
+# - utter_provide_animal_location
+# - utter_provide_contact_info
+# - utter_submit
+# - utter_submit_completo
+# forms:
+#   rescue_form:
+#     required_slots:
+#     - animal_type
+#     - animal_attributes
+#     - animal_health
+#     - medical_attention
+#     - private_property
+#     - maus_tratos
+#     - animal_urgency
+#   give_to_adoption_form:
+#     required_slots:
+#     - animal_quantity
+#     - animal_type
+#     - animal_attributes
+#     - is_vacinado
+#     - is_castrado
+#   termos_form:
+#     required_slots:
+#     - termos
+#   contact_form:
+#     required_slots:
+#     - age
+#     - name
+#     - phone
+#     - email
+#   address_form:
+#     required_slots:
+#     - address_street
+#     - address_number
+#     - address_district
+#     - address_landmark

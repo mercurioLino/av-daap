@@ -25,6 +25,8 @@ intents:
 - inform_number
 - inform_bairro
 - inform_landmark
+- link
+- foto
 
 entities:
 #Contact
@@ -47,6 +49,13 @@ entities:
 - donation_type
 
 slots:
+  rescue_option:
+    type: any
+    mappings:
+    - type: from_intent
+      value: resgate
+      intent: rescue
+
   address_details:
     type: bool
     influence_conversation: true
@@ -163,7 +172,7 @@ slots:
   #Slots do Contact
   age:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: age
@@ -172,26 +181,26 @@ slots:
         requested_slot: age
   name:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: name
   phone:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: phone
   email:
     type: text
-    influence_conversation: true
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: email
 
   #Outros Slots
   url:
-    type: text
+    type: list
     influence_conversation: true
     mappings:
     - type: from_entity
@@ -327,7 +336,7 @@ responses:
 
   #Utters do Donate
   utter_donate:
-  - text: |- 
+  - text: |-
       Obrigado pelo interesse em ajudar a nossa comunidade!
       Atualmente, a DAAP recebe doações em dinheiro, bem como doações em ração.
       Qual dessas opções se adequa ao seu caso?
@@ -351,13 +360,30 @@ responses:
   - text: |-
       {name} {phone} {age} {email}
       {animal_type} {animal_attributes} {animal_health} 
-      {medical_attention} {private_property} {maus_tratos} {animal_urgency}
+      {medical_attention} {private_property} {maus_tratos} {animal_urgency} {url}
 
-  utter_ask_rephrase:
-  - text: Desculpe, não entendi. Pode repetir?
+  utter_ask_url:
+  - text: "Envie sua imagem"
 
-  utter_default:
-  - text: Desculpe, não posso te ajudar.
+  utter_foto:
+  - text: "Você tem fotos do animal?"
+    buttons:
+    - title: "Sim"
+      payload: "/foto"
+    - title: "Não"
+      payload: "/negation"
+
+  utter_please_rephrase:
+  - text: Desculpe. Eu não entendi sua reposta. Pode repetir?
+
+  utter_unexpected_answer:
+  - text: Sua resposta não é bem oque eu esperava, vamos tentar denovo?
+
+  # utter_ask_rephrase:
+  # - text: 'Desculpe. Não entendi. Pode repetir?'
+
+  # utter_default:
+  # - text: 'Desculpe, não posso te ajudar.'
 
 
 
@@ -377,7 +403,8 @@ actions:
 - utter_greet
 - utter_provide_animal_info
 - utter_provide_contact_info
-- action_default_ask_affirmation
+- action_all_slots_data
+# - action_default_ask_affirmation
 
 
 
@@ -391,6 +418,7 @@ forms:
     - private_property
     - maus_tratos
     - animal_urgency
+    - url
 
   give_to_adoption_form:
     required_slots:
@@ -399,6 +427,7 @@ forms:
     - animal_attributes
     - is_vacinado
     - is_castrado
+    - url
 
   termos_form:
     required_slots:

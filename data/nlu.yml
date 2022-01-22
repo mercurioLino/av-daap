@@ -278,3 +278,100 @@ nlu:
     - em frente ao galpao da vo savelina
     - sobrado vermelho
     - casa antiga com a frente cheia de mato
+
+- lookup: bairro
+  examples: |
+    - Jardim Aeroporto
+    - Jardim Aeroporto I
+    - Jardim Aeroporto II
+    - Jardim Esplanada Ltda
+    - Jardim M S Fátima
+    - Jardim Miguita
+    - Jardim Morada Sol
+    - Jardim N S Fátima
+    - Jardim Nogara
+    - Jardim Pauliceia
+    - Jardim S João Saudade
+    - Jardim S L Fátima
+    - Jardim S
+    - Jd Aeroporto
+    - Jd Aeroporto I
+    - Jd Aeroporto II
+    - Jd Esplanada Ltda
+    - Jd M S Fátima
+    - Jd Miguita
+    - Jd Morada Sol
+    - Jd N S Fátima
+    - Jd Nogara
+    - Jd Pauliceia
+    - Jd S João Saudade
+    - Jd S L Fátima
+    - Jd S Lourenço
+    - Condomínio Habitacional Colina Verde
+    - Colina Verde
+    - Conjunto Habitacional Area Franco
+    - cohab area Franco
+    - coab
+    - Amandaba
+    - Bela Vista
+    - Bairro Santa Lina
+    - C H Agostinho Franco
+    - C H Morada Sol
+    - Cdhu Morada Sol
+    - Ceac
+    - Cenro
+    - Centro
+    - Chácara Colina Verde
+    - Chácara Morada Sol
+    - Cipex
+    - Conjunto H Morada Sol
+- lookup: rua
+  examples: |
+    - Rua 23 de Maio
+    - Rua 3 Gentil Moreira
+    - Rua 9 de Julho
+    - Travessa A
+    - Rua ARMANDO SALES DE OLIVEIRA
+    - Rua Abílio Ferreira Rocha
+    - Rua Acacio F Marta
+    - Via Acesso Neis Mustapha
+    - Rua Acre
+    - Rua Adejar Vieira Daria
+    - Rua Adejar Vieira Faria Prof
+    - Rua Adejar Vieira Faria
+    - Rua Adelino Minari
+    - Rua Alagoas
+    - Rua Alcídes Faleiros
+    - Rua Alexandre Galvani
+    - Rua Almirante Tamandare
+    - Rua Alvaro Guiato
+    - Rua Amazonas
+    - Av Santo
+    - Avenida Santos
+
+
+- intent: inform_landmark
+  examples: |
+    - proximo a
+    - na mesma
+    - proximo ao endereço
+    - do lado de
+
+
+- intent: link
+  examples: |
+    - https://scontent.ftjl2-1.fna.fbcdn.net/v/t1.15752-9/265826098_686731919406490_3987747100963659596_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=ae9488&_nc_ohc=dSuDe2ojY0sAX_uInLy&_nc_ht=scontent.ftjl2-1.fna&oh=03_AVKrrmt-IL6PwsvfUSS-3u1vbtCJGBkwRUdwChzPI0uhCw&oe=620E98C2
+    - http://youtube.com
+    - https://youtube.com
+    - https://www.w3schools.com/python/trypython.asp?filename=demo_ref_string_split
+    - http://
+    - https://
+    - www
+    - .com
+
+- intent: foto
+  examples: |
+    - tenho foto
+    - tenho uma foto
+    - possuo imagens
+    - tenho imagens

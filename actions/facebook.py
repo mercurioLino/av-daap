@@ -4,24 +4,34 @@ from rasa_sdk.executor import CollectingDispatcher
 import requests
 
 
-# Action que busca o nome do usuário que enviou a mensagem
-class ActionGetUserName(Action):
-
-    def name(self) -> Text:
-        return "action_get_face_user_name"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            
-        print(tracker.current_state()['sender_id'])
-        sender_id = tracker.sender_id
+'''
+Busca o nome do usuário no facebook de acordo com seu id
+'''
+def get_user_name(sender_id):
+    try:
         access_token = 'EAAJuk0ZAYiKwBANJuJwSIueONZCf8CDNmNtrvEy8BXM34Dmu9C20hXUP4atpv8ZALS0KaR5BBNrZAQWduQereuZAOWCj5XPNYEWRHEtZC24vrBeH5zEvb5V1Y11ZBHTfiRODI1ycgJosQdNQhXpqEhrJwr80awksN7YVXx70aQp4QDucAInTLnFVKhfHJbfU2EZD'
-        r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name&access_token={}'.format(str(sender_id), access_token)).json()
-        print(r)
-        print(r['first_name'])
-        print(r['last_name'])
-        return []
+        r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name&access_token={}'.format(str(sender_id), access_token))
+
+        # lança exeção se a resposta for 400
+        # ou seja, quando o id estiver incorreto
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print(e)
+        return ''
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print(e)
+        return ''
+    
+    # se chegou aqui a request deve ser 200
+    # parsing dos valores
+    response = r.json()
+    if response:
+        # verificar se o response não é none
+        print(response['first_name'])
+        print(response['last_name'])
+        return response['first_name'] + ' ' + response['last_name']
+    return ''
+    
 
 
 # pip install python-sdk
