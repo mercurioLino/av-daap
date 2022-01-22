@@ -61,8 +61,9 @@ def mapping_responses(original):
 
 def send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
                     animal_urgency, medical_attention, private_property, maus_tratos,
-                    address_district, address_street, address_number, address_landmark, url):
+                    address_district, address_street, address_number, address_landmark, url, objectid=None, token=None):
         
+
 
         # se existir link de imagens no slot url criamos o html para representa-las
         images_html = ''
@@ -70,6 +71,14 @@ def send_rescue_email(age, name, phone, email, animal_type, animal_attributes, a
             for item in url:
                 images_html += f'''
                     <img src="{item}" alt="Italian Trulli">'''
+
+        post_button = ''
+        if objectid:
+            post_button = f'''
+            <div style="margin: 20px auto; width: 120px; padding: 10px 20px; background-color: #1c246b; border-radius: 5px">
+                <a href="http://localhost:5005/webhooks/myio?objectid={objectid}?token={token}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fcfcfc; font-size: 18px; margin: 0 auto;">Alterar Senha</a>
+            </div> '''
+
 
         htlm_email = f'''
         <!DOCTYPE html>
@@ -177,6 +186,7 @@ def send_rescue_email(age, name, phone, email, animal_type, animal_attributes, a
         
         {images_html}
 
+        {post_button}
         </body>
         </html>
         '''
@@ -184,7 +194,7 @@ def send_rescue_email(age, name, phone, email, animal_type, animal_attributes, a
         send_mail('Resgate de animal', htlm_email)
 
 def send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
-                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, url):
+                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, url, objectid=None, token=None):
         
         
         # se existir link de imagens no slot url criamos o html para representa-las
@@ -194,7 +204,14 @@ def send_donate_email(age, name, phone, email, animal_type, animal_attributes, a
                 images_html += f'''
                     <img src="{item}" alt="Italian Trulli">'''
 
-        
+        post_button = ''
+        if objectid:
+            post_button = f'''
+            <div style="margin: 20px auto; width: 120px; padding: 10px 20px; background-color: #1c246b; border-radius: 5px">
+                <a href="http://localhost:5005/webhooks/myio?objectid={objectid}?token={token}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fcfcfc; font-size: 18px; margin: 0 auto;">Alterar Senha</a>
+            </div> '''
+
+
         htlm_email = f'''
         <!DOCTYPE html>
         <html>
@@ -292,6 +309,8 @@ def send_donate_email(age, name, phone, email, animal_type, animal_attributes, a
         </table>
 
         {images_html}
+
+        {post_button}
 
         </body>
         </html>

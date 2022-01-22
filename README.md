@@ -26,6 +26,11 @@ diagrama da arquitetura
 
 lookup table
 
+fazer um token do facebook no dia porque ele expira
+
+caso em que nao conecta para enviar email
+
+caso em que não conecta com o banco
 
 adicionar senha no banco de dados
 

@@ -1,5 +1,6 @@
 from pymongo import MongoClient, DESCENDING
 from datetime import timezone
+import secrets
 
 """
 Os métodos abaixo compõem um módulo que realiza operações básicas do banco
@@ -17,13 +18,23 @@ def connect():
     requests_collection = database['requests']
     return requests_collection
 
+def ramdom_token():
+    return secrets.token_urlsafe(40)
+
 def insert(**kwargs):
     if kwargs:
         requests_collection = connect()
-        requests_collection.insert_one(kwargs)
+        token = ramdom_token()
+        kwargs.update({'post_status': 'não postado'})
+        kwargs.update({'token': token})
+        id = requests_collection.insert_one(kwargs)
+        id_document = id.inserted_id
+        print(id_document)
+        return id_document, token
     else:
         print('nenhum dado foi informado')
 
+    return -1
 
 def get_all_data():
     requests_collection = connect()
@@ -44,3 +55,10 @@ def get_all_data():
             all_documents.append(document)
     
     return all_documents
+
+from bson.objectid import ObjectId
+def get_by_id(objectid):
+    # objInstance = ObjectId('61ebebf2fdcc0b70da85144e')
+    requests_collection = connect()
+    res = requests_collection.find_one({'_id': ObjectId('61ebe1794b3fd1d6371c8d1c')})
+    return res

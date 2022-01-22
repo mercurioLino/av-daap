@@ -7,8 +7,13 @@ from rasa_sdk.events import SlotSet, SessionStarted, ActionExecuted, AllSlotsRes
 
 import requests
 
-from .facebook import get_user_name
+import os
+print (os.getcwd())
 
+
+from modules.facebook.facebook_graph_api import get_user_name
+from modules.mail.email import send_rescue_email, send_donate_email
+from modules.database.database import insert
 
 class ActionSessionStart(Action):
     def name(self) -> Text:
@@ -294,9 +299,6 @@ class ActionSetActivictyDetailsPreference(Action):
 #         server.quit()
 
 
-
-from .email import send_rescue_email, send_donate_email
-from .database import insert
 class ActionGetAllSlotsData(Action):
     def name(self):
         return "action_all_slots_data"
@@ -360,12 +362,14 @@ class ActionGetAllSlotsData(Action):
                 Fotos: {foto}
             """
             print(dados)
-            send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
-                    animal_urgency, medical_attention, private_property, maus_tratos,
-                    address_district, address_street, address_number, address_landmark, foto)
-            insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_health=animal_health,
+            objectid, token = insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_health=animal_health,
                     animal_urgency=animal_urgency, medical_attention=medical_attention, private_property=private_property, maus_tratos=maus_tratos,
                     address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
+
+            send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
+                    animal_urgency, medical_attention, private_property, maus_tratos,
+                    address_district, address_street, address_number, address_landmark, foto, objectid, token)
+            
         # se o user escolheu doação de animal
         else:
             #Slots para Give to Adoption
@@ -397,10 +401,11 @@ class ActionGetAllSlotsData(Action):
                 Fotos: {foto}
             """
             print(dados_doacao)
-            send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
-                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, foto)
-            insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
+            objectid, token = insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
                     is_vacinado=is_vacinado, is_castrado=is_castrado, address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
+            send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
+                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, foto, objectid, token)
+            
         
         # #Outros Slots
         # url = tracker.get_slot('url')

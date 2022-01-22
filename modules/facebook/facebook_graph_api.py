@@ -36,18 +36,41 @@ def get_user_name(sender_id):
 
 # pip install python-sdk
 
-# import facebook as fb
-# import json
-
+import facebook as fb
+import json
+from .download_images import dowload_face_images
 # realiza um post na página
-def facebook_post():
+def facebook_post(data, objectid):
     # from lib import GraphAPI
 
     # token de acesso da página
     acess_token = 'EAAJuk0ZAYiKwBAFKXBIsCFTZC1jh5urZCUo45rDuTufDHfZBtFGa7pKC0J6MZBNwlsmrKZAZAQAzWR2zk2maXBwzrPR4END3kbRN3QJYz85ZATRTN5IBKZAuLGSKHziNvBJDA4jlITNE3kiPlBMLjpaZBsOdzOuCBGebmalzW1bNZCNt2ZAxyakQRdAmOZBgqe6a2O0hKglxoMMnYpoSc0ZAZAakTvt'
 
     # instânciando objeto de acesso a API
-    # asafb = fb.GraphAPI(acess_token)
+    asafb = fb.GraphAPI(acess_token)
+
+
+    url = ['https://scontent.ftjl2-1.fna.fbcdn.net/v/t1.15752-9/253420484_422418932796081_2887210844616237437_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=ae9488&_nc_ohc=QFSJwjU5NB8AX8NFIuR&_nc_ht=scontent.ftjl2-1.fna&oh=03_AVIJRUzwekVUOYLfA0sSIQ_D83ykROCOegQOf-_nj_SpDQ&oe=6212DD1C']
+    # realiza o download das imagens informandas pela url
+    res = dowload_face_images(url, objectid)
+
+    # publicando multiplas imagens
+    # https://github.com/mobolic/facebook-sdk/issues/401#issuecomment-354303521
+
+    photos = []
+    for photo in res:
+        # realiza o post da foto no facebook
+        photo_posted = asafb.put_photo(image=photo, published=False)
+        # utiliza o id do post para utilizar no post
+        photos.append(
+            {
+                'media_fbid': photo_posted['id']
+            }
+        )
+    # realiza o post ligando com as imagens postadas
+    asafb.put_object("me", "feed", message=data, attached_media=json.dumps(photos))
+
+
 
     # ret = asafb.put_photo(image=open("test.jpeg", 'rb'),
                     # message=test)

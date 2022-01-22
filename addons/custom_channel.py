@@ -5,6 +5,9 @@ from sanic.request import Request
 from sanic.response import HTTPResponse
 from typing import Text, Dict, Any, Optional, Callable, Awaitable, NoReturn
 
+from modules.facebook.facebook_graph_api import facebook_post
+from modules.database.database import get_by_id
+
 import rasa.utils.endpoints
 from rasa.core.channels.channel import (
     InputChannel,
@@ -29,6 +32,20 @@ class MyIO(InputChannel):
 
         @custom_webhook.route("/", methods=["GET"])
         async def health(request: Request) -> HTTPResponse:
+            print(request.args)
+            
+            # observar se tem o token na request
+            objectid = request.args['objectid']
+            token = request.args['token']
+            
+            # procura o documento no banco de dados
+            document = get_by_id(objectid)
+
+            # se o token estiver correto faz o post
+            if document['token'] == token:
+                facebook_post(document, objectid)
+
+
             return response.json({"status": "ok"})
 
         @custom_webhook.route("/webhook", methods=["POST"])
