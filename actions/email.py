@@ -4,12 +4,14 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
+import os
 
 def send_mail(type_selected, html_email):
         #Start do server
         host = "smtp.gmail.com"
         port = "587"
-        
+        login = os.environ['EMAIL']
+        senha = os.environ['SENHA_EMAIL']
 
         server = smtplib.SMTP(host, port)
         
