@@ -39,11 +39,11 @@ class MyIO(InputChannel):
             token = request.args['token']
             
             # procura o documento no banco de dados
-            document = get_by_id(objectid)
-
+            document = get_by_id(str(objectid[0]))
+            print('documento', document)
             # se o token estiver correto faz o post
-            if document['token'] == token:
-                facebook_post(document, objectid)
+            if document['token'] == str(token[0]):
+                facebook_post(document, str(objectid[0]))
 
 
             return response.json({"status": "ok"})

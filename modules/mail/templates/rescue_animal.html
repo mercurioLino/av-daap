@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.colored {
+color: red;
+}
+
+table {
+table-layout: fixed; 
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 100%;
+}
+
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Solicitação de <span class='colored'>RESGATE<span></h2>
+
+<h3>Dados do usuário</h3>
+
+<table>
+<tr>
+    <td>Idade</td>
+    <td>{{mapping_responses(age)}}</td>
+</tr>
+<tr>
+    <td>Nome</td>
+    <td>{{mapping_responses(name)}}</td>
+</tr>
+<tr>
+    <td>Telefone</td>
+    <td>{{mapping_responses(phone)}}</td>
+</tr>
+<tr>
+    <td>Email</td>
+    <td>{{mapping_responses(email)}}</td>
+</tr>
+</table>
+
+<h3>Dados do Animal</h3>
+
+<table>
+<tr>
+    <td>Tipo do animal</td>
+    <td>{{mapping_responses(animal_type)}}</td>
+</tr>
+<tr>
+    <td>Características do animal</td>
+    <td>{{mapping_responses(animal_attributes)}}</td>
+</tr>
+<tr>
+    <td>Saude do animal</td>
+    <td>{{mapping_responses(animal_health)}}</td>
+</tr>
+<tr>
+    <td>Necessidade de urgência</td>
+    <td>{{mapping_responses(animal_urgency)}}</td>
+</tr>
+<tr>
+    <td>Necessidade de atenção médica</td>
+    <td>{{mapping_responses(medical_attention)}}</td>
+</tr>
+<tr>
+    <td>Propriedade privada</td>
+    <td>{{mapping_responses(private_property)}}</td>
+</tr>
+<tr>
+    <td>Maus tratos</td>
+    <td>{{mapping_responses(maus_tratos)}}</td>
+</tr>
+</table>
+
+<h3>Endereço onde o animal se encontra</h3>
+
+<table>
+<tr>
+    <td>Bairro</td>
+    <td>{{mapping_responses(address_district)}}</td>
+</tr>
+<tr>
+    <td>Rua</td>
+    <td>{{mapping_responses(address_street)}}</td>
+</tr>
+<tr>
+    <td>Numero</td>
+    <td>{{mapping_responses(address_number)}}</td>
+</tr>
+<tr>
+    <td>Referencia</td>
+    <td>{{mapping_responses(address_landmark)}}</td>
+</tr>
+</table>
+
+{% if url %}
+    {% for item in url %}
+        <img src="{{item}}" alt="Imagem de animal">
+    {% endfor %}
+{% endif %}
+
+{% if objectid %}
+<div style="margin: 20px auto; width: 120px; padding: 10px 20px; background-color: #1c246b; border-radius: 5px">
+    <a href="http://localhost:5005/webhooks/myio?objectid={{objectid}}&token={{token}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fcfcfc; font-size: 18px; margin: 0 auto;">Postar ná pagina</a>
+</div>
+{% endif %}
+
+
+</body>
+</html>

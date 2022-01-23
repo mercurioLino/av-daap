@@ -12,7 +12,7 @@ print (os.getcwd())
 
 
 from modules.facebook.facebook_graph_api import get_user_name
-from modules.mail.email import send_rescue_email, send_donate_email
+from modules.mail.send_mail import send_rescue_email, send_donate_email
 from modules.database.database import insert
 
 class ActionSessionStart(Action):
@@ -43,9 +43,6 @@ class ActionSessionStart(Action):
         events.append(ActionExecuted("action_listen"))
 
         return events
-
-
-
 
 
 # --------------- Actions que setam os valores dos Slots booleanos -----------------------------
@@ -253,52 +250,6 @@ class ActionSetActivictyDetailsPreference(Action):
 
 #         return []
 
-
-# --------------- Action que envia email -----------------------------
-# class ActionEmailSender(Action):
-#     def name(self):
-#         return "action_email_sender"
-
-#     def run(self, dispatcher, tracker, domain):
-#         #Start do server
-#         host = "smtp.gmail.com"
-#         port = "587"
-#         login = "epythonteste@gmail.com"
-#         senha = "Compass123456"
-
-#         server = smtplib.SMTP(host, port)
-        
-#         server.ehlo()
-#         server.starttls()
-
-#         server.login(login, senha)
-
-#         #Construção do corpo do email
-#         ##Texto com link
-#         corpo = ''
-#         email_msg = MIMEMultipart()
-#         email_msg['From'] = login
-#         email_msg['To'] = ''
-#         email_msg['Subject'] = ""
-#         email_msg.attach(MIMEText(corpo, 'html'))
-
-#         ##Anexo
-#         caminho_anexo = '' ##Inserir aqui o caminho do arquivo
-#         attachment = open(caminho_anexo, 'rb')
-#         att = MIMEBase('application', 'octet-stream')
-#         att.set_payload(attachment.read())
-#         encoders.encode_base64(att)
-#         att.add_header('Content-Disposition', f'attachment; filename=') #Inserir no filename o nome do arquivo
-#         attachment.close()
-#         email_msg.attach(att)
-
-#         #Envio do email
-#         server.sendmail(email_msg['From'], email_msg['To'], email_msg.as_string())
-
-#         #Fechando o servidor
-#         server.quit()
-
-
 class ActionGetAllSlotsData(Action):
     def name(self):
         return "action_all_slots_data"
@@ -307,6 +258,7 @@ class ActionGetAllSlotsData(Action):
 
         # Slots que são preenchidos nos dois casos
         # Slots do Contact
+        
         age = tracker.get_slot('age')
         name = tracker.get_slot('name')
         phone = tracker.get_slot('phone')
@@ -320,9 +272,7 @@ class ActionGetAllSlotsData(Action):
 
         foto = tracker.get_slot('url')
 
-
         rescue_option = tracker.get_slot('rescue_option')
-
         
         # se o user escolheu o resgate
         if rescue_option and rescue_option == 'resgate':
@@ -366,9 +316,9 @@ class ActionGetAllSlotsData(Action):
                     animal_urgency=animal_urgency, medical_attention=medical_attention, private_property=private_property, maus_tratos=maus_tratos,
                     address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
 
-            send_rescue_email(age, name, phone, email, animal_type, animal_attributes, animal_health,
-                    animal_urgency, medical_attention, private_property, maus_tratos,
-                    address_district, address_street, address_number, address_landmark, foto, objectid, token)
+            send_rescue_email(objectid=objectid, token=token, age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_health=animal_health,
+                    animal_urgency=animal_urgency, medical_attention=medical_attention, private_property=private_property, maus_tratos=maus_tratos,
+                    address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
             
         # se o user escolheu doação de animal
         else:
@@ -403,8 +353,11 @@ class ActionGetAllSlotsData(Action):
             print(dados_doacao)
             objectid, token = insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
                     is_vacinado=is_vacinado, is_castrado=is_castrado, address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
-            send_donate_email(age, name, phone, email, animal_type, animal_attributes, animal_quantity,
-                    is_vacinado, is_castrado, address_district, address_street, address_number, address_landmark, foto, objectid, token)
+            
+            send_donate_email(objectid=objectid, token=token, age=age, name=name, phone=phone, email=email, 
+                    animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
+                    is_vacinado=is_vacinado, is_castrado=is_castrado, address_district=address_district, 
+                    address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
             
         
         # #Outros Slots

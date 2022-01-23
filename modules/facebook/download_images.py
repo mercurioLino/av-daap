@@ -9,10 +9,11 @@ def create_temp_directory():
 def dowload_face_images(image_url, objectid='dowloaded-image'):
     files_objects = []
     if image_url:
+        print('image_url', image_url)
         dir = create_temp_directory()
         for i, url in enumerate(image_url):
             filename = f'{objectid}-{i}.png'
-            filepath = f'images/{filename}'
+            filepath = f'/home/vinicius/Documentos/daap/av-daap/modules/facebook/images/{filename}'
 
             res = requests.get(url, stream=True)
             print(res)
