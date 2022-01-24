@@ -50,17 +50,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: test
 
-  web:
-    build:
-      context: ../bot-front
-      dockerfile: Web.dockerfile
-    image: webchat
-    container_name: webchat-app
-    networks: 
-      - rasa-network
-    ports: 
-      - 8080:8080
-
 networks: 
     rasa-network:
         driver: bridge

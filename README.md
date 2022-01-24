@@ -36,32 +36,39 @@ O email possuirá um botão que, ao clicado, realizara um post na página do Fac
     * Modelo <em>pt_core_news_lg</em>
 * Pymongo 3.10.1
 * MongoDB
-* Facebook-sdk
+* [Facebook-sdk](https://github.com/mobolic/facebook-sdk)
+* [Duckling](https://github.com/facebook/duckling)
 * Docker 20.10.8 e Docker-compose 1.29.2
-* https://sightengine.com/
+* [SightEngine API](https://sightengine.com/)
 
 
-# Instalação
-## Rode o duckling
-docker run -p 8000:8000 rasa/duckling
+# Executando o projeto
+## Executando em containers
+```
+docker-compose up
+```
+
+## Executando separadamente
 ### Instale o Spacy
+Instale o spacy e o modelo no **ambiente onde o rasa está instalado**
+```
 pip install spacy
-
 python3 -m spacy download pt_core_news_lg
+```
+### Crie um container para o duckling
+```
+docker run -p 8000:8000 rasa/duckling
+```
 
-
-### Rodando as actions e o bot
+### Execute as actions
+```
 rasa run actions
-
+```
+### Execute e o bot
+```
+rasa run --credentials credentials.yml --enable-api --cors "*"
+```
+ou, para executar através do terminal
+```
 rasa shell
-
-
-TODO
-
-tratar momentos em que o form não pega os dados corretamente
-
-adicionar senha no banco de dados
-
-adicionar opção para postar ou não imagem
-
-quando não conseguir usar o banco não deve enviar o link pra colocar o post no email
+```
