@@ -16,6 +16,18 @@ from rasa.core.channels.channel import (
 )
 from sqlalchemy import null
 
+"""
+Channel customizado criado apenas para que seja possível a realização de uma
+publicação no Facebook atráves de um click no botão existente no email.
+
+Esse channel fica escutando por requests e o botão, contido no corpo do email
+enviado ao responsável pela página, realiza um request para o endpoint que realizará
+a publicação no Facebook.
+
+Esse Channel não envia nenhuma mensagem ao rasa diretamente. Todas as mensagem enviadas
+ao rasa são de responsábilidade do outro Facebook Channel, esse apenas faz consultas ao
+banco de dados e utiliza a API do Facebook para criação de posts na página da beneficiária.
+"""
 class MyIO(InputChannel):
     def name(name) -> Text:
         """Name of your custom channel."""
@@ -29,27 +41,31 @@ class MyIO(InputChannel):
             "custom_webhook_{}".format(type(self).__name__),
             inspect.getmodule(self).__name__,
         )
-
+        
+        """
+        Endpoint que recebe os dados necessário para buscar um documento no banco
+        de dados e repassar os dados desse documento para o módulo do Facebook, o qual
+        estrutura os dados e realiza uma publicação na página da beneficiária.
+        """
         @custom_webhook.route("/", methods=["GET"])
         async def health(request: Request) -> HTTPResponse:
             print(request.args)
             
-            # observar se tem o token na request
+            # obtem os parâmetros contidos na query
             objectid = request.args['objectid']
             token = request.args['token']
             
             # procura o documento no banco de dados
             document = get_by_id(str(objectid[0]))
-            print('documento', document)
-            # se o token estiver correto faz o post
+            # se o token estiver correto faz a publicação na página
             if document['token'] == str(token[0]):
                 facebook_post(document, str(objectid[0]))
-
+                return response.json({"status": "publicação realizado"})
 
             return response.json({"status": "ok"})
 
         @custom_webhook.route("/webhook", methods=["POST"])
-        async def test(request: Request):
+        async def receive(request: Request):
             print('test')
             sender_id = request.json.get("sender") # method to get sender_id 
             print(sender_id)
@@ -61,43 +77,7 @@ class MyIO(InputChannel):
             print(collector)
             print(collector.messages)
             # include exception handling
-
-            # await on_new_message(
-            #     UserMessage(
-            #         text,
-            #         collector,
-            #         sender_id,
-            #         input_channel=input_channel,
-            #         metadata=metadata,
-            #     )
-            # )
-            # return null
+           
             return response.json(None)
-
-
-
-        # async def receive(request: Request) -> HTTPResponse:
-        #     print('a')
-        #     sender_id = request.json.get("sender") # method to get sender_id 
-        #     print(sender_id)
-        #     text = request.json.get("text") # method to fetch text
-        #     input_channel = self.name() # method to fetch input channel
-        #     metadata = self.get_metadata(request) # method to get metadata
-
-        #     collector = CollectingOutputChannel()
-            
-        #     # include exception handling
-
-        #     # await on_new_message(
-        #     #     UserMessage(
-        #     #         text,
-        #     #         collector,
-        #     #         sender_id,
-        #     #         input_channel=input_channel,
-        #     #         metadata=metadata,
-        #     #     )
-        #     # )
-        #     # return null
-        #     return response.json(collector.messages)
 
         return custom_webhook

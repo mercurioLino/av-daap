@@ -47,7 +47,7 @@ def insert(**kwargs):
         print('Nenhum dado foi informado')
     return -1, ''
 
-
+# busca um documento no banco pelo seu id
 def get_by_id(objectid):
     requests_collection = connect()
     try:

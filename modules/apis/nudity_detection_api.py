@@ -1,9 +1,14 @@
 import requests
 import json
 
-
+"""
+Comumente o usuário envia mais de uma imagem, por isso, essa função
+itera pelas imagens e invoca, para cada imagem, a função que de fato
+realiza a chamada a API que identifica nudez explicita, sangue e
+conteúdo ofensivo.
+"""
 def safe_api(image_url):
-    if image_url is None:
+    if image_url is None or image_url == '' or image_url == []:
         print('Nenhum link foi especificado')
         return None
     safe = None
@@ -14,7 +19,15 @@ def safe_api(image_url):
             return safe
     return safe
 
+"""
+Realiza uma requisição a API que identifica nudez explicita, sangue e conteúdo
+ofensivo em uma imagem, para garantir que as diretrizes do Facebook não
+serão desrespeitadas ao publicar a imagem.
 
+Essa API retorna um conjunto de probabilidades, que são analisadas pela função
+e representadas por uma única variável booleana. Essa variável indica se as
+imagens são seguras ou não para serem publicadas no Facebook.
+"""
 def offensive_classifier(image):  
     describe = {'url': image, 'models': 'nudity, offensive, gore', 'api_user': '133743064', 'api_secret': 'xA9h9Ny3DBzeLPSyKAFL'}
     try:

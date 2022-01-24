@@ -4,16 +4,11 @@ from rasa_sdk.executor import CollectingDispatcher
 import requests
 import re
 
-# pip install python-sdk
-# pip install facebook-sdk
-
-
 import facebook as fb
 import json
 from .download_images import dowload_face_images
-'''
-Busca o nome do usuário no facebook de acordo com seu id
-'''
+
+# Busca o nome do usuário no facebook de acordo com seu id
 def get_user_name(sender_id):
     try:
         access_token = 'EAAJuk0ZAYiKwBAPRFz5DUA6NStmIbDDajS07aOd7wKZBeujJ76kyFygGAZAzvlqjMZALhPpe3A4K92mhwBtaYu608ZAqrkxbOb9bo2KJfUCCLqpV8V0ZAMZB0XZB28Ln4Db0W311n4C9SANFE3F5slnyhbUq92A8JmH9f70vouX32Atn7GKFBHabaneIMwxmwqwZD'
@@ -38,8 +33,7 @@ def get_user_name(sender_id):
     return ''
     
 
-# realiza um post na página
-# https://stackoverflow.com/questions/46805634/facebook-api-access-token-session-has-expired
+# realiza um post na página do Facebook
 def facebook_post(data, objectid):
     # token de acesso da página
     acess_token = 'EAAJuk0ZAYiKwBAKF1EEpkOXbLoXNQTCHvIZA82VuVRQKnKFthr3SzIh85HyXMZBl6krGFwJSIRQWf6vpJE9ptrXHXXKSv9WD9ymntTXDl466NJ8YHh5LDfVxqceLGAq4OZByQfhxBOEaO7XueXFzjUTTTFZCC2nCW0Cc6oOOR5nAYdcdkPJ4yHyfzPLZA4UhsZD'
@@ -47,7 +41,6 @@ def facebook_post(data, objectid):
     # instânciando objeto de acesso a API
     asafb = fb.GraphAPI(acess_token)
     
-
     # cria a messangem para o post
     message_data = make_rescue_post(data)
 
@@ -55,9 +48,6 @@ def facebook_post(data, objectid):
         url = data['foto']
         # realiza o download das imagens informandas pela url
         res = dowload_face_images(url, objectid)
-
-        # publicando multiplas imagens
-        # https://github.com/mobolic/facebook-sdk/issues/401#issuecomment-354303521
 
         photos = []
         for photo in res:
@@ -91,8 +81,9 @@ def mapping_responses(original):
     else:
         return original
 
+
+# Estrutura os dados para realizar a publicação
 def make_rescue_post(data):
-    
     tipo = ''
     animal = ''
     endereco = 'Desconhecido.'

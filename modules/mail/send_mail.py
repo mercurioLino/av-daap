@@ -13,6 +13,7 @@ port = "587"
 login = os.environ['EMAIL_SENDER']
 senha = os.environ['EMAIL_SENDER_SENHA']
 
+# envia um email
 def send_mail(type_selected, html_email):
         try:
             server = smtplib.SMTP(host, port)
@@ -51,6 +52,7 @@ def mapping_responses(original):
     else:
         return original
 
+# configura o objeto responsável por carregar os templates em HTML que definem a estrutura email
 def configure_env_templates():
     dirname = os.path.dirname(__file__)
     filename = os.path.join(dirname, 'templates')
@@ -61,6 +63,7 @@ def configure_env_templates():
     env.globals['mapping_responses'] = mapping_responses
     return env
 
+# envia um email para o caso de resgate de animal
 def send_rescue_email(objectid=None, token=None, safe=None, **kwargs):
     env = configure_env_templates()
     template = env.get_template('rescue_animal.html')
@@ -69,7 +72,7 @@ def send_rescue_email(objectid=None, token=None, safe=None, **kwargs):
 
     send_mail('Resgate de animal', html)
 
-
+# envia um email para o caso de doação de animal
 def send_donate_email(objectid=None, token=None, safe=None, **kwargs):
     env = configure_env_templates()
     template = env.get_template('donate_animal.html')

@@ -6,6 +6,10 @@ def create_temp_directory():
     directory = temp_dir.name
     return directory
 
+"""
+Para realizar o post no facebook é necessário possuir a imagem localmente.
+Devido a isso é realizado o download da imagem.
+"""
 def dowload_face_images(image_url, objectid='dowloaded-image'):
     files_objects = []
     if image_url:
