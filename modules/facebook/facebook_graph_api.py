@@ -15,7 +15,7 @@ Busca o nome do usuário no facebook de acordo com seu id
 '''
 def get_user_name(sender_id):
     try:
-        access_token = 'EAAJuk0ZAYiKwBANJuJwSIueONZCf8CDNmNtrvEy8BXM34Dmu9C20hXUP4atpv8ZALS0KaR5BBNrZAQWduQereuZAOWCj5XPNYEWRHEtZC24vrBeH5zEvb5V1Y11ZBHTfiRODI1ycgJosQdNQhXpqEhrJwr80awksN7YVXx70aQp4QDucAInTLnFVKhfHJbfU2EZD'
+        access_token = 'EAAJuk0ZAYiKwBAO9ZBO04rb1TscXfB6AEvRWE4omHPtXbM0dhsPMBZAPUCHBBZC4QEd4FyvggNWaeupTBPTFuoD6a0NJCjRkGbCuvKYi4n8KwHMLHFEkXS6MkvCugtcZCKasHQ3obZBQNMfJp6MDF3HPmmV1HVAZAswkJrm8rZAtaxl6bJTfzpKrbZBrl9zJ3tnIZD'
         r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name&access_token={}'.format(str(sender_id), access_token))
 
         # lança exeção se a resposta for 400
