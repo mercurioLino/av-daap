@@ -226,11 +226,11 @@ slots:
 responses:
   utter_greet:
   - text: |-
-      Olá, eu sou o chatbot do DAAP! Minha função é facilitar o fluxo de informações entre nossa comunidade.
+      Olá, eu sou o assistente do Patinhas!
       Escreva qual opção melhor se adequa à sua necessidade:
       - Pedido de Resgate de Animal
       - Doação de Animal
-      - Fazer uma doação à DAAP
+      - Fazer uma doação à Patinhas
       - Dúvidas
   
   utter_options:
@@ -238,7 +238,7 @@ responses:
       Escreva qual opção melhor se adequa à sua necessidade:
       - Pedido de Resgate de Animal
       - Doação de Animal
-      - Fazer uma doação à DAAP
+      - Fazer uma doação à Patinhas
       - Dúvidas
   
   utter_cancel:
@@ -253,10 +253,17 @@ responses:
   - text: Te ajudo em algo mais?
 
   utter_duvida:
-  - text: Qual sua dúvida?
+  - text: |-
+      Qual sua dúvida? Basta perguntar que te respondo.
+      Por exemplo, algumas dúvidas frequentes são:
+      "A Patinhas possui canil ou gatil?"
+      "Vocês vacinam animais?"
+      "Vocês castram os animais?"
+       
+      Faça sua pergunta. A qualquer momento basta dizer 'voltar' que iremos ao menu principal. 
 
   # Utters de Endereço
-  utter_provide_animal_location:    # ---> Adicionado por Biazom
+  utter_provide_animal_location:
   - text: Ok, agora preciso do endereço onde o animal está localizado.
 
   utter_address_details:
@@ -275,14 +282,13 @@ responses:
   - text: Qual a referência?
 
   utter_submit:
-  - text: '{address_details}, {address_number}, {address_street}, {address_district}, {address_landmark}'
+  - text: ''
 
   #Utters do Give to Adoption
   utter_give_to_adoption:
   - text: |-
-      Certo! Pra fazer isso, precisarei de alguns dados!
-      Após informar os dados, um modelo de postagem será publicado em nossa comunidade aqui no Facebook, para aqueles interessados.
-      Nossa comunidade não age de maneira direta no auxílio quanto à doação de animais, pois nossa prioridade é o resgate de animais abandonados.
+      A Patinhas não age de maneira direta no auxílio quanto à doação de animais, pois nossa prioridade é o resgate de animais abandonados.
+      Normalmente podemos apenas divulgar os animais em nossa página.
       Sendo assim, você deseja prosseguir?
 
   utter_termo_negado:
@@ -302,7 +308,7 @@ responses:
   - text: Ok, agora preciso dos dados do animal.
 
   utter_ask_animal_type:
-  - text: 'Qual é o animal? (Exemplo: Cachorro, gato...)'
+  - text: 'Qual é o animal? (Cachorro, gato...)'
 
   utter_ask_animal_attributes:
   - text: 'Quais são as características do animal? (Exemplo: De porte grande, com pelos laranja e rabo comprido...)'
@@ -317,12 +323,11 @@ responses:
   - text: O animal necessita de algum tipo de cuidado médico?
 
   utter_ask_private_property:
-  - text: 'O animal se encontra em uma propriedade privada? (Exemplo: Na casa ou lote de alguém, na qual não há acesso)'
+  - text: 'O animal se encontra em uma propriedade privada? (Na casa ou lote de alguém)'
 
   utter_ask_animal_urgency:
   - text: Este caso é um caso de urgência?
   
-
   # Utters para o Contact Form
   utter_provide_contact_info:
   - text: Primeiramente, preciso de alguns dados para contato (caso necessário).
@@ -334,39 +339,38 @@ responses:
   - text: Qual é o seu nome?
 
   utter_ask_phone:
-  - text: 'Qual seu telefone? (Ex.: 18 99777-9977)'
+  - text: 'Qual seu telefone? (Ex.: 18 99999-9999)'
 
   utter_ask_email:
   - text: 'Informe um e-mail para contato:'
-
 
   #Utters do Donate
   utter_donate:
   - text: |-
       Obrigado pelo interesse em ajudar a nossa comunidade!
-      Atualmente, a DAAP recebe doações em dinheiro, bem como doações em ração.
+      
+      Atualmente, a Patinhas recebe doações em dinheiro e ração.
       Qual dessas opções se adequa ao seu caso?
 
   utter_donate_money:
   - text: |-
-      Aqui fica as informações para doar dinheiro
+      Recebemos dinheiro através do pix.
+      Chave pix: vilmaelshadai@hotmail.com
 
   utter_donate_dog_food:
   - text: |-
-      Aqui fica as informações de doação de ração
+      Para doações de ração é melhor combinarmos por telefone.
+      Telefone para contato: telefone
 
   utter_ajuda:
   - text: |-
       Dúvidas frequentes:
-      "A DAAP possui canil ou gatil?" 
-      - Atualmente, a DAAP *não* possui canil ou gatil, sendo assim, somos impossibilitados de acolher os animais.
-      Para outras dúvidas, entre em contato direto com a representante: (telefone)
+      "A Patinhas possui canil ou gatil?" 
+      - Atualmente, a Patinhas *não* possui canil ou gatil, sendo assim, somos impossibilitados de acolher os animais.
+      Para outras dúvidas, entre em contato direto: (telefone)
 
   utter_submit_completo:
-  - text: |-
-      {name} {phone} {age} {email}
-      {animal_type} {animal_attributes} {animal_health} 
-      {medical_attention} {private_property} {maus_tratos} {animal_urgency} {url}
+  - text: ''
 
   utter_ask_url:
   - text: "Envie sua imagem"
@@ -380,7 +384,7 @@ responses:
       payload: "/negation"
 
   utter_please_rephrase:
-  - text: Desculpe. Eu não entendi sua reposta. Pode repetir?
+  - text: Desculpe. Não entendi sua reposta. Pode repetir?
 
   utter_unexpected_answer:
   - text: Sua resposta não é bem oque eu esperava, vamos tentar denovo?

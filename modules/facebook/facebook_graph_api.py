@@ -2,6 +2,7 @@ from rasa_sdk import Action, Tracker
 from typing import Any, Text, Dict, List
 from rasa_sdk.executor import CollectingDispatcher
 import requests
+import re
 
 # pip install python-sdk
 # pip install facebook-sdk
@@ -15,7 +16,7 @@ Busca o nome do usuário no facebook de acordo com seu id
 '''
 def get_user_name(sender_id):
     try:
-        access_token = 'EAAJuk0ZAYiKwBAO9ZBO04rb1TscXfB6AEvRWE4omHPtXbM0dhsPMBZAPUCHBBZC4QEd4FyvggNWaeupTBPTFuoD6a0NJCjRkGbCuvKYi4n8KwHMLHFEkXS6MkvCugtcZCKasHQ3obZBQNMfJp6MDF3HPmmV1HVAZAswkJrm8rZAtaxl6bJTfzpKrbZBrl9zJ3tnIZD'
+        access_token = 'EAAJuk0ZAYiKwBAPRFz5DUA6NStmIbDDajS07aOd7wKZBeujJ76kyFygGAZAzvlqjMZALhPpe3A4K92mhwBtaYu608ZAqrkxbOb9bo2KJfUCCLqpV8V0ZAMZB0XZB28Ln4Db0W311n4C9SANFE3F5slnyhbUq92A8JmH9f70vouX32Atn7GKFBHabaneIMwxmwqwZD'
         r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name&access_token={}'.format(str(sender_id), access_token))
 
         # lança exeção se a resposta for 400
@@ -24,7 +25,7 @@ def get_user_name(sender_id):
     except requests.exceptions.HTTPError as e:
         print(e)
         return ''
-    except requests.exceptions.RequestException as e:  # This is the correct syntax
+    except requests.exceptions.RequestException as e:
         print(e)
         return ''
     
@@ -41,7 +42,7 @@ def get_user_name(sender_id):
 # https://stackoverflow.com/questions/46805634/facebook-api-access-token-session-has-expired
 def facebook_post(data, objectid):
     # token de acesso da página
-    acess_token = 'EAAJuk0ZAYiKwBAAD720cb9KJuq07RCF1ZAyKf8ZByXk0dP0W2KyBjRILucSBRhMA8hmXWfBEkQLnVRE9B5UYB33EraXEZBgZAiqSAWkZCLnPMbJPt6JdTOTUJqMcO8hEdeB0QbAOFR071ITtxbOpQhB5twP6ClfwBCYdbW6qoKUEJLVV3DyyuX7lqmiULqVdVXYrojKKSzTWIZAZCjCitYfH'
+    acess_token = 'EAAJuk0ZAYiKwBAKF1EEpkOXbLoXNQTCHvIZA82VuVRQKnKFthr3SzIh85HyXMZBl6krGFwJSIRQWf6vpJE9ptrXHXXKSv9WD9ymntTXDl466NJ8YHh5LDfVxqceLGAq4OZByQfhxBOEaO7XueXFzjUTTTFZCC2nCW0Cc6oOOR5nAYdcdkPJ4yHyfzPLZA4UhsZD'
 
     # instânciando objeto de acesso a API
     asafb = fb.GraphAPI(acess_token)
@@ -77,6 +78,19 @@ def facebook_post(data, objectid):
         print(e)
         return
 
+# mapeia as respostas armazenadas pelo bot em algo legível para o receptor do email
+def mapping_responses(original):
+    if original is None:
+        return 'Não Informado'
+    elif original == -1:
+        return 'Desconhecido'
+    elif original == False:
+        return 'Não'
+    elif original == True:
+        return 'Sim'
+    else:
+        return original
+
 def make_rescue_post(data):
     
     tipo = ''
@@ -90,25 +104,30 @@ def make_rescue_post(data):
     if "private_property" in data:
         tipo = 'PEDIDO DE RESGATE'
         animal = f'''
-        {data['animal_type']} com {data['animal_attributes']} precisa de ajuda.
+        Animal: {data['animal_type']}.
+        Características: {data['animal_attributes']}.
         Saúde do animal: {data['animal_health']}
-        Necessidade de urgência: {data['animal_urgency']}
-        Necessidade de atendimento médico: {data['medical_attention']}
-        Se encontra em propriedade privada: {data['private_property']}
-        Esta sofrendo maus tratos {data['maus_tratos']}
+        Necessidade de urgência: {mapping_responses(data['animal_urgency'])}
+        Necessidade de atendimento médico: {mapping_responses(data['medical_attention'])}
+        Se encontra em propriedade privada: {mapping_responses(data['private_property'])}
+        Esta sofrendo maus tratos: {mapping_responses(data['maus_tratos'])}
         '''
     else:
         tipo = 'ANIMAL PARA ADOÇÃO'
         animal = f'''
-        {data['animal_quantity']} {data['animal_type']}(s) para doação.
-        Os animais são: {data['animal_attributes']}
-        Vacinado? {data['is_vacinado']}
-        Castrado? {data['is_castrado']}
+        Animal: {data['animal_type']}.
+        Quantidade: {data['animal_quantity']}.
+        Características: {data['animal_attributes']}.
+        Vacinado? {mapping_responses(data['is_vacinado'])}
+        Castrado? {mapping_responses(data['is_castrado'])}
         '''
     post = f'''
         {tipo}
+        ------------------------------------------------------
         {animal}
+        ------------------------------------------------------
         Endereço: {endereco}
         Referência: {data['address_landmark']}
     '''
-    return post
+    post_formated = re.sub('^\s+', '', post, flags=re.MULTILINE)
+    return post_formated

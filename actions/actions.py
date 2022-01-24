@@ -14,6 +14,7 @@ print (os.getcwd())
 from modules.facebook.facebook_graph_api import get_user_name
 from modules.mail.send_mail import send_rescue_email, send_donate_email
 from modules.database.database import insert
+from modules.apis.nudity_detection_api import offensive_classifier
 
 class ActionSessionStart(Action):
     def name(self) -> Text:
@@ -181,6 +182,7 @@ class ActionGetAllSlotsData(Action):
         return "action_all_slots_data"
 
     def run(self, dispatcher, tracker, domain):
+        nudity_api = False
 
         # Slots que são preenchidos nos dois casos
         # Slots do Contact
@@ -238,7 +240,12 @@ class ActionGetAllSlotsData(Action):
                     animal_urgency=animal_urgency, medical_attention=medical_attention, private_property=private_property, maus_tratos=maus_tratos,
                     address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
 
-            send_rescue_email(objectid=objectid, token=token, age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_health=animal_health,
+            # api de nudez explicita
+            safe = None
+            if nudity_api is True:
+                safe = offensive_classifier(foto)
+
+            send_rescue_email(objectid=objectid, token=token, safe=safe, age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_health=animal_health,
                     animal_urgency=animal_urgency, medical_attention=medical_attention, private_property=private_property, maus_tratos=maus_tratos,
                     address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
             
@@ -276,7 +283,12 @@ class ActionGetAllSlotsData(Action):
             objectid, token = insert(age=age, name=name, phone=phone, email=email, animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
                     is_vacinado=is_vacinado, is_castrado=is_castrado, address_district=address_district, address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
             
-            send_donate_email(objectid=objectid, token=token, age=age, name=name, phone=phone, email=email, 
+            # api de nudez explicita
+            safe = None
+            if nudity_api is True:
+                safe = offensive_classifier(foto)
+
+            send_donate_email(objectid=objectid, token=token, safe=safe, age=age, name=name, phone=phone, email=email, 
                     animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
                     is_vacinado=is_vacinado, is_castrado=is_castrado, address_district=address_district, 
                     address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)

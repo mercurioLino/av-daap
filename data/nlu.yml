@@ -399,8 +399,14 @@ nlu:
     - https://www.w3schools.com/python/trypython.asp?filename=demo_ref_string_split
     - http://
     - https://
+    - http
+    - https://test.blog.br/wp-content/uploads/
+    - www.google.com
+    - https://test.blog.br/wp-content/uploads.jpeg
     - www
     - .com
+    - .jpeg
+    - .png
 
 - intent: foto
   examples: |
@@ -413,6 +419,8 @@ nlu:
   examples: |
    - dúvidas
    - duvidas
+   - duvida
+   - ajuda
    - tenho duvidas
    - tenho uma pergunta
    - posso perguntar?

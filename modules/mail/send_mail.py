@@ -61,19 +61,19 @@ def configure_env_templates():
     env.globals['mapping_responses'] = mapping_responses
     return env
 
-def send_rescue_email(objectid=None, token=None, **kwargs):
+def send_rescue_email(objectid=None, token=None, safe=None, **kwargs):
     env = configure_env_templates()
     template = env.get_template('rescue_animal.html')
 
-    html = template.render(objectid=objectid, token=token, **kwargs)
+    html = template.render(objectid=objectid, token=token, safe=safe, **kwargs)
 
     send_mail('Resgate de animal', html)
 
 
-def send_donate_email(objectid=None, token=None, **kwargs):
+def send_donate_email(objectid=None, token=None, safe=None, **kwargs):
     env = configure_env_templates()
     template = env.get_template('donate_animal.html')
-    html = template.render(objectid=objectid, token=token, **kwargs)
+    html = template.render(objectid=objectid, token=token, safe=safe, **kwargs)
     print(html)
 
     send_mail('Doação de animal', html)

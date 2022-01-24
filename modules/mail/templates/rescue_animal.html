@@ -101,14 +101,31 @@ padding: 8px;
 </tr>
 </table>
 <br/>
+
+{% if safe is none %}
+<p>O sistema que identifica sinais de nudez, sangue ou atos ofensivos está <spam style="color:red"><b>DESLIGADO!!!</b></spam> Avalie as imagens
+antes de postar.</p>
+{% elif safe is false %}
+<p>O sistema <spam style="color:red"><b>IDENTIFICOU</b></spam> sinais de nudez, sangue ou atos ofensivos na imagem. Avalie as imagens manualmente
+antes de postar.</p>
+{% elif safe is true %}
+<p>O sistema não identificou sinais de nudez, sangue ou atos ofensivos na imagem.</p>
+{% endif %}
+
+<br/>
+
+
 {% if foto %}
     {% for item in foto %}
         <img src="{{item}}" alt="Imagem de animal" width="40%" height="40%">
     {% endfor %}
 {% endif %}
 
-{% if objectid %}
-<div style="margin: 20px auto; width: 200x; padding: 10px 20px; background-color: #d70808; border-radius: 5px; text-align: center;">
+<br/>
+
+
+{% if objectid and safe %}
+<div style="margin: 40px auto; width: 20%; padding: 10px 20px; background-color: #d70808; border-radius: 5px; text-align: center;">
     <a href="http://localhost:5005/webhooks/myio?objectid={{objectid}}&token={{token}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fcfcfc; font-size: 18px; margin: 0 auto;">Postar ná pagina</a>
 </div>
 {% endif %}

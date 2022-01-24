@@ -301,3 +301,103 @@
   - intent: inform_landmark
   - action: utter_submit
   - action: action_all_slots_data
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: rescue
+  - slot_was_set:
+    - rescue_option: resgate
+  - action: utter_provide_contact_info
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '18'
+  - slot_was_set:
+    - requested_slot: name
+  - intent: nlu_fallback
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: rescue
+  - slot_was_set:
+    - rescue_option: resgate
+  - action: utter_provide_contact_info
+  - action: contact_form
+  - active_loop: contact_form
+  - slot_was_set:
+    - requested_slot: age
+  - slot_was_set:
+    - age: '18'
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Daniel
+  - slot_was_set:
+    - requested_slot: phone
+  - slot_was_set:
+    - phone: 18 9999-9999
+  - slot_was_set:
+    - requested_slot: email
+  - slot_was_set:
+    - email: teste@testemail.com.br
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_completo
+  - action: utter_provide_animal_info
+  - action: rescue_form
+  - active_loop: rescue_form
+  - slot_was_set:
+    - requested_slot: animal_type
+  - slot_was_set:
+    - animal_type: gato
+  - slot_was_set:
+    - requested_slot: animal_attributes
+  - slot_was_set:
+    - animal_attributes: de porte grande
+  - slot_was_set:
+    - requested_slot: animal_health
+  - slot_was_set:
+    - animal_health: boa
+  - slot_was_set:
+    - requested_slot: medical_attention
+  - intent: negation
+  - action: action_set_medical_attention
+  - slot_was_set:
+    - medical_attention: false
+  - action: utter_ask_private_property
+  - intent: negation
+  - action: action_set_private_property
+  - slot_was_set:
+    - private_property: false
+  - action: utter_ask_maus_tratos
+  - intent: negation
+  - action: action_set_maus_tratos
+  - slot_was_set:
+    - maus_tratos: false
+  - action: utter_ask_animal_urgency
+  - intent: negation
+  - action: action_set_animal_urgency
+  - slot_was_set:
+    - animal_urgency: false
+  - action: utter_foto
+  - intent: foto
+  - action: utter_ask_url
+  - intent: link
+    entities:
+    - phone: https://static1.dermaclub.com.br/articles/7/52/27/@/11757-xxx-article_media_header_desktop-2.jpg
+    - url: https://static1.dermaclub.com.br/articles/7/52/27/@/11757-xxx-article_media_header_desktop-2.jpg
+  - action: utter_submit_completo
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_provide_animal_location
+  - action: utter_address_details
+  - intent: negation
