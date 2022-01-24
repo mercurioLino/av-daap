@@ -22,11 +22,13 @@ intents:
 - inform_animal_health
 #- inform_adress
 - inform_street
-- inform_number
+# - inform_number
 - inform_bairro
 - inform_landmark
 - link
 - foto
+- faq
+- duvida
 
 entities:
 #Contact
@@ -73,6 +75,7 @@ slots:
     mappings:
     - type: from_entity
       entity: rua
+      intent: inform_street
   address_district:
     type: text
     influence_conversation: true
@@ -100,9 +103,10 @@ slots:
     influence_conversation: true
     mappings:
     - type: from_text
-      conditions:
-      - active_loop: rescue_form
-        requested_slot: animal_attributes
+      intent: inform_animal_attributes
+      # conditions:
+      # - active_loop: rescue_form
+        # requested_slot: animal_attributes
   animal_health:
     type: text
     influence_conversation: true
@@ -248,6 +252,8 @@ responses:
   utter_offer_more_help:
   - text: Te ajudo em algo mais?
 
+  utter_duvida:
+  - text: Qual sua dúvida?
 
   # Utters de Endereço
   utter_provide_animal_location:    # ---> Adicionado por Biazom
@@ -378,6 +384,17 @@ responses:
 
   utter_unexpected_answer:
   - text: Sua resposta não é bem oque eu esperava, vamos tentar denovo?
+
+  utter_faq/ask_canil:
+  - text: 'Não temos canil nem gatil. Não possuimos lugar físico para armazenar os animais.
+           Os animais resgatados ficam na casa de voluntários, nos chamados lares temporários até
+           que sejam movidos pra outro local.'
+
+  utter_faq/ask_vacine:
+  - text: 'Não vacinamos animais.'
+  
+  utter_faq/ask_castrar:
+  - text: 'Não castramos animais.'
 
   # utter_ask_rephrase:
   # - text: 'Desculpe. Não entendi. Pode repetir?'

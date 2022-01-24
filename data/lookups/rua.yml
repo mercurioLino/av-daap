@@ -1,0 +1,337 @@
+version: "3.0"
+nlu:
+- lookup: rua
+  examples: |
+    - 23 de Maio
+    - 3 Gentil Moreira
+    - 9 de Julho
+    - Travessa A
+    - ARMANDO SALES DE OLIVEIRA
+    - Abílio Ferreira Rocha
+    - Acacio F Marta
+    - Via Acesso Neis Mustapha
+    - Acre
+    - Adejar Vieira Daria
+    - Adejar Vieira Faria Prof
+    - Adejar Vieira Faria
+    - Adelino Minari
+    - Alagoas
+    - Alcídes Faleiros
+    - Alexandre Galvani
+    - Almirante Tamandare
+    - Alvaro Guiato
+    - Amazonas
+    - Ana Luiza Conceição
+    - Ana Luiza da Conceição
+    - Ana Luíza da Conceição
+    - Ana Priscila Noda
+    - Anchieta
+    - Andre Morales
+    - André Morales
+    - Angelo Matara
+    - Anhanguera
+    - Antonio Corte
+    - Antonio Idalgo
+    - Antonio Nogara
+    - Avenida Antonio Nozela
+    - Antonio Rodrigues Carvalho
+    - Antonio Simões Pessoa
+    - Antonio Veroneze
+    - Antônio Corte
+    - Antônio Marchetti
+    - Antônio R de Carvalho
+    - Antônio Rodrigues de Carvalho
+    - Antônio Veroneze
+    - Aparecido Cabrine
+    - Aparecido
+    - Aparecido Sabino
+    - Armando Resler
+    - Armando Sales Oliveira
+    - Armando Sales de Oliveira
+    - Armando Veiga
+    - Assad Kalil Abud
+    - Bahia
+    - Estrada Bairro Nova Aliança
+    - Bandeirantes
+    - Baron
+    - Boeing
+    - Brasi
+    - Brasil
+    - Bufalo
+    - Campos Sales
+    - Carlos Alberto Sabino
+    - Carlos Roberto Sabino
+    - Casimiro Antônio Bonadio
+    - Estância Catelan
+    - Cecilia Goncalves Tosta
+    - Cecília Gonçalves Tosta
+    - Cinco
+    - Cinira Freitas Pavesi
+    - Cinira de Freitas Pavesi
+    - Cipex Nu
+    - Comendador Manoel F Correa
+    - Concorde
+    - Constelation
+    - Constituição
+    - Conver
+    - Cruzeiro do Sul
+    - D Pedro I
+    - Dalva Colaferro
+    - Praça Dante Biondi
+    - Deusdet L Almeida
+    - Deusdet L de Almeida
+    - Deusdete Leite de Almeida
+    - Dez
+    - Dezenove
+    - Dezesseis
+    - Dezessete
+    - Dois
+    - Dom Pedro I
+    - Dom Pedro II
+    - Dom Pedro
+    - Domingos Calene
+    - Domingos Mathias
+    - Domingos Terensi
+    - Doutor Edgar Raimundo Costa
+    - Doutor Edgar Raimundo da Costa
+    - Doutor Getulio Vargas
+    - Doutor Getúlio Vargas
+    - Doutor Júnio Luswaghi
+    - Doutor Makoto Ono
+    - Doutor Nakoto Ono
+    - Doutor Olimpio de Macedo
+    - Avenida Doutor Raul Cunha Bueno
+    - Avenida Doutor Raul da Cunha Bueno
+    - Doutor Raul da Cunha Bueno
+    - Doze
+    - Duque Caxias
+    - Duque de Caxias
+    - Durvalino Rapina
+    - Edgar Raimundo da Co
+    - Edgar Raimundo da Costa Dr
+    - Edgar Raimundo da Costa
+    - Edwander Alves Santos
+    - Edwander Alves dos Santos
+    - Eleutrio Sanches
+    - Eleutério Sanches
+    - Praça Epifanio Ibanez
+    - Esperanca
+    - Espirito Santo
+    - Estudante Estudantes
+    - Estudantes
+    - F
+    - Falcon
+    - Avenida Fatima N S
+    - Fernanda Maruyama Zanata
+    - Fim
+    - Floriano Peixoto
+    - Francisco Teixeira Fl
+    - Gentil Moreira 204
+    - Gentil Moreira
+    - Geralda Nunes Evangelista
+    - Getúlio Vargas
+    - Sítio Hattori
+    - Hercules
+    - Humorista
+    - I
+    - II
+    - Sítio Ikejiri
+    - Avenida Ipe
+    - Jaguar
+    - Japão
+    - Jesus Rozalem
+    - Joao Rodrigues Carvalho
+    - Praça Joao XXIII Papa
+    - Joaquim Alves Filho
+    - Joaquim Alves Fl
+    - Joaquim Alves Fo
+    - Joaquim Alves Fo.
+    - Joaquim Alves Fº
+    - Joaquim Caetano Silva
+    - Joaquim Ortega Munhoz
+    - Jose Deus Pinheiro
+    - Jose Zanatta
+    - José Alves de Lima
+    - José Teodoro Figueredo
+    - José Zanata
+    - José Zanatta
+    - João Bazaga
+    - João Domingues Souza
+    - João Domingues de Souza
+    - João Ferratoni
+    - João Fortunato Braga
+    - João S
+    - Julia Baldoni Cabrini
+    - Julio Franco
+    - Julio Prestes
+    - Jumbo
+    - Avenida Junio Luswarghi
+    - Juscelino K de Oliveira
+    - Júlia B Cabrini
+    - Júlio Prestes
+    - Kazuo Kawamoto
+    - Estrada Km 50 - Estância São Pedro
+    - LI Dr Olímpio de Macedo
+    - LI José Corrêa Moreno
+    - LI Santila Pereira dos Santos
+    - Estrada Lavínia
+    - Estrada Linha Pé de Galinha
+    - Luiz Antônio da Cunha
+    - Luiz Pilla
+    - Luiz Veronese Fl
+    - Avenida Lussanvira
+    - MACOTO ONO
+    - Macoto Ono
+    - Makoto Ono
+    - Praça Manoel Alves Athaide
+    - Manoel Alves Vieira
+    - Manoel Espirito Santo
+    - Manoel Flauzino Corrêa
+    - Praça Manuel Alves de Ataide
+    - Maranhão
+    - Marcelino Vieira de Fara
+    - Marcelino Vieira de Faria
+    - Marechal Deodoro
+    - Marechal Deodoro da Fonseca
+    - Rodovia Marechal Rondon
+    - Maria Luíza Nogueira de Castro
+    - Mariana Cunha Moreno
+    - Mato Grosso
+    - Messias de Almeida
+    - Miguel Camacho
+    - Miguel Resler
+    - Minas Gerais
+    - Mirage
+    - Estrada Mirandopolois Rib Claro
+    - Estrada Mirandópolis A PACAEMBU, Km 13,5 - Fazen
+    - Miyomatsu Sugasaka
+    - Mizael Leandro Alves
+    - Estrada Munic Ribeirao Claro
+    - Estrada Municipal Lavinia
+    - Estrada Municipal Mdp 436 Km 0,2
+    - Estrada Municipal Nova Aliança
+    - Estrada Municipal Pacaembu
+    - Estrada Municipal Pereira Barreto
+    - Estrada Municipal Primeira Aliança
+    - Estrada Municipal Santa Cecilia
+    - Nagata
+    - Nametala Jorge Nars
+    - Nações Unidas
+    - Neis Mustafa
+    - Nicola Forte
+    - Avenida Nossa Senhora Fatima
+    - Avenida Nossa Senhora de Fátima
+    - Avenida Nossa Sra de Fátima
+    - Nove
+    - Nove de Julho
+    - Avenida Ns. de Fátima
+    - Odete Morassi Alaby
+    - Oito
+    - Olegario Sanches
+    - Olimpio de Macedo
+    - Onze
+    - Orlando Justino D'Aquino
+    - Orlando Turri
+    - Ormindo Messias
+    - Ormindo Messias Souza
+    - Avenida Osvaldo Brandis Faria
+    - Oswaldo Dornellas
+    - Praça Papa João XXIII
+    - Praça Papa João Xx Iii
+    - Praça Papa João Xxiii
+    - Parana
+    - Paulo Leite Ribeiro
+    - Avenida Paulo S
+    - Pedro I
+    - Pedro de Toledo
+    - Pernambuco
+    - Piaui
+    - Praça Pinheiros
+    - Piratininga
+    - Avenida Planador
+    - Planador
+    - Estância Pontes
+    - Prefeito Geraldo S Braga
+    - Primavera
+    - Primo Antonio Marchet
+    - Primo Antônio Marchetti
+    - Princesa Isabel
+    - Profa Dalva Colaferro
+    - Professora Dalva Colaferro
+    - Projetada
+    - Quatorze Bis
+    - Quatorze
+    - Quatro
+    - Quinze
+    - Quinze de Novembro
+    - Avenida Rafael Pereira
+    - Rafael Pereira
+    - Ramiro Luiz Fernandes
+    - Avenida Raul da Cunha Bueno
+    - Avenida Raul da Cunha Bueno Dr
+    - Sítio Recanto São José
+    - Regente Feij
+    - Regente Feijo
+    - Regente Feijó
+    - Rio Grande do Norte
+    - Rio de Janeiro
+    - Rodolfo Miranda
+    - Rondonia
+    - Rondônia
+    - Praça Rotary
+    - Acácio Ferreira Marta
+    - Joaquim Ribeiro de Araújo, s/n
+    - Nagata, s/n
+    - Nove de Julho 922
+    - Tooru Kamijo 426
+    - Rui Barbosa
+    - S João
+    - Avenida S Paulo
+    - Santa Catarina
+    - Sítio Santa Emília
+    - Sítio Santo Antônio
+    - Praça Santos Dumont
+    - Santos Dumont
+    - Sebastiao Lopes de Castro
+    - Sebastião Aleixo Castro
+    - Sebastião Silva
+    - Seime Sadano
+    - Seimi Sadano
+    - Seis
+    - Sem Nome
+    - Sen Rodolfo Miranda
+    - Senador R Miranda
+    - Senador Rodolfo Miranda
+    - Sergipe
+    - Sete
+    - São Joao
+    - Fazenda São João
+    - São João
+    - Avenida São Paulo
+    - São Paulo
+    - Praça Takaoka
+    - Tiradentes
+    - Tornado
+    - Tres
+    - Treze
+    - Um
+    - VI
+    - Valentim Brito Lisboa
+    - Vanessa Maruyama
+    - Vereador Idanir A Momesso
+    - Vergilio Bearari
+    - Estrada Vicinal Antenor Nepomuceno
+    - Estrada Vicinal Tadashi Hatori
+    - Vinte e Quatro Junho
+    - Vinte e Quatro de Junho
+    - Vinte e Tres de Maio
+    - Viscount
+    - Xingu
+    - Yoshio Nakamura
+    - das Nações Unidas
+    - das Rosas
+    - Vale de Acesso Neif Mustafá
+    - de Caxias
+    - dos Estudantes
+    - Avenida dr osvaldo brandi faria
+    - Ângelo Matara

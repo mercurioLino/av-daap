@@ -30,13 +30,11 @@ class ActionSessionStart(Action):
         # session_started event
         #events.extend(self.fetch_slots(tracker))
 
-        # sender_id = tracker.sender_id
-        # print(sender_id)
-        # user_name = get_user_name(sender_id)
-        
-        # setar uma mensagem personalizada se tiver nome
-        # if user_name:
-        #     pass
+        sender_id = tracker.sender_id
+        print(sender_id)
+        user_name = get_user_name(sender_id)
+        if (user_name != ''):
+            events.append(SlotSet("name", user_name))
 
         # an action_listen should be added at the end as a user message follows
         # dispatcher.utter_message(response="utter_greet")
@@ -46,24 +44,19 @@ class ActionSessionStart(Action):
 
 
 # --------------- Actions que setam os valores dos Slots booleanos -----------------------------
+
 # slot animal_urgency
 class ActionSetAnimalUrgency(Action):
     def name(self):
         return "action_set_animal_urgency"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
-        if intent == "affirmation" or intent == "wanna_animal_urgency":
-            print('affirmation')
+        if intent == "affirmation":
             return [SlotSet("animal_urgency", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("animal_urgency", False)]
         return []
-
-
 
 # slot medical_attention
 class ActionSetAnimalMedicalAttention(Action):
@@ -71,14 +64,10 @@ class ActionSetAnimalMedicalAttention(Action):
         return "action_set_medical_attention"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation":
-            print('affirmation')
             return [SlotSet("medical_attention", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("medical_attention", False)]
         return []
 
@@ -89,14 +78,10 @@ class ActionSetPrivateProperty(Action):
         return "action_set_private_property"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation":
-            print('affirmation')
             return [SlotSet("private_property", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("private_property", False)]
         return []
 
@@ -106,14 +91,10 @@ class ActionSetTratos(Action):
         return "action_set_maus_tratos"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation":
-            print('affirmation')
             return [SlotSet("maus_tratos", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("maus_tratos", False)]
         return []
 
@@ -122,14 +103,10 @@ class ActionSetTermos(Action):
         return "action_set_termos"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation":
-            print('affirmation')
             return [SlotSet("termos", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("termos", False)]
         return []
 
@@ -138,14 +115,10 @@ class ActionSetIsCastrado(Action):
         return "action_set_is_castrado"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation":
-            print('affirmation')
             return [SlotSet("is_castrado", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("is_castrado", False)]
         return []
 
@@ -154,14 +127,10 @@ class ActionSetIsVacinado(Action):
         return "action_set_is_vacinado"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation":
-            print('affirmation')
             return [SlotSet("is_vacinado", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("is_vacinado", False)]
         return []
 
@@ -170,19 +139,14 @@ class ActionSetMoreHelp(Action):
         return "action_set_more_help"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation":
-            print('affirmation')
             return [SlotSet("more_help", True)]
         elif intent == "negation":
-            print('negation')
             return [SlotSet("more_help", False)]
         return []
 
 class ResetSlot(Action):   #Acrescentado por Biazom para uso no "Cancelamento/Retorno ao Menu Inicial"
-  
     def name(self):
         return "action_reset_slots"
 
@@ -190,11 +154,11 @@ class ResetSlot(Action):   #Acrescentado por Biazom para uso no "Cancelamento/Re
         return [AllSlotsReset()]
 
 class ActionRestarted(Action):   #Acrescentado por Biazom para uso no "Cancelamento/Retorno ao Menu Inicial"
-
     def name(self):
         return "action_chat_restart"
 
     def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_message(response="utter_greet")
         return [Restarted()]
 
 '''
@@ -205,50 +169,12 @@ class ActionSetActivictyDetailsPreference(Action):
         return "action_set_address_details_preference"
 
     def run(self, dispatcher, tracker, domain):
-
         intent = tracker.latest_message["intent"].get("name")
-
         if intent == "affirmation" or intent == "define_address_detail":
-            print('affirm')
             return [SlotSet("address_landmark", None)]
         elif intent == "negation":
-            print('deny')
             return [SlotSet("address_number", -1), SlotSet("address_street", 'Desconhecido'), SlotSet("address_district", 'Desconhecido')]
         return []
-
-
-# -------------------------- Fallback -------------------------------
-# class ActionDefaultAskAffirmation(Action):
-    
-#     def name(self):
-#         return "action_default_ask_affirmation"
-        
-#     def run(self, dispatcher, tracker, domain):
-#         predicted_intent = tracker.latest_message["intent_ranking"][1]
-#         print(predicted_intent)
-
-#         intent_mappings = {
-#             "rescue": "Resgate",
-#             "affirmation": "que sim",
-#             "negation": "que não",
-#             "inform_animal_type": "Tipo do Animal",
-#             "inform_animal_attributes": "as Características do Animal",
-#             "donate": "Doação a DAAP",
-#             "cancel": "teste"
-#         }
-
-#         message = "Sua intenção era informar " + intent_mappings[predicted_intent['name']] + "?"
-            
-#         message = "a"
-#         print(predicted_intent['name'])
-#         buttons = [
-#             {"title": "Yes", "payload": "/{}".format(predicted_intent['name'])},
-#             {"title": "No", "payload": "/out_of_scope"},         
-#         ]
-#         dispatcher.utter_message(message, buttons=buttons)
-#         print('test')
-
-#         return []
 
 class ActionGetAllSlotsData(Action):
     def name(self):
@@ -258,7 +184,6 @@ class ActionGetAllSlotsData(Action):
 
         # Slots que são preenchidos nos dois casos
         # Slots do Contact
-        
         age = tracker.get_slot('age')
         name = tracker.get_slot('name')
         phone = tracker.get_slot('phone')
@@ -276,9 +201,6 @@ class ActionGetAllSlotsData(Action):
         
         # se o user escolheu o resgate
         if rescue_option and rescue_option == 'resgate':
-            pass
-            message = 'Solicitação de resgate'
-
             # rescue        
             animal_type = tracker.get_slot('animal_type')
             animal_attributes = tracker.get_slot('animal_attributes')
@@ -358,12 +280,6 @@ class ActionGetAllSlotsData(Action):
                     animal_type=animal_type, animal_attributes=animal_attributes, animal_quantity=animal_quantity,
                     is_vacinado=is_vacinado, is_castrado=is_castrado, address_district=address_district, 
                     address_street=address_street, address_number=address_number, address_landmark=address_landmark, foto=foto)
-            
         
-        # #Outros Slots
-        # url = tracker.get_slot('url')
-        # termos = tracker.get_slot('termos')
-        print('action final')
+        dispatcher.utter_message(text="Tudo feito! Vou passar as informações para alguém que possa ajudar.")
         return []
-
-

@@ -208,9 +208,42 @@ nlu:
     - o animalzinho é preto e branco
     - é um gatinho amarelo rajado
     - o cachorro é caramelo vira lata
+    - ele tem pelo listrado
+    - ele tem cor caramelo
+    - ele tem pelos grandes
+    - o gato não tem pelo
+    - o animal nao tem pelo
     - o cachorro é preto, com pelos lisos e está com coleira
     - o cachorro aparenta ser domestico e esta com coleira
     - parece que tem dono, tem coleira
+    - pelo branco
+    - pelo preto
+    - pelo marrom
+    - com pintas pelo corpo
+    - rabo cumprido
+    - rabo torcido
+    - o animal é da raça
+    - o animal é grande
+    - sem rabo
+    - rabo cortado
+    - marrom
+    - branco
+    - colorido
+    - alto
+    - baixo
+    - porte médio
+    - porte grande
+    - porte pequeno
+    - o animal é de porte pequeno, com orelhas pequenas e pelo amarelo
+    - o animal é de porte grande
+    - o animal tem o rabo cumprido e patas finas
+    - o gato tem pelo preto
+    - o cachorro tem pelo azul
+    - o cachorro tem 4 patas
+    - o gato tem 3 patas
+    - o gato não tem rabo
+    - o cachorro tem orelha cortada
+    - o animal é grande
 
 - intent: inform_animal_health
   examples: |
@@ -238,25 +271,25 @@ nlu:
 
 - intent: inform_street
   examples: |
-    - Minha rua e [Rua 23 de Maio](rua)
+    - Minha rua e Rua [23 de Maio](rua)
     - A [Rua Alagoas](rua)
     - [Av Santos](rua)
-    - [rua alexadre galvani](rua) numero [33](number)
-    - o endereço é [rua acacio f marta](rua)
+    - rua [alexadre galvani](rua)
+    - o endereço é rua [acacio f marta](rua)
     - o animal esta na rua [Via Acesso Neis Mustapha](rua)
-    - está localizado na [rua 3 gentil moreira](rua)
-    - e a [rua adelino minari](rua)
+    - está localizado na [3 gentil moreira](rua)
+    - e a rua [adelino minari](rua)
 
-- intent: inform_number
-  examples: |
-    - numero [905](number)
-    - n. [33](number)
-    - o numero e [1055-A](number)
-    - terreno numero [333](number)
-    - [rua alexandre galvani](rua) n [88](number)
-    - [456](number)
-    - number do imovel [66](number)
-    - apt. n. [3333](number)
+# - intent: inform_number
+#   examples: |
+#     - numero [905](number)
+#     - n. [33](number)
+#     - o numero e [1055-A](number)
+#     - terreno numero [333](number)
+#     - [rua alexandre galvani](rua) n [88](number)
+#     - [456](number)
+#     - number do imovel [66](number)
+#     - apt. n. [3333](number)
 
 - intent: inform_bairro
   examples: |
@@ -279,75 +312,75 @@ nlu:
     - sobrado vermelho
     - casa antiga com a frente cheia de mato
 
-- lookup: bairro
-  examples: |
-    - Jardim Aeroporto
-    - Jardim Aeroporto I
-    - Jardim Aeroporto II
-    - Jardim Esplanada Ltda
-    - Jardim M S Fátima
-    - Jardim Miguita
-    - Jardim Morada Sol
-    - Jardim N S Fátima
-    - Jardim Nogara
-    - Jardim Pauliceia
-    - Jardim S João Saudade
-    - Jardim S L Fátima
-    - Jardim S
-    - Jd Aeroporto
-    - Jd Aeroporto I
-    - Jd Aeroporto II
-    - Jd Esplanada Ltda
-    - Jd M S Fátima
-    - Jd Miguita
-    - Jd Morada Sol
-    - Jd N S Fátima
-    - Jd Nogara
-    - Jd Pauliceia
-    - Jd S João Saudade
-    - Jd S L Fátima
-    - Jd S Lourenço
-    - Condomínio Habitacional Colina Verde
-    - Colina Verde
-    - Conjunto Habitacional Area Franco
-    - cohab area Franco
-    - coab
-    - Amandaba
-    - Bela Vista
-    - Bairro Santa Lina
-    - C H Agostinho Franco
-    - C H Morada Sol
-    - Cdhu Morada Sol
-    - Ceac
-    - Cenro
-    - Centro
-    - Chácara Colina Verde
-    - Chácara Morada Sol
-    - Cipex
-    - Conjunto H Morada Sol
-- lookup: rua
-  examples: |
-    - Rua 23 de Maio
-    - Rua 3 Gentil Moreira
-    - Rua 9 de Julho
-    - Travessa A
-    - Rua ARMANDO SALES DE OLIVEIRA
-    - Rua Abílio Ferreira Rocha
-    - Rua Acacio F Marta
-    - Via Acesso Neis Mustapha
-    - Rua Acre
-    - Rua Adejar Vieira Daria
-    - Rua Adejar Vieira Faria Prof
-    - Rua Adejar Vieira Faria
-    - Rua Adelino Minari
-    - Rua Alagoas
-    - Rua Alcídes Faleiros
-    - Rua Alexandre Galvani
-    - Rua Almirante Tamandare
-    - Rua Alvaro Guiato
-    - Rua Amazonas
-    - Av Santo
-    - Avenida Santos
+# - lookup: bairro
+#   examples: |
+#     - Jardim Aeroporto
+#     - Jardim Aeroporto I
+#     - Jardim Aeroporto II
+#     - Jardim Esplanada Ltda
+#     - Jardim M S Fátima
+#     - Jardim Miguita
+#     - Jardim Morada Sol
+#     - Jardim N S Fátima
+#     - Jardim Nogara
+#     - Jardim Pauliceia
+#     - Jardim S João Saudade
+#     - Jardim S L Fátima
+#     - Jardim S
+#     - Jd Aeroporto
+#     - Jd Aeroporto I
+#     - Jd Aeroporto II
+#     - Jd Esplanada Ltda
+#     - Jd M S Fátima
+#     - Jd Miguita
+#     - Jd Morada Sol
+#     - Jd N S Fátima
+#     - Jd Nogara
+#     - Jd Pauliceia
+#     - Jd S João Saudade
+#     - Jd S L Fátima
+#     - Jd S Lourenço
+#     - Condomínio Habitacional Colina Verde
+#     - Colina Verde
+#     - Conjunto Habitacional Area Franco
+#     - cohab area Franco
+#     - coab
+#     - Amandaba
+#     - Bela Vista
+#     - Bairro Santa Lina
+#     - C H Agostinho Franco
+#     - C H Morada Sol
+#     - Cdhu Morada Sol
+#     - Ceac
+#     - Cenro
+#     - Centro
+#     - Chácara Colina Verde
+#     - Chácara Morada Sol
+#     - Cipex
+#     - Conjunto H Morada Sol
+# - lookup: rua
+#   examples: |
+#     - Rua 23 de Maio
+#     - Rua 3 Gentil Moreira
+#     - Rua 9 de Julho
+#     - Travessa A
+#     - Rua ARMANDO SALES DE OLIVEIRA
+#     - Rua Abílio Ferreira Rocha
+#     - Rua Acacio F Marta
+#     - Via Acesso Neis Mustapha
+#     - Rua Acre
+#     - Rua Adejar Vieira Daria
+#     - Rua Adejar Vieira Faria Prof
+#     - Rua Adejar Vieira Faria
+#     - Rua Adelino Minari
+#     - Rua Alagoas
+#     - Rua Alcídes Faleiros
+#     - Rua Alexandre Galvani
+#     - Rua Almirante Tamandare
+#     - Rua Alvaro Guiato
+#     - Rua Amazonas
+#     - Av Santo
+#     - Avenida Santos
 
 
 - intent: inform_landmark
@@ -375,3 +408,42 @@ nlu:
     - tenho uma foto
     - possuo imagens
     - tenho imagens
+
+- intent: duvida
+  examples: |
+   - dúvidas
+   - duvidas
+   - tenho duvidas
+   - tenho uma pergunta
+   - posso perguntar?
+   - perguntas
+   - esclarecimentos
+
+
+- intent: faq/ask_canil
+  examples: |
+    - vocês tem canil?
+    - vocês tem um espaço físico?
+    - vocês tem gatil?
+    - vocês tem um lugar para deixar os animais?
+    - onde ficam os animais?
+    - vocês guardam animais onde?
+    - os animais ficam em gaiolas?
+    - os animais ficam nas casas das pessoas?
+    - os anmais são armazenados onde?
+    - onde vocês colocam os cachorros?
+    - onde guardam os gatos?
+
+- intent: faq/ask_vacine
+  examples: |
+    - vocês aplicam vacina?
+    - vocês vacinam os animais?
+    - vocês tem vacina?
+    - como faço para vacinar meu animal?
+
+- intent: faq/ask_castrar
+  examples: |
+    - vocês castram animais?
+    - vocês castram os animais?
+    - tem castração?
+    - como faço para castrar meu animal?

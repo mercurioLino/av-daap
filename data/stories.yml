@@ -119,6 +119,8 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
+
 
 - story: Rescue NAO especifica o endereco
   steps:
@@ -230,6 +232,8 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
+
 
 - story: Give to Adoption especifica o endereco e animal vacinado e castrado
   steps:
@@ -332,6 +336,7 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
 
 
 - story: Give to Adoption especifica o endereco e animal vacinado mas não castrado
@@ -431,6 +436,8 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
+
 
 - story: Give to Adoption especifica o endereco e animal não é vacinado mas é castrado
   steps:
@@ -533,6 +540,8 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
+
 
 - story: Give to Adoption especifica o endereco mas o animal não é vacinado e não é castrado
   steps:
@@ -635,6 +644,8 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
+
 
 
 - story: Give to Adoption NAO especifica o endereco
@@ -722,6 +733,8 @@ stories:
   - active_loop: null
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
+
 
 - story: Termo Negado - Give to Adoption
   steps:
@@ -744,6 +757,8 @@ stories:
   - action: utter_donate
   - intent: donate_dog_food
   - action: utter_donate_dog_food
+  - action: utter_offer_more_help
+
 
 - story: Fluxo do Donate Money
   steps:
@@ -751,6 +766,8 @@ stories:
   - action: utter_donate
   - intent: donate_money
   - action: utter_donate_money
+  - action: utter_offer_more_help
+
 
 
 
@@ -882,4 +899,6 @@ stories:
   - intent: inform_landmark
   - action: utter_submit
   - action: action_all_slots_data
+  - action: utter_offer_more_help
+
 

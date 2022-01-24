@@ -31,6 +31,7 @@ rules:
     - active_loop: null            # the form is no longer active because it has been filled
     - action: utter_submit         # action to take after the form is complete
     - action: action_all_slots_data
+    - action: utter_offer_more_help
 
 
 # realiza o submit do formulario de endereço
@@ -83,7 +84,7 @@ rules:
     - intent: inform_animal_attributes
     - intent: inform_animal_health
     - intent: inform_street
-    - intent: inform_number
+    # - intent: inform_number
     - intent: inform_bairro
     - intent: inform_landmark
     - intent: bairro
@@ -112,7 +113,7 @@ rules:
     - intent: donate_money
     - intent: donate_dog_food
     - intent: inform_street
-    - intent: inform_number
+    # - intent: inform_number
     - intent: inform_bairro
     - intent: inform_landmark
     - intent: bairro
@@ -143,7 +144,7 @@ rules:
     - intent: donate_money
     - intent: donate_dog_food
     - intent: inform_street
-    - intent: inform_number
+    # - intent: inform_number
     - intent: inform_bairro
     - intent: inform_landmark
     - intent: bairro
@@ -183,3 +184,23 @@ rules:
   # Return to form after handling the `chitchat` intent
   - action: address_form
   - active_loop: address_form
+
+
+# faq
+- rule: respond to FAQs
+  steps:
+  - intent: faq
+  - action: utter_faq
+
+- rule: duvidas
+  steps:
+  - intent: duvida
+  - action: utter_duvida
+
+# more help
+- rule: mais ajuda
+  steps:
+  - action: utter_offer_more_help
+  - intent: affirmation
+  - action: action_reset_slots
+  - action: action_chat_restart

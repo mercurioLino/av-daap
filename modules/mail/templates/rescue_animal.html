@@ -100,15 +100,15 @@ padding: 8px;
     <td>{{mapping_responses(address_landmark)}}</td>
 </tr>
 </table>
-
-{% if url %}
-    {% for item in url %}
-        <img src="{{item}}" alt="Imagem de animal">
+<br/>
+{% if foto %}
+    {% for item in foto %}
+        <img src="{{item}}" alt="Imagem de animal" width="40%" height="40%">
     {% endfor %}
 {% endif %}
 
 {% if objectid %}
-<div style="margin: 20px auto; width: 120px; padding: 10px 20px; background-color: #1c246b; border-radius: 5px">
+<div style="margin: 20px auto; width: 200x; padding: 10px 20px; background-color: #d70808; border-radius: 5px; text-align: center;">
     <a href="http://localhost:5005/webhooks/myio?objectid={{objectid}}&token={{token}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fcfcfc; font-size: 18px; margin: 0 auto;">Postar ná pagina</a>
 </div>
 {% endif %}

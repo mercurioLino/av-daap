@@ -1,6 +1,6 @@
 version: "3.0"
 nlu:
-- lookup: bairros
+- lookup: bairro
   examples: |
     - Jd Paulicéia
     - Jardim Pauliceia
