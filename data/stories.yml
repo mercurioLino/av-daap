@@ -35,9 +35,9 @@ stories:
   - slot_was_set:
     - animal_type: gato
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_rescue
   - slot_was_set:
-    - animal_attributes: gato de botas laranja
+    - animal_attributes_rescue: gato de botas laranja
   - slot_was_set:
     - requested_slot: animal_health
   - slot_was_set:
@@ -156,9 +156,9 @@ stories:
   - slot_was_set:
     - animal_type: gato
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_rescue
   - slot_was_set:
-    - animal_attributes: gato de botas laranja
+    - animal_attributes_rescue: gato de botas laranja
   - slot_was_set:
     - requested_slot: animal_health
   - slot_was_set:
@@ -284,9 +284,9 @@ stories:
   - slot_was_set:
     - animal_type: cachorro
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_adoption
   - slot_was_set:
-    - animal_attributes: o animal é preto com orelha branca
+    - animal_attributes_adoption: o animal é preto com orelha branca
   - slot_was_set:
     - requested_slot: is_vacinado
   - intent: affirmation
@@ -388,9 +388,9 @@ stories:
   - slot_was_set:
     - animal_type: cachorro
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_adoption
   - slot_was_set:
-    - animal_attributes: o animal é preto com orelha branca
+    - animal_attributes_adoption: o animal é preto com orelha branca
   - slot_was_set:
     - requested_slot: is_vacinado
   - intent: affirmation
@@ -488,9 +488,9 @@ stories:
   - slot_was_set:
     - animal_type: cachorro
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_adoption
   - slot_was_set:
-    - animal_attributes: o animal é preto com orelha branca
+    - animal_attributes_adoption: o animal é preto com orelha branca
   - slot_was_set:
     - requested_slot: is_vacinado
   - intent: negation
@@ -592,9 +592,9 @@ stories:
   - slot_was_set:
     - animal_type: cachorro
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_adoption
   - slot_was_set:
-    - animal_attributes: o animal é preto com orelha branca
+    - animal_attributes_adoption: o animal é preto com orelha branca
   - slot_was_set:
     - requested_slot: is_vacinado
   - intent: negation
@@ -697,9 +697,9 @@ stories:
   - slot_was_set:
     - animal_type: cachorro
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_adoption
   - slot_was_set:
-    - animal_attributes: o animal é preto com orelha branca
+    - animal_attributes_adoption: o animal é preto com orelha branca
   - slot_was_set:
     - requested_slot: is_vacinado
   - intent: affirmation
@@ -853,7 +853,7 @@ stories:
   - slot_was_set:
     - animal_type: gato
   - slot_was_set:
-    - requested_slot: animal_attributes
+    - requested_slot: animal_attributes_adoption
   - intent: inform_animal_attributes
   - action: utter_ask_is_vacinado
   - intent: affirmation

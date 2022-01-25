@@ -204,3 +204,11 @@ rules:
   - intent: affirmation
   - action: action_reset_slots
   - action: action_chat_restart
+
+# more help
+- rule: mais ajuda
+  steps:
+  - action: utter_offer_more_help
+  - intent: negation
+  - action: action_reset_slots
+  - action: utter_goodbye

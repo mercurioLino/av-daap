@@ -53,7 +53,7 @@ class ActionGetAllSlotsData(Action):
         return "action_all_slots_data"
 
     def run(self, dispatcher, tracker, domain):
-        nudity_api = False
+        nudity_api = True
 
         # Slots que são preenchidos nos dois casos
         # Slots de informações do usuário
@@ -78,7 +78,7 @@ class ActionGetAllSlotsData(Action):
         if rescue_option and rescue_option == 'resgate':
             # Slots referentes ao resgate do animal        
             animal_type = tracker.get_slot('animal_type')
-            animal_attributes = tracker.get_slot('animal_attributes')
+            animal_attributes = tracker.get_slot('animal_attributes_rescue')
             animal_health = tracker.get_slot('animal_health')
             animal_urgency = tracker.get_slot('animal_urgency')
             medical_attention = tracker.get_slot('medical_attention')
@@ -104,7 +104,7 @@ class ActionGetAllSlotsData(Action):
         else:
             # Slots referentes a adoção de animal
             animal_type = tracker.get_slot('animal_type')
-            animal_attributes = tracker.get_slot('animal_attributes')
+            animal_attributes = tracker.get_slot('animal_attributes_adoption')
             animal_quantity = tracker.get_slot('animal_quantity')
             is_vacinado = tracker.get_slot('is_vacinado')
             is_castrado = tracker.get_slot('is_castrado')

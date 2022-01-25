@@ -98,15 +98,15 @@ slots:
     mappings:
     - type: from_entity
       entity: animal_type
-  animal_attributes:
+  animal_attributes_rescue:
     type: text
     influence_conversation: true
     mappings:
     - type: from_text
       intent: inform_animal_attributes
-      # conditions:
-      # - active_loop: rescue_form
-        # requested_slot: animal_attributes
+      conditions:
+      - active_loop: rescue_form
+        requested_slot: animal_attributes_rescue
   animal_health:
     type: text
     influence_conversation: true
@@ -157,6 +157,15 @@ slots:
       conditions:
       - active_loop: give_to_adoption_form
         requested_slot: animal_quantity
+  animal_attributes_adoption:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      intent: inform_animal_attributes
+      conditions:
+      - active_loop: give_to_adoption_form
+        requested_slot: animal_attributes_adoption
   is_vacinado:
     type: bool
     influence_conversation: true
@@ -246,8 +255,7 @@ responses:
     
   utter_goodbye:
   - text: |-
-      Até mais, tchau!
-      -Sessão encerrada-
+      Beleza. Até mais, tchau!
   
   utter_offer_more_help:
   - text: Te ajudo em algo mais?
@@ -310,8 +318,11 @@ responses:
   utter_ask_animal_type:
   - text: 'Qual é o animal? (Cachorro, gato...)'
 
-  utter_ask_animal_attributes:
-  - text: 'Quais são as características do animal? (Exemplo: De porte grande, com pelos laranja e rabo comprido...)'
+  utter_ask_animal_attributes_rescue:
+  - text: 'Quais são as características do animal que será resgatado? (Exemplo: De porte grande, com pelos laranja e rabo comprido...)'
+
+  utter_ask_animal_attributes_adoption:
+  - text: 'Quais são as características do animal que será doado? (Exemplo: De porte grande, com pelos laranja e rabo comprido...)'
 
   utter_ask_animal_health:
   - text: 'Aparentemente, qual a saúde do animal? (Descreva como achar melhor)'
@@ -433,7 +444,7 @@ forms:
   rescue_form:
     required_slots:
     - animal_type
-    - animal_attributes
+    - animal_attributes_rescue
     - animal_health
     - medical_attention
     - private_property
@@ -445,7 +456,7 @@ forms:
     required_slots:
     - animal_quantity
     - animal_type
-    - animal_attributes
+    - animal_attributes_adoption
     - is_vacinado
     - is_castrado
     - url
