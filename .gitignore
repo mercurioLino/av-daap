@@ -3,7 +3,6 @@ venv/
 __pycache__/
 __pycache__
 .pyc
-models/
 .env
 story_graph.dot
 graph.html
