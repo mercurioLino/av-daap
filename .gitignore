@@ -9,3 +9,4 @@ story_graph.dot
 graph.html
 docker-compose.db.yml
 export_envs.sh
+rasa.env
