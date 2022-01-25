@@ -70,7 +70,9 @@ Obs: as variáveis de ambiente que devem ser escritas em um arquivo chamado ```r
 | ```SAFE_API_TOKEN``` | Token de acesso a API, obtida no site [SightEngine API](https://sightengine.com/) após o cadastro. |
 | ```SAFE_API_USER_ID``` | Identificador obtido no site [SightEngine API](https://sightengine.com/) após o cadastro. |
 
-## Criand os containers
+## Criando os containers
 ```
 docker-compose up
 ```
+
+Para mais informações, utilize consulte a [documentação geral do projeto](Documento-Geral-ChatBot.pdf).
