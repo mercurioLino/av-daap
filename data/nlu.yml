@@ -257,18 +257,6 @@ nlu:
     - o animal está com feridas e machucado e esta mancando
     - o animal ta com feridas na orelha
 
-# - intent: inform_adress
-#   examples: |
-#     - Eu moro no bairro [Jardim Aeroporto](bairro)
-#     - O bairro [Jardim Nogara](bairro)
-#     - [Cipex](bairro)
-#     - [Bela Vista](bairro)
-#     - Minha rua é [Rua 23 de Maio](rua)
-#     - A [Rua Alagoas](rua)
-#     - [Av Santos](rua)
-#     - [rua alexadre galvani](rua) numero [33](numero)
-#     - o endereço é [rua acacio f marta](rua) n. [905](numero) - [Jd Aeroporto](bairro)
-
 - intent: inform_street
   examples: |
     - Minha rua e Rua [23 de Maio](rua)
@@ -279,6 +267,15 @@ nlu:
     - o animal esta na rua [Via Acesso Neis Mustapha](rua)
     - está localizado na [3 gentil moreira](rua)
     - e a rua [adelino minari](rua)
+    - [Adejar Vieira Faria](rua)
+    - [acre](rua)
+    - [Ana Luiza da Conceição](rua)
+    - Rua [acre](rua)
+    - Rua [Amazonas](rua)
+    - Rua [Antônio R de Carvalho](rua)
+    - Rua [Antônio Rodrigues de Carvalho](rua)
+    - rua [Edgar Raimundo da Costa](rua)
+    - [Edwander Alves Santos](rua)
 
 # - intent: inform_number
 #   examples: |
@@ -311,77 +308,6 @@ nlu:
     - em frente ao galpao da vo savelina
     - sobrado vermelho
     - casa antiga com a frente cheia de mato
-
-# - lookup: bairro
-#   examples: |
-#     - Jardim Aeroporto
-#     - Jardim Aeroporto I
-#     - Jardim Aeroporto II
-#     - Jardim Esplanada Ltda
-#     - Jardim M S Fátima
-#     - Jardim Miguita
-#     - Jardim Morada Sol
-#     - Jardim N S Fátima
-#     - Jardim Nogara
-#     - Jardim Pauliceia
-#     - Jardim S João Saudade
-#     - Jardim S L Fátima
-#     - Jardim S
-#     - Jd Aeroporto
-#     - Jd Aeroporto I
-#     - Jd Aeroporto II
-#     - Jd Esplanada Ltda
-#     - Jd M S Fátima
-#     - Jd Miguita
-#     - Jd Morada Sol
-#     - Jd N S Fátima
-#     - Jd Nogara
-#     - Jd Pauliceia
-#     - Jd S João Saudade
-#     - Jd S L Fátima
-#     - Jd S Lourenço
-#     - Condomínio Habitacional Colina Verde
-#     - Colina Verde
-#     - Conjunto Habitacional Area Franco
-#     - cohab area Franco
-#     - coab
-#     - Amandaba
-#     - Bela Vista
-#     - Bairro Santa Lina
-#     - C H Agostinho Franco
-#     - C H Morada Sol
-#     - Cdhu Morada Sol
-#     - Ceac
-#     - Cenro
-#     - Centro
-#     - Chácara Colina Verde
-#     - Chácara Morada Sol
-#     - Cipex
-#     - Conjunto H Morada Sol
-# - lookup: rua
-#   examples: |
-#     - Rua 23 de Maio
-#     - Rua 3 Gentil Moreira
-#     - Rua 9 de Julho
-#     - Travessa A
-#     - Rua ARMANDO SALES DE OLIVEIRA
-#     - Rua Abílio Ferreira Rocha
-#     - Rua Acacio F Marta
-#     - Via Acesso Neis Mustapha
-#     - Rua Acre
-#     - Rua Adejar Vieira Daria
-#     - Rua Adejar Vieira Faria Prof
-#     - Rua Adejar Vieira Faria
-#     - Rua Adelino Minari
-#     - Rua Alagoas
-#     - Rua Alcídes Faleiros
-#     - Rua Alexandre Galvani
-#     - Rua Almirante Tamandare
-#     - Rua Alvaro Guiato
-#     - Rua Amazonas
-#     - Av Santo
-#     - Avenida Santos
-
 
 - intent: inform_landmark
   examples: |
