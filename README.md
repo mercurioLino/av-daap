@@ -67,7 +67,7 @@ Obs: as variáveis de ambiente que devem ser escritas em um arquivo chamado ```r
 | ```PAGE_POST_ACESS_TOKEN``` | Token de acesso a publicações na página, obtido no facebook developers. |
 | ```MONGO_URI``` | URL de conexeão com o banco de dados. |
 | ```ENABLE_SAFE_API``` | Valor booleano que define se as imagens serão avaliadas pela API que busca nudez, sangue ou contéudo ofensivo. Quando definido como False, as imagens não passam por nenhuma validação, porém isso é informando no corpo do email enviado ao receptor. Além disso, o botão de poblicação automática, presente no email enviado, é removido, forçando com que receptor do email precise criar a publicação manualmente. Isso garante que não aconteçam cliques indesejados sem a prévia avaliação as imagens. Ex: True,False |
-| ```SAFE_API_TOKEN``` | Token de acesso a API, obtida no site [SightEngine API](https://sightengine.com/) após o cadastro. |
+| ```SAFE_API_TOKEN``` | Token de acesso a API, obtido no site [SightEngine API](https://sightengine.com/) após o cadastro. |
 | ```SAFE_API_USER_ID``` | Identificador obtido no site [SightEngine API](https://sightengine.com/) após o cadastro. |
 
 ## Criando os containers
