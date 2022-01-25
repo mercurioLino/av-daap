@@ -1,4 +1,0 @@
-pymongo
-python-sdk
-facebook-sdk
-python-dotenv

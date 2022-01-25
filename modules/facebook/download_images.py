@@ -1,5 +1,6 @@
 import requests
 import tempfile
+import os
 
 def create_temp_directory():
     temp_dir = tempfile.TemporaryDirectory()
@@ -14,10 +15,11 @@ def dowload_face_images(image_url, objectid='dowloaded-image'):
     files_objects = []
     if image_url:
         print('image_url', image_url)
-        dir = create_temp_directory()
         for i, url in enumerate(image_url):
             filename = f'{objectid}-{i}.png'
-            filepath = f'/home/vinicius/Documentos/daap/av-daap/modules/facebook/images/{filename}'
+            dirname = os.path.dirname(__file__)
+            dir = os.path.join(dirname, 'images')
+            filepath = os.path.join(dir, filename)
 
             res = requests.get(url, stream=True)
             print(res)

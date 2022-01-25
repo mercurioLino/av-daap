@@ -60,24 +60,13 @@ class MyIO(InputChannel):
             # se o token estiver correto faz a publicação na página
             if document['token'] == str(token[0]):
                 facebook_post(document, str(objectid[0]))
-                return response.json({"status": "publicação realizado"})
+                return response.json({"status": "publicação realizada"})
 
             return response.json({"status": "ok"})
 
         @custom_webhook.route("/webhook", methods=["POST"])
         async def receive(request: Request):
-            print('test')
-            sender_id = request.json.get("sender") # method to get sender_id 
-            print(sender_id)
-            text = request.json.get("text") # method to fetch text
-            input_channel = self.name() # method to fetch input channel
-            metadata = self.get_metadata(request) # method to get metadata
-
-            collector = CollectingOutputChannel()
-            print(collector)
-            print(collector.messages)
-            # include exception handling
-           
+            print('fora de funcionamento')
             return response.json(None)
 
         return custom_webhook

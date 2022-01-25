@@ -36,6 +36,7 @@ O email possuirá um botão que, ao clicado, realizara um post na página do Fac
     * Modelo <em>pt_core_news_lg</em>
 * Pymongo 3.10.1
 * MongoDB
+* [Jinja2](https://jinja.palletsprojects.com/en/3.0.x/)
 * [Facebook-sdk](https://github.com/mobolic/facebook-sdk)
 * [Duckling](https://github.com/facebook/duckling)
 * Docker 20.10.8 e Docker-compose 1.29.2
@@ -43,7 +44,37 @@ O email possuirá um botão que, ao clicado, realizara um post na página do Fac
 
 
 # Executando o projeto
-## Executando em containers
+O projeto está dockerizado. Basta configuras as variaveis de ambiente e
+criar os containers, como será descrito abaixo.
+## Configurando variáveis de ambiente
+Algumas variaveis de ambiente necessitam de alguns processos de configuração externos
+ao projeto. Como, por exemplo, a integração do chatbot com o Facebook.
+Para isso é necessário acessar a página do [facebook developers](https://developers.facebook.com), logar com a conta do Facebook que possui a página, criar um APP e
+linkar esse APP com a página. Após esse processo serão obtidos identificadores e tokens de acesso necessários para o projeto. Detalhes podem ser encontrados na [documentação oficial](https://developers.facebook.com/docs/development/) do facebook.
+
+Além disso, também utilizamos [SightEngine API](https://sightengine.com/), uma API que identifica nudez, sangue ou conteúdo ofensivo em imagens (algo imprecindível para não infringirmos as diretrizes do facebook ao realizar uma publícação). Esse serviço necessita de cadastro para obter da credenciais que permitem o uso da API.
+
+
+A tabela abaixo as informações que devem ser descritas no arquivo ```rasa.env```
+de configuração.
+
+| Nome | Descrição |
+| --------------- | --------------- |
+| ```EMAIL_SENDER``` | Email do remetente. Email que irá enviar os dados capturados e estruturados pelo bot ao email receptor. Ex: email@example.com |
+| ```EMAIL_SENDER_SENHA``` | Senha do email do remetente. Se utilizar a autenticação de 2 fatores é necessário definir uma "senha para aplicativos". Como mostra esse documento, para gmails. https://support.google.com/accounts/answer/185833?hl=pt-BR |
+| ```EMAIL_RECEIVER``` | Email receptor. Email que receberá os dados. |
+| ```DEVELOPER_APP_NAME``` | Nome do APP criado no facebook developers. |
+| ```DEVELOPER_APP_SECRET``` | Secrect key. Informação obtida no facebook developers. |
+| ```PAGE_ACESS_TOKEN``` | Token de acesso a página, obtido no facebook developers. |
+| ```PAGE_POST_ACESS_TOKEN``` | Token de acesso a publicações na página, obtido no facebook developers. |
+| ```MONGO_URI``` | URL de conexeão com o banco de dados. |
+| ```ENABLE_SAFE_API``` | Valor booleano True/False que define se as imagens serão avaliadas pela API que busca nudez, sangue ou contéudo ofensivo. Quando False, as imagens passam livrimente, sem nenhuma validação, porém isso é informando no email e o botão de post automatico é removido, forçando com que o usuário precise criar o post manualmente com as informações obtidas pelo bot. Isso garante que ele não clique no botão sem avaliar as imagens. |
+| ```SAFE_API_TOKEN``` | Token de acesso a API, obtida no site [SightEngine API](https://sightengine.com/) após o cadastro. |
+| ```SAFE_API_USER_ID``` | Identificador obtido no site [SightEngine API](https://sightengine.com/) após o cadastro. |
+
+/home/vinicius/Documentos/daap/av-daap/modules/facebook/images/
+
+## Criand os containers
 ```
 docker-compose up
 ```
