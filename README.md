@@ -1,18 +1,19 @@
 
 # O Projeto
-Um chatbot construido utilizando rasa, integrado ao facebook messager, capaz de automatizar
-o processo de obtenção e estruturação de informações, enviar emails e públicar posts na página do facebook.
+Um chatbot construído utilizando [Rasa](https://rasa.com/), integrado ao facebook messenger, capaz de automatizar o processo de obtenção e estruturação de informações, enviar emails e realizar publicações posts na página do facebook.
 
 ## Escopo
-A beneficiário do projeto participava de uma ONG que ajudava animais, a qual recebia auxilio da prefeitura municipal, fornecendo um abrigo de animais. Infelizmente a ONG perdeu o apoio e, posteriormente, se desfez. Mas, para continuar ajudando os animais, a beneficiária encontrou outra forma de agir para cuidar dos animais necessitados, criando uma página no facebook para os habitantes da cidade entrarem em contato e comunicarem sobre possíveis casos com esses animais. Com isso a beneficiária poderia ajudar por si própria ou realizar publicações na página em busca de pessoas que pudessem ajudar.
+A beneficiária desse projeto integrava a equipe de uma ONG de auxílio a animais, a qual recebia possuía e possuia um abrigo físico de animais. Infelizmente a ONG perdeu o apoio e, posteriormente, se desfez. Mas, com a intenção de continuar ajudando os animais, a beneficiária encontrou outra forma de agir. Para cuidar dos animais necessitados, ela criou uma página no facebook, a [Patinhas de Rua](https://www.facebook.com/PatinhasDeRuaMirandopolis) para escutar e auxiliar os habitantes da cidade em relação aos animais.
 
-## O problema resolvido pelo chabot
-O auxilo aos animais provido pela beneficiária é um trabalho talmente não remunerado. Por isso ela possui um emprego formal, que ocupa parte de seu tempo, o que torna impossível que as mensagens recebidas pela página sejam lidas e respondidas no exato momento.
+Essa página recebe diversas solicitações de resgate e doação de animais, de modo que a beneficiária pode ajudar de maneira independente ou, quando estiver impossibilitada de ajudar, realizar publicações para divulgar a situação e encontrar pessoas que possam ajudar.
 
-Devido a isso, o chatbot foi desenvolvido no intuito de facilitar essa comunicação, obter e estruturas as informações e auxiliar em tarefas manuais que são passíveis de automatização, como a criação de um post no facebook.
+## O problema
+O auxílio aos animais provido pela beneficiária é um trabalho não remunerado, por isso ela possui um emprego formal, o qual ocupa parte de seu tempo e dificulta a leitura e resposta das mensagens enviadas a página em um curto período de tempo.
+
+Devido a isso, o chatbot foi desenvolvido no intuito de facilitar a comunicação entre os habitantes da cidade e a página Patinhas de Rua, auxiliando na obtenção e estruturação das informações, possibilitando o repasse das informações coletadas a responsável pela página. Além disso, o chatbot também é capaz de realizar publicações na página, quando solicitado.
 
 ## Funcionalidades
-O Chatbot tem por objetivo interpretar as mensagens do usuário para atender aos seguintes serviços: 
+O Chatbot tem por objetivo interpretar as mensagens enviadas a página para os seguintes fluxos de conversa: 
 * Resgate de um animal abandonado
 * Doação de um Animal
 * Ajuda financeira para a página
@@ -22,7 +23,7 @@ Para os principais serviços, como Resgate de Animal e Doação de Animal, o Cha
 
 Após obter todas as informações necessárias, os dados serão estruturados e enviados por email para a beneficiária e ela tomará as medidas cabíveis ao caso.
 
-O email possuirá um botão que, ao clicado, realizara um post na página do Facebook contendo todos os dados obtidos.
+O email possuirá um botão que, quando clicado, realizará uma publicação de maneira automatizada dos dados exibidos no corpo do email na página do Facebook. Como é comum que os usuários enviem fotos, também foi necessário adicionar ao bot a funcionalidade de identificar nudez, sangue ou conteúdo ofensivo nas imagens, evitando assim que uma publicação viole as diretrizes do Facebook.
 
 ### Arquitetura do projeto
 <p align="center">
@@ -44,62 +45,32 @@ O email possuirá um botão que, ao clicado, realizara um post na página do Fac
 
 
 # Executando o projeto
-O projeto está dockerizado. Basta configuras as variaveis de ambiente e
-criar os containers, como será descrito abaixo.
+O projeto está todo dockerizado, basta apenas configurar as variáveis de ambiente, como será descrito abaixo.
 ## Configurando variáveis de ambiente
-Algumas variaveis de ambiente necessitam de alguns processos de configuração externos
-ao projeto. Como, por exemplo, a integração do chatbot com o Facebook.
-Para isso é necessário acessar a página do [facebook developers](https://developers.facebook.com), logar com a conta do Facebook que possui a página, criar um APP e
-linkar esse APP com a página. Após esse processo serão obtidos identificadores e tokens de acesso necessários para o projeto. Detalhes podem ser encontrados na [documentação oficial](https://developers.facebook.com/docs/development/) do facebook.
+Algumas variáveis de ambiente são obtidas através de processos de configuração externos
+ao projeto, como, por exemplo, a integração do chatbot com o Facebook, que gera os tokens de acesso a página. Para isso é necessário acessar a página do [facebook developers](https://developers.facebook.com), logar com a conta do Facebook que possui a página, criar um APP e
+linka-lo com a página. Após esse processo serão obtidos identificadores e tokens de acesso necessários para o projeto. Detalhes podem ser encontrados na [documentação oficial do facebook](https://developers.facebook.com/docs/development/).
 
-Além disso, também utilizamos [SightEngine API](https://sightengine.com/), uma API que identifica nudez, sangue ou conteúdo ofensivo em imagens (algo imprecindível para não infringirmos as diretrizes do facebook ao realizar uma publícação). Esse serviço necessita de cadastro para obter da credenciais que permitem o uso da API.
+Além disso, para verificar a existência de nudez, sangue ou conteúdo ofensivo nas imagens utilizamos a [SightEngine API](https://sightengine.com/). Esse serviço necessita de cadastro e fornece as credenciais para o uso da API.
 
-
-A tabela abaixo as informações que devem ser descritas no arquivo ```rasa.env```
-de configuração.
+A tabela abaixo exibe as variáveis de ambiente necessárias e uma breve descrição de cada uma.
+Obs: as variáveis de ambiente que devem ser escritas em um arquivo chamado ```rasa.env```. Nesse repositório existe um arquivo de exemplo, chamado ```example-rasa.env```, não se esqueça se remover o "example" quando for utilizá para definir as variáveis de ambiente.
 
 | Nome | Descrição |
 | --------------- | --------------- |
-| ```EMAIL_SENDER``` | Email do remetente. Email que irá enviar os dados capturados e estruturados pelo bot ao email receptor. Ex: email@example.com |
-| ```EMAIL_SENDER_SENHA``` | Senha do email do remetente. Se utilizar a autenticação de 2 fatores é necessário definir uma "senha para aplicativos". Como mostra esse documento, para gmails. https://support.google.com/accounts/answer/185833?hl=pt-BR |
-| ```EMAIL_RECEIVER``` | Email receptor. Email que receberá os dados. |
+| ```EMAIL_SENDER``` | Email do remetente. Email que irá enviar os dados extraídos pelo bot durante uma conversa ao email receptor. Ex: email@example.com |
+| ```EMAIL_SENDER_SENHA``` | Senha do email do remetente. Caso o email escolhido utilize a autenticação de dois fatores será necessário definir uma "senha para aplicativos". Para emails de domínio gmail basta seguis as intruções desse [documento](https://support.google.com/accounts/answer/185833?hl=pt-BR) |
+| ```EMAIL_RECEIVER``` | Email receptor. Email que receberá os dados. Ex: email@example.com |
 | ```DEVELOPER_APP_NAME``` | Nome do APP criado no facebook developers. |
 | ```DEVELOPER_APP_SECRET``` | Secrect key. Informação obtida no facebook developers. |
 | ```PAGE_ACESS_TOKEN``` | Token de acesso a página, obtido no facebook developers. |
 | ```PAGE_POST_ACESS_TOKEN``` | Token de acesso a publicações na página, obtido no facebook developers. |
 | ```MONGO_URI``` | URL de conexeão com o banco de dados. |
-| ```ENABLE_SAFE_API``` | Valor booleano True/False que define se as imagens serão avaliadas pela API que busca nudez, sangue ou contéudo ofensivo. Quando False, as imagens passam livrimente, sem nenhuma validação, porém isso é informando no email e o botão de post automatico é removido, forçando com que o usuário precise criar o post manualmente com as informações obtidas pelo bot. Isso garante que ele não clique no botão sem avaliar as imagens. |
+| ```ENABLE_SAFE_API``` | Valor booleano que define se as imagens serão avaliadas pela API que busca nudez, sangue ou contéudo ofensivo. Quando definido como False, as imagens não passam por nenhuma validação, porém isso é informando no corpo do email enviado ao receptor. Além disso, o botão de poblicação automática, presente no email enviado, é removido, forçando com que receptor do email precise criar a publicação manualmente. Isso garante que não aconteçam cliques indesejados sem a prévia avaliação as imagens. Ex: True,False |
 | ```SAFE_API_TOKEN``` | Token de acesso a API, obtida no site [SightEngine API](https://sightengine.com/) após o cadastro. |
 | ```SAFE_API_USER_ID``` | Identificador obtido no site [SightEngine API](https://sightengine.com/) após o cadastro. |
-
-/home/vinicius/Documentos/daap/av-daap/modules/facebook/images/
 
 ## Criand os containers
 ```
 docker-compose up
-```
-
-## Executando separadamente
-### Instale o Spacy
-Instale o spacy e o modelo no **ambiente onde o rasa está instalado**
-```
-pip install spacy
-python3 -m spacy download pt_core_news_lg
-```
-### Crie um container para o duckling
-```
-docker run -p 8000:8000 rasa/duckling
-```
-
-### Execute as actions
-```
-rasa run actions
-```
-### Execute e o bot
-```
-rasa run --credentials credentials.yml --enable-api --cors "*"
-```
-ou, para executar através do terminal
-```
-rasa shell
 ```
