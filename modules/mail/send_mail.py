@@ -7,13 +7,16 @@ from jinja2 import Environment, PackageLoader, FileSystemLoader, select_autoesca
 
 import os
 
-#Start do server
 host = "smtp.gmail.com"
 port = "587"
 login = os.environ['EMAIL_SENDER']
 senha = os.environ['EMAIL_SENDER_SENHA']
 
-# envia um email
+"""
+Envia um email, recebendo como parâmetros uma string que
+representa o tipo do caso e será utilizada como título do email
+e o html que define o email.
+"""
 def send_mail(type_selected, html_email):
         try:
             server = smtplib.SMTP(host, port)
@@ -27,7 +30,7 @@ def send_mail(type_selected, html_email):
         corpo = html_email
         email_msg = MIMEMultipart()
         email_msg['From'] = login
-        email_msg['To'] = 'vinicius.marchi98@gmail.com'
+        email_msg['To'] = os.environ['EMAIL_RECEIVER']
         email_msg['Subject'] = type_selected
         email_msg.attach(MIMEText(corpo, 'html'))
 
@@ -67,7 +70,6 @@ def configure_env_templates():
 def send_rescue_email(objectid=None, token=None, safe=None, **kwargs):
     env = configure_env_templates()
     template = env.get_template('rescue_animal.html')
-
     html = template.render(objectid=objectid, token=token, safe=safe, **kwargs)
 
     send_mail('Resgate de animal', html)
@@ -77,6 +79,5 @@ def send_donate_email(objectid=None, token=None, safe=None, **kwargs):
     env = configure_env_templates()
     template = env.get_template('donate_animal.html')
     html = template.render(objectid=objectid, token=token, safe=safe, **kwargs)
-    print(html)
 
     send_mail('Doação de animal', html)

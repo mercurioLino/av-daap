@@ -3,6 +3,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk.executor import CollectingDispatcher
 import requests
 import re
+import os
 
 import facebook as fb
 import json
@@ -11,7 +12,7 @@ from .download_images import dowload_face_images
 # Busca o nome do usuário no facebook de acordo com seu id
 def get_user_name(sender_id):
     try:
-        access_token = 'EAAJuk0ZAYiKwBAPRFz5DUA6NStmIbDDajS07aOd7wKZBeujJ76kyFygGAZAzvlqjMZALhPpe3A4K92mhwBtaYu608ZAqrkxbOb9bo2KJfUCCLqpV8V0ZAMZB0XZB28Ln4Db0W311n4C9SANFE3F5slnyhbUq92A8JmH9f70vouX32Atn7GKFBHabaneIMwxmwqwZD'
+        access_token = os.environ['PAGE_ACESS_TOKEN']
         r = requests.get('https://graph.facebook.com/{}?fields=first_name,last_name&access_token={}'.format(str(sender_id), access_token))
 
         # lança exeção se a resposta for 400
@@ -36,7 +37,7 @@ def get_user_name(sender_id):
 # realiza um post na página do Facebook
 def facebook_post(data, objectid):
     # token de acesso da página
-    acess_token = 'EAAJuk0ZAYiKwBAKF1EEpkOXbLoXNQTCHvIZA82VuVRQKnKFthr3SzIh85HyXMZBl6krGFwJSIRQWf6vpJE9ptrXHXXKSv9WD9ymntTXDl466NJ8YHh5LDfVxqceLGAq4OZByQfhxBOEaO7XueXFzjUTTTFZCC2nCW0Cc6oOOR5nAYdcdkPJ4yHyfzPLZA4UhsZD'
+    acess_token = os.environ['PAGE_POST_ACESS_TOKEN']
 
     # instânciando objeto de acesso a API
     asafb = fb.GraphAPI(acess_token)

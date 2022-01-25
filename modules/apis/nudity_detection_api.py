@@ -1,5 +1,7 @@
 import requests
 import json
+import os
+
 
 """
 Comumente o usuário envia mais de uma imagem, por isso, essa função
@@ -29,7 +31,7 @@ e representadas por uma única variável booleana. Essa variável indica se as
 imagens são seguras ou não para serem publicadas no Facebook.
 """
 def offensive_classifier(image):  
-    describe = {'url': image, 'models': 'nudity, offensive, gore', 'api_user': '133743064', 'api_secret': 'xA9h9Ny3DBzeLPSyKAFL'}
+    describe = {'url': image, 'models': 'nudity, offensive, gore', 'api_user': os.environ['SAFE_API_USER_ID'], 'api_secret': os.environ['SAFE_API_TOKEN']}
     try:
         r = requests.get('https://api.sightengine.com/1.0/check.json', params=describe)
         r.raise_for_status()

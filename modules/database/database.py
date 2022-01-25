@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import secrets
+import os
 
 """
 Os métodos abaixo compõem um módulo que realiza operações básicas do banco
@@ -8,7 +9,7 @@ de dados MongoDB.
 """
 def connect():
     # instânciando o cliente do mongo
-    client = MongoClient('mongodb://root:root@localhost:27017/')
+    client = MongoClient(os.environ['MONGO_URI'])
     
     # se não existe conexão com o banco return antes
     if client is None:

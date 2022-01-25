@@ -53,7 +53,7 @@ class ActionGetAllSlotsData(Action):
         return "action_all_slots_data"
 
     def run(self, dispatcher, tracker, domain):
-        nudity_api = True
+        enable_safe_api = os.environ['ENABLE_SAFE_API']
 
         # Slots que são preenchidos nos dois casos
         # Slots de informações do usuário
@@ -92,7 +92,7 @@ class ActionGetAllSlotsData(Action):
 
             # passa a imagem pela api que busca nudez explicita
             safe = None
-            if nudity_api is True:
+            if enable_safe_api is True:
                 safe = safe_api(foto)
 
             # envia o email ao responsável pela página
@@ -115,7 +115,7 @@ class ActionGetAllSlotsData(Action):
             
             # passa a imagem pela api que busca nudez explicita
             safe = None
-            if nudity_api is True:
+            if enable_safe_api is True:
                 safe = safe_api(foto)
 
             # envia o email ao responsável pela página
